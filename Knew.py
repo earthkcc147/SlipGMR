@@ -70,15 +70,17 @@ text_phone_user = phone_user_id
 text_bank_me = bank_me_id
 
 # ตำแหน่งข้อความ
-text_position_money = (560, 270)
+
 text_position_user = (302, 485)
-text_position_me = (302, 648)
-text_position_phone = (302, 720)
-text_position_time = (781, 885)
-text_position_order = (827, 953)
 text_position_bank_user = (302, 820)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้โอน"
 text_position_phone_user = (302, 890)  # เพิ่มตำแหน่งสำหรับ "เบอร์ผู้โอน"
+text_position_me = (302, 648)
 text_position_bank_me = (302, 960)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้รับ"
+text_position_phone = (302, 720)
+text_position_order = (827, 953)
+text_position_money = (560, 270)
+text_position_time = (781, 885)
+
 
 # สีของข้อความ
 text_color_user = (-20, -20, -20)
@@ -90,7 +92,6 @@ text_color_phone = (80, 80, 80)
 text_color_order = (60, 60, 60)
 text_color_money = (44, 44, 44)
 text_color_time = (60, 60, 60)
-
 
 
 # ใส่ข้อความลงในภาพ
