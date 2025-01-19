@@ -1,6 +1,6 @@
+from PIL import Image, ImageDraw, ImageFont
 import pytz
 from datetime import datetime
-from PIL import Image, ImageDraw, ImageFont
 import requests
 
 # ข้อมูลจากผู้ใช้
@@ -69,7 +69,6 @@ text_name_order = "50018935012188"
 text_money = money_id + ".00"
 text_name_time = f"  {day}/{month}/{year} {time}"
 
-
 # ตำแหน่งข้อความ
 text_position_user = (250, 220) # ชื่อผู้โอน
 text_position_bank_user = (250, 280)  # ธ.ผู้โอน
@@ -80,7 +79,6 @@ text_position_phone = (250, 660) # เบอร์ผู้รับ
 text_position_order = (445, 820) # เลขออเดอร์
 text_position_money = (370, 900) # จำนวนเงิน
 text_position_time = (55, 100) # เวลา
-
 
 # สีของข้อความ
 text_color_user = (-20, -20, -20)
@@ -93,7 +91,6 @@ text_color_order = (60, 60, 60)
 text_color_money = (44, 44, 44)
 text_color_time = (60, 60, 60)
 
-
 # ใส่ข้อความลงในภาพ
 draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user)
 draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)  # ใส่ข้อความ "ธ.ผู้โอน"
@@ -105,9 +102,20 @@ draw.text(text_position_order, text_name_order, font=font_order, fill=text_color
 draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
 draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
 
+# โหลดโลโก้
+logo = Image.open("Bank/truemoneywallet-Promptpay-aw-logobank-20220325-1a-400x183 (0_1).png")
 
-# บันทึกภาพที่มีข้อความ
-image.save("truemoney_with_textnew.png")
+# ปรับขนาดโลโก้ให้เล็กลง
+logo = logo.resize((100, 50))
+
+# ตำแหน่งโลโก้
+logo_position = (image.width - logo.width - 10, image.height - logo.height - 10)
+
+# แทรกโลโก้ลงในภาพ
+image.paste(logo, logo_position)
+
+# บันทึกภาพที่มีข้อความและโลโก้
+image.save("truemoney_with_text_and_logo.png")
 
 # ส่งข้อมูลไปยัง Discord webhook
 discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
@@ -138,12 +146,12 @@ embed_data = {
 response = requests.post(discord_webhook_url, json=embed_data)  # ใช้ json แทน data
 
 # ส่งภาพหลังจาก Embed
-with open("truemoney_with_textnew.png", "rb") as f:
+with open("truemoney_with_text_and_logo.png", "rb") as f:
     image_file = f.read()
 
 response = requests.post(
     discord_webhook_url,
-    files={'file': ('truemoney_with_textnew.png', image_file)}
+    files={'file': ('truemoney_with_text_and_logo.png', image_file)}
 )
 
 if response.status_code == 200:
