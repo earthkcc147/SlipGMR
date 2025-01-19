@@ -256,8 +256,8 @@ def main_menu():
         text_position_me = (250, 540)
         text_position_bank_me = (250, 600)
         text_position_phone = (250, 660)
-        text_position_order = (445, 820)
-        text_position_money = (370, 900)
+        text_position_order = (500, 820)
+        text_position_money = (400, 900)
         text_position_time = (55, 100)
 
     elif background_image == "Bank/K-bank 2.png":
