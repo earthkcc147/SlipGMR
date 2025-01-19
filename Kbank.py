@@ -127,7 +127,7 @@ response = requests.post(
     files={'file': ('truemoney_with_textnew.png', image_file)}
 )
 
-if response.status_code == 204:
+if response.status_code == 200:
     print("ส่งข้อมูลไปยัง Discord สำเร็จ")
 else:
     print(f"เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
