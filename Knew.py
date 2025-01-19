@@ -506,7 +506,7 @@ def main_menu():
         discord_webhook_url,
         files={'file': ('truemoney_with_text_and_logo.png', image_file)}
     )
-        print(f"🔗 ส่งไฟล์ภาพไปยัง Discord: {response.status_code}")
+    print(f"🔗 ส่งไฟล์ภาพไปยัง Discord: {response.status_code}")
 
     if response.status_code == 200:
         print("📤 ส่งข้อมูลไปยัง Discord สำเร็จ 🎉")
