@@ -125,7 +125,7 @@ def main_menu():
         text_position_money = (370, 900)
         text_position_time = (55, 100)
 
-        logo_position = (50, image.height - 130 - 100)  # ตำแหน่งโลโก้สำหรับภาพพื้นหลัง 1
+        logo_position = (50, image.height - logo.height - 500)  # ตำแหน่งโลโก้สำหรับภาพพื้นหลัง 1
 
     elif background_image == "Bank/K-bank 2.png":
         text_position_user = (250, 230)
