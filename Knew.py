@@ -70,7 +70,7 @@ text_money = money_id + ".00"
 text_name_time = f"  {day}/{month}/{year} {time}"
 
 # ตำแหน่งข้อความ
-text_position_user = (302, 485)
+text_position_user = (302, 940)
 text_position_bank_user = (302, 820)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้โอน"
 text_position_phone_user = (302, 890)  # เพิ่มตำแหน่งสำหรับ "เบอร์ผู้โอน"
 text_position_me = (302, 648)
