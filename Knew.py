@@ -138,23 +138,23 @@ def select_background(bank_name):
         return "Bank/K-bank 0.png"
     
     elif choice == "1" and bank_name == "SCB":
-        return "Bank/SCB 4.png"
+        return "Bank/SCB copy.png"
     
     
     elif choice == "1" and bank_name == "Bangkok":
-        return "Bank/Bangkok 4.png"
+        return "Bank/Bangkok.png"
     
     
     elif choice == "1" and bank_name == "TTB":
-        return "Bank/TTB 4.png"
+        return "Bank/TTB.jpg"
     
     
     elif choice == "1" and bank_name == "กรุงศรี":
-        return "Bank/กรุงศรี 4.png"
+        return "Bank/กรุงศรี.png"
     
     
     elif choice == "1" and bank_name == "กรุงไทย":
-        return "Bank/กรุงไทย 4.png"
+        return "Bank/กรุงไทย.png"
     
     
     else:
