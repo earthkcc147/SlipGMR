@@ -77,10 +77,6 @@ image.save("truemoney_with_textnew.png")
 # ส่งข้อมูลไปยัง Discord webhook
 discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
 
-# เปิดไฟล์ภาพ
-with open("truemoney_with_textnew.png", "rb") as f:
-    image_file = f.read()
-
 # สร้างคำขอ JSON สำหรับ Discord Embed พร้อมกับ add.fields
 embed_data = {
     "content": "ข้อมูลการโอนจ่าย",
@@ -123,9 +119,17 @@ embed_data = {
 # ส่งคำขอไปยัง Discord webhook
 response = requests.post(
     discord_webhook_url,
-    json=embed_data,  # ใช้ json แทน data
-    files={'file': ('truemoney_with_textnew.png', image_file)}
+    json=embed_data  # ใช้ json แทน data
 )
+
+# ส่งภาพหลังจาก Embed
+with open("truemoney_with_textnew.png", "rb") as f:
+    image_file = f.read()
+
+    response = requests.post(
+        discord_webhook_url,
+        files={'file': ('truemoney_with_textnew.png', image_file)}
+    )
 
 if response.status_code == 200:
     print("ส่งข้อมูลไปยัง Discord สำเร็จ")
