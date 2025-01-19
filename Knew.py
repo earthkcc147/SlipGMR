@@ -133,9 +133,13 @@ def select_background(bank_name):
     else:
         print("ไม่มีพื้นหลังสำหรับธนาคารนี้")
 
-    choice = input("กรุณาเลือกหมายเลข (1-5): ")
+    print("0. ย้อนกลับ")
+    
+    choice = input("กรุณาเลือกหมายเลข (0-5): ")
 
-    if choice == "1" and bank_name == "K-bank":
+    if choice == "0":
+        return "กลับสู่เมนูก่อนหน้า"  # เพิ่มตัวเลือกย้อนกลับ
+    elif choice == "1" and bank_name == "K-bank":
         return "Bank/K-bank 4.png"
     elif choice == "2" and bank_name == "K-bank":
         return "Bank/K-bank 3.png"
@@ -145,27 +149,22 @@ def select_background(bank_name):
         return "Bank/K-bank 1.png"
     elif choice == "5" and bank_name == "K-bank":
         return "Bank/K-bank 0.png"
-    
+
     elif choice == "1" and bank_name == "SCB":
         return "Bank/SCB copy.png"
-    
-    
+
     elif choice == "1" and bank_name == "Bangkok":
         return "Bank/Bangkok.png"
-    
-    
+
     elif choice == "1" and bank_name == "TTB":
         return "Bank/TTB.jpg"
-    
-    
+
     elif choice == "1" and bank_name == "กรุงศรี":
         return "Bank/กรุงศรี.png"
-    
-    
+
     elif choice == "1" and bank_name == "กรุงไทย":
         return "Bank/กรุงไทย.png"
-    
-    
+
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_background(bank_name)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
