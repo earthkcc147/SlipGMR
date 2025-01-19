@@ -54,7 +54,7 @@ def select_logo(background_image):
 
     return logo, logo_position
 
-# เมนูหลัก
+# เทนูหลัก
 def main_menu():
     print("ระบบสร้างใบโอนจ่าย")
 
@@ -87,26 +87,68 @@ def main_menu():
     image = Image.open(background_image)
     draw = ImageDraw.Draw(image)
 
-    # กำหนดฟอนต์
-    font_size_user = 48
-    font_size_bank_user = 48
-    font_size_phone_user = 40
-    font_size_me = 48
-    font_size_bank_me = 48
-    font_size_phone = 40
-    font_size_order = 36
-    font_size_money = 87
-    font_size_time = 37
+    # กำหนดฟอนต์และขนาดตามพื้นหลัง
+    if background_image == "Bank/K-bank 4.png":
+        font_size_user = 48
+        font_size_bank_user = 48
+        font_size_phone_user = 40
+        font_size_me = 48
+        font_size_bank_me = 48
+        font_size_phone = 40
+        font_size_order = 36
+        font_size_money = 87
+        font_size_time = 37
 
-    font_path_user = "Font/PSL159.ttf"
-    font_path_bank_user = "Font/PSL159.ttf"
-    font_path_phone_user = "Font/PSL160.ttf"
-    font_path_name_me = "Font/PSL159.ttf"
-    font_path_bank_me = "Font/PSL159.ttf"
-    font_path_phone = "Font/PSL160.ttf"
-    font_path_order = "Font/PSL159.ttf"
-    font_path_money = "Font/PSL158.ttf"
+        font_path_user = "Font/PSL159.ttf"
+        font_path_bank_user = "Font/PSL159.ttf"
+        font_path_phone_user = "Font/PSL160.ttf"
+        font_path_name_me = "Font/PSL159.ttf"
+        font_path_bank_me = "Font/PSL159.ttf"
+        font_path_phone = "Font/PSL160.ttf"
+        font_path_order = "Font/PSL159.ttf"
+        font_path_money = "Font/PSL158.ttf"
 
+    elif background_image == "Bank/K-bank 2.png":
+        font_size_user = 50
+        font_size_bank_user = 50
+        font_size_phone_user = 42
+        font_size_me = 50
+        font_size_bank_me = 50
+        font_size_phone = 42
+        font_size_order = 38
+        font_size_money = 90
+        font_size_time = 39
+
+        font_path_user = "Font/PSL160.ttf"
+        font_path_bank_user = "Font/PSL160.ttf"
+        font_path_phone_user = "Font/PSL159.ttf"
+        font_path_name_me = "Font/PSL160.ttf"
+        font_path_bank_me = "Font/PSL160.ttf"
+        font_path_phone = "Font/PSL159.ttf"
+        font_path_order = "Font/PSL160.ttf"
+        font_path_money = "Font/PSL159.ttf"
+
+    else:
+        font_size_user = 45
+        font_size_bank_user = 45
+        font_size_phone_user = 38
+        font_size_me = 45
+        font_size_bank_me = 45
+        font_size_phone = 38
+        font_size_order = 34
+        font_size_money = 85
+        font_size_time = 36
+
+        font_path_user = "Font/PSL159.ttf"
+        font_path_bank_user = "Font/PSL159.ttf"
+        font_path_phone_user = "Font/PSL160.ttf"
+        font_path_name_me = "Font/PSL159.ttf"
+        font_path_bank_me = "Font/PSL159.ttf"
+        font_path_phone = "Font/PSL160.ttf"
+        font_path_order = "Font/PSL159.ttf"
+        font_path_money = "Font/PSL158.ttf"
+
+    # โหลดฟอนต์ที่ใช้
     font_user = ImageFont.truetype(font_path_user, font_size_user)
     font_bank_user = ImageFont.truetype(font_path_bank_user, font_size_bank_user)
     font_phone_user = ImageFont.truetype(font_path_phone_user, font_size_phone_user)
@@ -130,7 +172,6 @@ def main_menu():
     text_name_time = f"  {day}/{month}/{year} {time}"
 
     # ตำแหน่งข้อความ
-    # การกำหนดตำแหน่งจะถูกปรับตามพื้นหลังที่เลือก
     if background_image == "Bank/K-bank 4.png":
         text_position_user = (250, 220)
         text_position_bank_user = (250, 280)
