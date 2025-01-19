@@ -13,11 +13,11 @@ def select_background():
     choice = input("กรุณาเลือกหมายเลข (1-3): ")
 
     if choice == "1":
-        return "Bank/K-bank 4.png"
+        return "Bank/K-bank 1.png"
     elif choice == "2":
-        return "Bank/K-bank 5.png"
+        return "Bank/K-bank 2.png"
     elif choice == "3":
-        return "Bank/K-bank 6.png"
+        return "Bank/K-bank 3.png"
     else:
         print("ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_background()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
