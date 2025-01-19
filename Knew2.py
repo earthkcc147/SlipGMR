@@ -40,7 +40,7 @@ def select_logo(background_image):
     # กำหนดตำแหน่งและขนาดโลโก้ตามภาพพื้นหลังที่เลือก
     if background_image == "Bank/K-bank 4.png":
         logo_size = (130, 130)
-        logo_position = (50, 1100)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 1
+        logo_position = (50, 600)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 1
     elif background_image == "Bank/K-bank 2.png":
         logo_size = (150, 150)
         logo_position = (60, 1200)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 2
