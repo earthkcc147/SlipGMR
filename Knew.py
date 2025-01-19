@@ -71,7 +71,7 @@ text_name_time = f"  {day}/{month}/{year} {time}"
 
 
 # ตำแหน่งข้อความใหม่
-text_position_user = (302, 485)  # ชื่อผู้โอน
+text_position_user = (302, 285)  # ชื่อผู้โอน
 text_position_bank_user = (302, 550)  # ธ.ผู้โอน
 text_position_phone_user = (302, 615)  # เบอร์ผู้โอน
 text_position_me = (302, 680)  # ชื่อผู้รับ
