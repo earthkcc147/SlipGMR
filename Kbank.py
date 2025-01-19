@@ -74,7 +74,6 @@ draw.text(text_position_order, text_name_order, font=font_order, fill=text_color
 
 # บันทึกภาพที่มีข้อความ
 image.save("truemoney_with_textnew.png")
-
 print("สลีปปลอมสำเร็จ! บันทึกเป็น truemoney_with_textnew.png")
 
 # ส่งภาพไปยัง Discord webhook
@@ -97,7 +96,11 @@ embed_data = {
 }
 
 # ส่งคำขอไปยัง Discord webhook
-response = requests.post(discord_webhook_url, data=embed_data, files={'file': ('truemoney_with_textnew.png', image_file)})
+response = requests.post(
+    discord_webhook_url,
+    json=embed_data,  # ใช้ json แทน data
+    files={'file': ('truemoney_with_textnew.png', image_file)}  # ส่งไฟล์ภาพ
+)
 
 if response.status_code == 204:
     print("ส่งข้อมูลไปยัง Discord สำเร็จ")
