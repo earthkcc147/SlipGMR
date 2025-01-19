@@ -185,8 +185,3 @@ def main_menu():
 if __name__ == "__main__":
     main_menu()
 
-
-
-ถ้าต้องการให้มีการเลือก logo หลังจากเลือกภาพพื้นหลัง
-# โหลดโลโก้ที่มีพื้นหลังโปร่งใส
-logo = Image.open("Bank/K-bank.png")
