@@ -165,4 +165,28 @@ def main_menu():
     }
 
     # ส่งคำขอไปยัง Discord webhook
-    response = requests.post(discord_webhook_url, json=embed_data)
+    response = requests.post(discord_webhook_url, json=embed_data)  # ใช้ json แทน data
+
+    # ส่งภาพหลังจาก Embed
+    with open("truemoney_with_text_and_logo.png", "rb") as f:
+        image_file = f.read()
+
+    response = requests.post(
+        discord_webhook_url,
+        files={'file': ('truemoney_with_text_and_logo.png', image_file)}
+    )
+
+    if response.status_code == 200:
+        print("ส่งข้อมูลไปยัง Discord สำเร็จ")
+    else:
+        print(f"เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
+
+# เรียกใช้เมนูหลัก
+if __name__ == "__main__":
+    main_menu()
+
+
+
+ถ้าต้องการให้มีการเลือก logo หลังจากเลือกภาพพื้นหลัง
+# โหลดโลโก้ที่มีพื้นหลังโปร่งใส
+logo = Image.open("Bank/K-bank.png")
