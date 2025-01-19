@@ -138,7 +138,7 @@ def select_background(bank_name):
     choice = input("กรุณาเลือกหมายเลข (0-5): ")
 
     if choice == "0":
-        return "กลับสู่เมนูก่อนหน้า"  # เพิ่มตัวเลือกย้อนกลับ
+        main_menu()  # เพิ่มตัวเลือกย้อนกลับ
     elif choice == "1" and bank_name == "K-bank":
         return "Bank/K-bank 4.png"
     elif choice == "2" and bank_name == "K-bank":
