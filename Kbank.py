@@ -1,13 +1,18 @@
-import requests
-from PIL import Image, ImageDraw, ImageFont
-from datetime import datetime
 import pytz
+from datetime import datetime
+from PIL import Image, ImageDraw, ImageFont
+import requests
 
 # ข้อมูลจากผู้ใช้
 name_user_id = input("ชื่อผู้โอนจ่าย: ")
 name_me_id = input("ชื่อผู้รับเงิน: ")
 phone_me_id = input("เบอร์โทรศัพท์ผู้รับ: ")
 money_id = input("จำนวนเงิน: ")
+
+# เพิ่มข้อมูลใหม่ที่ต้องการ
+bank_user_id = input("ธ.ผู้โอน: ")  # ช่องกรอกสำหรับธ.ผู้โอน
+phone_user_id = input("เบอร์ผู้โอน: ")  # ช่องกรอกสำหรับเบอร์ผู้โอน
+bank_me_id = input("ธ.ผู้รับ: ")  # ช่องกรอกสำหรับธ.ผู้รับ
 
 # เวลาในประเทศไทย
 thailand_timezone = pytz.timezone('Asia/Bangkok')
@@ -46,6 +51,9 @@ text_name_me = name_me_id
 text_name_phone = f"{phone[:3]}-xxx-{phone[6:]}"
 text_name_time = f"  {day}/{month}/{year} {time}"
 text_name_order = "50018935012188"
+text_bank_user = bank_user_id
+text_phone_user = phone_user_id
+text_bank_me = bank_me_id
 
 # ตำแหน่งข้อความ
 text_position_money = (560, 270)
@@ -54,6 +62,9 @@ text_position_me = (302, 648)
 text_position_phone = (302, 720)
 text_position_time = (781, 885)
 text_position_order = (827, 953)
+text_position_bank_user = (302, 820)  # เพิ่มตำแหน่งสำหรับธ.ผู้โอน
+text_position_phone_user = (302, 890)  # เพิ่มตำแหน่งสำหรับเบอร์ผู้โอน
+text_position_bank_me = (302, 960)  # เพิ่มตำแหน่งสำหรับธ.ผู้รับ
 
 # สีของข้อความ
 text_color_money = (44, 44, 44)
@@ -62,6 +73,9 @@ text_color_me = (-20, -20, -20)
 text_color_phone = (80, 80, 80)
 text_color_time = (60, 60, 60)
 text_color_order = (60, 60, 60)
+text_color_bank_user = (60, 60, 60)  # สีข้อความสำหรับธ.ผู้โอน
+text_color_phone_user = (60, 60, 60)  # สีข้อความสำหรับเบอร์ผู้โอน
+text_color_bank_me = (60, 60, 60)  # สีข้อความสำหรับธ.ผู้รับ
 
 # ใส่ข้อความลงในภาพ
 draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
@@ -70,6 +84,9 @@ draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)
 draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone)
 draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
 draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)
+draw.text(text_position_bank_user, text_bank_user, font=font_user, fill=text_color_bank_user)  # ใส่ข้อความธ.ผู้โอน
+draw.text(text_position_phone_user, text_phone_user, font=font_phone, fill=text_color_phone_user)  # ใส่ข้อความเบอร์ผู้โอน
+draw.text(text_position_bank_me, text_bank_me, font=font_user, fill=text_color_bank_me)  # ใส่ข้อความธ.ผู้รับ
 
 # บันทึกภาพที่มีข้อความ
 image.save("truemoney_with_textnew.png")
@@ -83,7 +100,7 @@ embed_data = {
     "embeds": [
         {
             "title": "รายละเอียดการโอนเงิน",
-            "description": f"ผู้โอน: {name_user_id}\nผู้รับ: {name_me_id}\nเบอร์โทรศัพท์ผู้รับ: {text_name_phone}\nจำนวนเงิน: {money_id} บาท",
+            "description": f"ผู้โอน: {name_user_id}\nผู้รับ: {name_me_id}\nเบอร์โทรศัพท์ผู้รับ: {text_name_phone}\nจำนวนเงิน: {money_id} บาท\nธ.ผู้โอน: {text_bank_user}\nเบอร์ผู้โอน: {text_phone_user}\nธ.ผู้รับ: {text_bank_me}",
             "color": 5814783,
             "fields": [
                 {
@@ -109,6 +126,21 @@ embed_data = {
                 {
                     "name": "เวลาการโอน",
                     "value": f"{day}/{month}/{year} {time}",
+                    "inline": True
+                },
+                {
+                    "name": "ธ.ผู้โอน",
+                    "value": text_bank_user,
+                    "inline": True
+                },
+                {
+                    "name": "เบอร์ผู้โอน",
+                    "value": text_phone_user,
+                    "inline": True
+                },
+                {
+                    "name": "ธ.ผู้รับ",
+                    "value": text_bank_me,
                     "inline": True
                 }
             ]
