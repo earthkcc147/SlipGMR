@@ -51,8 +51,8 @@ def select_logo(background_image):
         logo_size = (140, 140)
         logo_position = (50, 550)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 3
     else:
-        logo_size = (120, 120)
-        logo_position = (70, 1300)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 
+        logo_size = (140, 140)
+        logo_position = (50, 550)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 
 
     # โหลดโลโก้ที่มีพื้นหลังโปร่งใส
     logo = Image.open(logo_image)
@@ -135,24 +135,24 @@ def main_menu():
         font_path_money = "Font/PSL158.ttf"
 
     elif background_image == "Bank/K-bank 2.png":
-        font_size_user = 50
-        font_size_bank_user = 50
-        font_size_phone_user = 42
-        font_size_me = 50
-        font_size_bank_me = 50
-        font_size_phone = 42
-        font_size_order = 38
-        font_size_money = 90
-        font_size_time = 39
+        font_size_user = 48
+        font_size_bank_user = 48
+        font_size_phone_user = 40
+        font_size_me = 48
+        font_size_bank_me = 48
+        font_size_phone = 40
+        font_size_order = 36
+        font_size_money = 87
+        font_size_time = 37
 
-        font_path_user = "Font/PSL160.ttf"
-        font_path_bank_user = "Font/PSL160.ttf"
-        font_path_phone_user = "Font/PSL159.ttf"
-        font_path_name_me = "Font/PSL160.ttf"
-        font_path_bank_me = "Font/PSL160.ttf"
-        font_path_phone = "Font/PSL159.ttf"
-        font_path_order = "Font/PSL160.ttf"
-        font_path_money = "Font/PSL159.ttf"
+        font_path_user = "Font/PSL159.ttf"
+        font_path_bank_user = "Font/PSL159.ttf"
+        font_path_phone_user = "Font/PSL160.ttf"
+        font_path_name_me = "Font/PSL159.ttf"
+        font_path_bank_me = "Font/PSL159.ttf"
+        font_path_phone = "Font/PSL160.ttf"
+        font_path_order = "Font/PSL159.ttf"
+        font_path_money = "Font/PSL158.ttf"
 
     elif background_image == "Bank/K-bank 1.png":
         font_size_user = 50
@@ -261,15 +261,15 @@ def main_menu():
         text_position_time = (55, 100)
 
     elif background_image == "Bank/K-bank 2.png":
-        text_position_user = (250, 230)
-        text_position_bank_user = (250, 290)
-        text_position_phone_user = (250, 350)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (460, 840)
-        text_position_money = (380, 920)
-        text_position_time = (60, 110)
+        text_position_user = (250, 220)
+        text_position_bank_user = (250, 280)
+        text_position_phone_user = (250, 340)
+        text_position_me = (250, 540)
+        text_position_bank_me = (250, 600)
+        text_position_phone = (250, 660)
+        text_position_order = (400, 900)
+        text_position_money = (390, 990)
+        text_position_time = (55, 100)
 
     elif background_image == "Bank/K-bank 1.png":
         text_position_user = (250, 230)
