@@ -3,32 +3,6 @@ import pytz
 from datetime import datetime
 import requests
 
-# ฟังก์ชั่นสำหรับเลือกภาพพื้นหลัง
-def select_background():
-    print("เลือกภาพพื้นหลัง:")
-    print("K-bank")
-    print("1. K-bank 4 🌇")
-    print("2. K-bank 3 🌆")
-    print("3. K-bank 2 🌃")
-    print("4. K-bank 1 🌌")
-    print("5. K-bank 0 🌠")
-
-    choice = input("กรุณาเลือกหมายเลข (1-5): ")
-
-    if choice == "1":
-        return "Bank/K-bank 4.png"
-    elif choice == "2":
-        return "Bank/K-bank 3.png"
-    elif choice == "3":
-        return "Bank/K-bank 2.png"
-    elif choice == "4":
-        return "Bank/K-bank 1.png"
-    elif choice == "5":
-        return "Bank/K-bank 0.png"
-    else:
-        print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
-        return select_background()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
-
 # ฟังก์ชั่นสำหรับเลือกโลโก้
 def select_logo(background_image):
     print("เลือกโลโก้:")
@@ -61,12 +35,58 @@ def select_logo(background_image):
 
     return logo, logo_position
 
+# ฟังก์ชั่นสำหรับเลือกธนาคาร
+def select_bank():
+    print("เลือกธนาคาร:")
+    print("1. K-bank 🏦")
+    print("2. Other Bank 🎨")  # เพิ่มธนาคารตัวเลือกอื่นๆ ได้
+    choice = input("กรุณาเลือกหมายเลข (1-2): ")
+
+    if choice == "1":
+        return "K-bank"
+    elif choice == "2":
+        return "Other Bank"  # คุณสามารถเพิ่มธนาคารอื่น ๆ ได้
+    else:
+        print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
+        return select_bank()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
+
+# ฟังก์ชั่นสำหรับเลือกภาพพื้นหลังตามธนาคาร
+def select_background(bank_name):
+    print(f"เลือกภาพพื้นหลังสำหรับธนาคาร {bank_name}:")
+    if bank_name == "K-bank":
+        print("1. K-bank 4 🌇")
+        print("2. K-bank 3 🌆")
+        print("3. K-bank 2 🌃")
+        print("4. K-bank 1 🌌")
+        print("5. K-bank 0 🌠")
+    else:
+        print("ไม่มีพื้นหลังสำหรับธนาคารนี้")
+
+    choice = input("กรุณาเลือกหมายเลข (1-5): ")
+
+    if choice == "1" and bank_name == "K-bank":
+        return "Bank/K-bank 4.png"
+    elif choice == "2" and bank_name == "K-bank":
+        return "Bank/K-bank 3.png"
+    elif choice == "3" and bank_name == "K-bank":
+        return "Bank/K-bank 2.png"
+    elif choice == "4" and bank_name == "K-bank":
+        return "Bank/K-bank 1.png"
+    elif choice == "5" and bank_name == "K-bank":
+        return "Bank/K-bank 0.png"
+    else:
+        print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
+        return select_background(bank_name)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
+
 # เทนูหลัก
 def main_menu():
     print("ระบบสร้างใบโอนจ่าย")
 
-    # เลือกภาพพื้นหลัง
-    background_image = select_background()
+    # เลือกธนาคาร
+    bank_name = select_bank()
+
+    # เลือกภาพพื้นหลังตามธนาคาร
+    background_image = select_background(bank_name)
 
     # เลือกโลโก้และตำแหน่งของโลโก้
     logo, logo_position = select_logo(background_image)
@@ -94,7 +114,7 @@ def main_menu():
     image = Image.open(background_image)
     draw = ImageDraw.Draw(image)
 
-    # กำหนดฟอนต์และขนาดตามพื้นหลัง
+        # กำหนดฟอนต์และขนาดตามพื้นหลัง
     if background_image == "Bank/K-bank 4.png":
         font_size_user = 48
         font_size_bank_user = 48
