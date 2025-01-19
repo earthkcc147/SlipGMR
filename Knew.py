@@ -81,15 +81,17 @@ text_position_phone_user = (302, 890)  # เพิ่มตำแหน่งส
 text_position_bank_me = (302, 960)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้รับ"
 
 # สีของข้อความ
-text_color_money = (44, 44, 44)
 text_color_user = (-20, -20, -20)
-text_color_me = (-20, -20, -20)
-text_color_phone = (80, 80, 80)
-text_color_time = (60, 60, 60)
-text_color_order = (60, 60, 60)
 text_color_bank_user = (60, 60, 60)  # สีข้อความสำหรับ "ธ.ผู้โอน"
 text_color_phone_user = (60, 60, 60)  # สีข้อความสำหรับ "เบอร์ผู้โอน"
+text_color_me = (-20, -20, -20)
 text_color_bank_me = (60, 60, 60)  # สีข้อความสำหรับ "ธ.ผู้รับ"
+text_color_phone = (80, 80, 80)
+text_color_order = (60, 60, 60)
+text_color_money = (44, 44, 44)
+text_color_time = (60, 60, 60)
+
+
 
 # ใส่ข้อความลงในภาพ
 draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user)
