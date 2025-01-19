@@ -58,19 +58,19 @@ font_bank_me = ImageFont.truetype(font_path_bank_me, font_size_bank_me)  # ฟ�
 font_order = ImageFont.truetype(font_path_order, font_size_order)  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ"
 
 # ข้อความที่ต้องการใส่ลงในภาพ
-phone = phone_me_id
-text_money = money_id + ".00"
+
 text_name_user = name_user_id
-text_name_me = name_me_id
-text_name_phone = f"{phone[:3]}-xxx-{phone[6:]}"
-text_name_time = f"  {day}/{month}/{year} {time}"
-text_name_order = "50018935012188"
 text_bank_user = bank_user_id
+text_name_phone = f"{phone[:3]}-xxx-{phone[6:]}"
 text_phone_user = phone_user_id
+text_name_me = name_me_id
 text_bank_me = bank_me_id
+phone = phone_me_id
+text_name_order = "50018935012188"
+text_money = money_id + ".00"
+text_name_time = f"  {day}/{month}/{year} {time}"
 
 # ตำแหน่งข้อความ
-
 text_position_user = (302, 485)
 text_position_bank_user = (302, 820)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้โอน"
 text_position_phone_user = (302, 890)  # เพิ่มตำแหน่งสำหรับ "เบอร์ผู้โอน"
