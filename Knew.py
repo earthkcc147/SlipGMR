@@ -5,14 +5,15 @@ import requests
 
 # ข้อมูลจากผู้ใช้
 name_user_id = input("ชื่อผู้โอนจ่าย: ")
-name_me_id = input("ชื่อผู้รับเงิน: ")
-phone_me_id = input("เบอร์โทรศัพท์ผู้รับ: ")
-money_id = input("จำนวนเงิน: ")
-
-# เพิ่มข้อมูลใหม่ที่ต้องการ
 bank_user_id = input("ธ.ผู้โอน: ")  # ช่องกรอกสำหรับธ.ผู้โอน
 phone_user_id = input("เบอร์ผู้โอน: ")  # ช่องกรอกสำหรับเบอร์ผู้โอน
+
+name_me_id = input("ชื่อผู้รับเงิน: ")
 bank_me_id = input("ธ.ผู้รับ: ")  # ช่องกรอกสำหรับธ.ผู้รับ
+phone_me_id = input("เบอร์โทรศัพท์ผู้รับ: ")
+
+money_id = input("จำนวนเงิน: ")
+
 
 # เวลาในประเทศไทย
 thailand_timezone = pytz.timezone('Asia/Bangkok')
