@@ -33,19 +33,18 @@ font_size_phone_user = 40  # ขนาดฟอนต์สำหรับ "เ�
 font_size_me = 48  # ขนาดฟอนต์สำหรับ "ชื่อผู้รับเงิน"
 font_size_bank_me = 48  # ขนาดฟอนต์สำหรับ "ธ.ผู้รับ"
 font_size_phone = 40
-font_size_time = 37
-font_size_money = 87
 font_size_order = 36  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ"
+font_size_money = 87
+font_size_time = 37
 
 font_path_user = "Font/PSL159.ttf"
 font_path_bank_user = "Font/PSL159.ttf"  # กำหนดฟอนต์สำหรับ "ธ.ผู้โอน"
 font_path_phone_user = "Font/PSL160.ttf"  # กำหนดฟอนต์สำหรับ "เบอร์ผู้โอน"
-
+font_path_name_me = "Font/PSL159.ttf"  # ฟอนต์สำหรับ "ชื่อผู้รับเงิน"
 font_path_bank_me = "Font/PSL159.ttf"  # กำหนดฟอนต์สำหรับ "ธ.ผู้รับ"
 font_path_phone = "Font/PSL160.ttf"
-font_path_money = "Font/PSL158.ttf"
-font_path_name_me = "Font/PSL159.ttf"  # ฟอนต์สำหรับ "ชื่อผู้รับเงิน"
 font_path_order = "Font/PSL159.ttf"  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ"
+font_path_money = "Font/PSL158.ttf"
 
 
 font_user = ImageFont.truetype(font_path_user, font_size_user)
