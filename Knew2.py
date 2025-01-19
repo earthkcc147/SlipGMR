@@ -38,7 +38,7 @@ def select_logo(background_image):
         return select_logo(background_image)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
 
     # กำหนดตำแหน่งและขนาดโลโก้ตามภาพพื้นหลังที่เลือก
-    if background_image == "Bank/K-bank 1.png":
+    if background_image == "Bank/K-bank 4.png":
         logo_size = (130, 130)
         logo_position = (50, 1100)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 1
     elif background_image == "Bank/K-bank 2.png":
@@ -131,7 +131,7 @@ def main_menu():
 
     # ตำแหน่งข้อความ
     # การกำหนดตำแหน่งจะถูกปรับตามพื้นหลังที่เลือก
-    if background_image == "Bank/K-bank 1.png":
+    if background_image == "Bank/K-bank 4.png":
         text_position_user = (250, 220)
         text_position_bank_user = (250, 280)
         text_position_phone_user = (250, 340)
