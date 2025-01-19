@@ -38,12 +38,13 @@ font_size_phone = 40
 font_size_time = 37
 font_size_money = 87
 
-font_path_money = "Font/PSL158.ttf"
 font_path_user = "Font/PSL159.ttf"
-font_path_phone = "Font/PSL160.ttf"
 font_path_bank_user = "Font/PSL159.ttf"  # กำหนดฟอนต์สำหรับ "ธ.ผู้โอน"
 font_path_phone_user = "Font/PSL160.ttf"  # กำหนดฟอนต์สำหรับ "เบอร์ผู้โอน"
+
 font_path_bank_me = "Font/PSL159.ttf"  # กำหนดฟอนต์สำหรับ "ธ.ผู้รับ"
+font_path_phone = "Font/PSL160.ttf"
+font_path_money = "Font/PSL158.ttf"
 
 font_money = ImageFont.truetype(font_path_money, font_size_money)
 font_user = ImageFont.truetype(font_path_user, font_size_user)
