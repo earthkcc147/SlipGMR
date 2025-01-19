@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
 import pytz
 
-# รับข้อมูลจากผู้ใช้
+# ข้อมูลจากผู้ใช้
 name_user_id = input("ชื่อผู้โอนจ่าย: ")
 name_me_id = input("ชื่อผู้รับเงิน: ")
 phone_me_id = input("เบอร์โทรศัพท์ผู้รับ: ")
@@ -21,13 +21,12 @@ year = current_time_thailand.strftime("%Y")
 image = Image.open("Bank/K-bank 4.png")
 draw = ImageDraw.Draw(image)
 
-# กำหนดขนาดและฟอนต์
+# กำหนดฟอนต์
 font_size_money = 87
 font_size_user = 48
 font_size_me = 48
 font_size_phone = 40
 font_size_time = 37
-
 font_path_money = "Font/PSL158.ttf"
 font_path_user = "Font/PSL159.ttf"
 font_path_phone = "Font/PSL160.ttf"
@@ -39,7 +38,7 @@ font_phone = ImageFont.truetype(font_path_phone, font_size_phone)
 font_time = ImageFont.truetype(font_path_user, font_size_time)
 font_order = ImageFont.truetype(font_path_user, font_size_time)
 
-# เตรียมข้อความที่จะใส่ลงไปในภาพ
+# ข้อความที่ต้องการใส่ลงในภาพ
 phone = phone_me_id
 text_money = money_id + ".00"
 text_name_user = name_user_id
@@ -48,7 +47,7 @@ text_name_phone = f"{phone[:3]}-xxx-{phone[6:]}"
 text_name_time = f"  {day}/{month}/{year} {time}"
 text_name_order = "50018935012188"
 
-# กำหนดตำแหน่งของข้อความในภาพ
+# ตำแหน่งข้อความ
 text_position_money = (560, 270)
 text_position_user = (302, 485)
 text_position_me = (302, 648)
@@ -56,7 +55,7 @@ text_position_phone = (302, 720)
 text_position_time = (781, 885)
 text_position_order = (827, 953)
 
-# กำหนดสีของข้อความ
+# สีของข้อความ
 text_color_money = (44, 44, 44)
 text_color_user = (-20, -20, -20)
 text_color_me = (-20, -20, -20)
@@ -74,23 +73,49 @@ draw.text(text_position_order, text_name_order, font=font_order, fill=text_color
 
 # บันทึกภาพที่มีข้อความ
 image.save("truemoney_with_textnew.png")
-print("สลีปปลอมสำเร็จ! บันทึกเป็น truemoney_with_textnew.png")
 
-# ส่งภาพไปยัง Discord webhook
-discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'  # ใส่ URL ของ Discord webhook ที่คุณต้องการใช้
+# ส่งข้อมูลไปยัง Discord webhook
+discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
 
 # เปิดไฟล์ภาพ
 with open("truemoney_with_textnew.png", "rb") as f:
     image_file = f.read()
 
-# สร้างคำขอ JSON สำหรับ Discord Embed
+# สร้างคำขอ JSON สำหรับ Discord Embed พร้อมกับ add.fields
 embed_data = {
-    "content": "ข้อมูลการโอนจ่าย",  # ข้อความที่ต้องการแสดงใน Discord
+    "content": "ข้อมูลการโอนจ่าย",
     "embeds": [
         {
             "title": "รายละเอียดการโอนเงิน",
             "description": f"ผู้โอน: {name_user_id}\nผู้รับ: {name_me_id}\nเบอร์โทรศัพท์ผู้รับ: {text_name_phone}\nจำนวนเงิน: {money_id} บาท",
-            "color": 5814783
+            "color": 5814783,
+            "fields": [
+                {
+                    "name": "ผู้โอนจ่าย",
+                    "value": name_user_id,
+                    "inline": True
+                },
+                {
+                    "name": "ผู้รับเงิน",
+                    "value": name_me_id,
+                    "inline": True
+                },
+                {
+                    "name": "เบอร์โทรศัพท์ผู้รับ",
+                    "value": text_name_phone,
+                    "inline": True
+                },
+                {
+                    "name": "จำนวนเงิน",
+                    "value": f"{money_id} บาท",
+                    "inline": True
+                },
+                {
+                    "name": "เวลาการโอน",
+                    "value": f"{day}/{month}/{year} {time}",
+                    "inline": True
+                }
+            ]
         }
     ]
 }
@@ -99,7 +124,7 @@ embed_data = {
 response = requests.post(
     discord_webhook_url,
     json=embed_data,  # ใช้ json แทน data
-    files={'file': ('truemoney_with_textnew.png', image_file)}  # ส่งไฟล์ภาพ
+    files={'file': ('truemoney_with_textnew.png', image_file)}
 )
 
 if response.status_code == 204:
