@@ -249,7 +249,40 @@ def main_menu():
         text_position_money = (370, 900)
         text_position_time = (55, 100)
 
+    elif background_image == "Bank/K-bank 3.png":
+        text_position_user = (250, 230)
+        text_position_bank_user = (250, 290)
+        text_position_phone_user = (250, 350)
+        text_position_me = (250, 550)
+        text_position_bank_me = (250, 610)
+        text_position_phone = (250, 670)
+        text_position_order = (460, 840)
+        text_position_money = (380, 920)
+        text_position_time = (60, 110)
+
     elif background_image == "Bank/K-bank 2.png":
+        text_position_user = (250, 230)
+        text_position_bank_user = (250, 290)
+        text_position_phone_user = (250, 350)
+        text_position_me = (250, 550)
+        text_position_bank_me = (250, 610)
+        text_position_phone = (250, 670)
+        text_position_order = (460, 840)
+        text_position_money = (380, 920)
+        text_position_time = (60, 110)
+
+    elif background_image == "Bank/K-bank 1.png":
+        text_position_user = (250, 230)
+        text_position_bank_user = (250, 290)
+        text_position_phone_user = (250, 350)
+        text_position_me = (250, 550)
+        text_position_bank_me = (250, 610)
+        text_position_phone = (250, 670)
+        text_position_order = (460, 840)
+        text_position_money = (380, 920)
+        text_position_time = (60, 110)
+
+    elif background_image == "Bank/K-bank 0.png":
         text_position_user = (250, 230)
         text_position_bank_user = (250, 290)
         text_position_phone_user = (250, 350)
