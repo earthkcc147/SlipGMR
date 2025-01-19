@@ -13,7 +13,7 @@ def select_background():
     choice = input("กรุณาเลือกหมายเลข (1-3): ")
 
     if choice == "1":
-        return "Bank/K-bank 1.png"
+        return "Bank/K-bank 4.png"
     elif choice == "2":
         return "Bank/K-bank 2.png"
     elif choice == "3":
@@ -138,7 +138,7 @@ def main_menu():
         text_position_money = (380, 920)
         text_position_time = (60, 110)
 
-        logo_position = (60, image.height - 130 - 100)  # ตำแหน่งโลโก้สำหรับภาพพื้นหลัง 2
+        logo_position = (50, image.height - logo.height - 500)  # ตำแหน่งโลโก้สำหรับภาพพื้นหลัง 2
 
     else:
         text_position_user = (250, 240)
@@ -151,7 +151,7 @@ def main_menu():
         text_position_money = (390, 940)
         text_position_time = (65, 120)
 
-        logo_position = (70, image.height - 130 - 100)  # ตำแหน่งโลโก้สำหรับภาพพื้นหลัง 3
+        logo_position = (50, image.height - logo.height - 500)  # ตำแหน่งโลโก้สำหรับภาพพื้นหลัง 3
 
     # สีของข้อความ
     text_color_user = (-20, -20, -20)
