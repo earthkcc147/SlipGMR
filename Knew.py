@@ -49,7 +49,7 @@ def select_logo(background_image):
         logo_position = (45, 540)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 1
     elif background_image == "Bank/K-bank 3.png":
         logo_size = (140, 140)
-        logo_position = (45, 550)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 2
+        logo_position = (50, 550)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 2
     else:
         logo_size = (120, 120)
         logo_position = (70, 1300)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 3
