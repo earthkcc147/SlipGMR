@@ -33,8 +33,8 @@ font_size_user = 48
 font_size_bank_user = 48  # ขนาดฟอนต์สำหรับ "ธ.ผู้โอน"
 font_size_phone_user = 40  # ขนาดฟอนต์สำหรับ "เบอร์ผู้โอน"
 font_size_me = 48
-font_size_phone = 40
 font_size_bank_me = 48  # ขนาดฟอนต์สำหรับ "ธ.ผู้รับ"
+font_size_phone = 40
 font_size_time = 37
 font_size_money = 87
 
