@@ -1,7 +1,7 @@
+import requests
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
 import pytz
-import requests
 
 # รับข้อมูลจากผู้ใช้
 name_user_id = input("ชื่อผู้โอนจ่าย: ")
@@ -28,9 +28,9 @@ font_size_me = 48
 font_size_phone = 40
 font_size_time = 37
 
-font_path_money = "Font/PSL159.ttf"
-font_path_user = "Font/PSL160.ttf"
-font_path_phone = "Font/PSL159.ttf"
+font_path_money = "../Font/Lato-Heavy.ttf"
+font_path_user = "../Font/Kanit-ExtraLight.ttf"
+font_path_phone = "../Font/Prompt-Light.ttf"
 
 font_money = ImageFont.truetype(font_path_money, font_size_money)
 font_user = ImageFont.truetype(font_path_user, font_size_user)
@@ -96,13 +96,8 @@ embed_data = {
     ]
 }
 
-# แนบไฟล์ภาพไปกับคำขอ
-files = {
-    'file': ('truemoney_with_textnew.png', image_file)
-}
-
 # ส่งคำขอไปยัง Discord webhook
-response = requests.post(discord_webhook_url, data=embed_data, files=files)
+response = requests.post(discord_webhook_url, data=embed_data, files={'file': ('truemoney_with_textnew.png', image_file)})
 
 if response.status_code == 204:
     print("ส่งข้อมูลไปยัง Discord สำเร็จ")
