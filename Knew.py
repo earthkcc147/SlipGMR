@@ -47,18 +47,18 @@ font_path_money = "Font/PSL158.ttf"
 font_path_name_me = "Font/PSL159.ttf"  # ฟอนต์สำหรับ "ชื่อผู้รับเงิน"
 font_path_order = "Font/PSL159.ttf"  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ"
 
-font_money = ImageFont.truetype(font_path_money, font_size_money)
+
 font_user = ImageFont.truetype(font_path_user, font_size_user)
-font_me = ImageFont.truetype(font_path_name_me, font_size_me)  # ใช้ฟอนต์สำหรับชื่อผู้รับ
-font_phone = ImageFont.truetype(font_path_phone, font_size_phone)
-font_time = ImageFont.truetype(font_path_user, font_size_time)
 font_bank_user = ImageFont.truetype(font_path_bank_user, font_size_bank_user)  # ฟอนต์สำหรับ "ธ.ผู้โอน"
 font_phone_user = ImageFont.truetype(font_path_phone_user, font_size_phone_user)  # ฟอนต์สำหรับ "เบอร์ผู้โอน"
+font_me = ImageFont.truetype(font_path_name_me, font_size_me)  # ใช้ฟอนต์สำหรับชื่อผู้รับ
 font_bank_me = ImageFont.truetype(font_path_bank_me, font_size_bank_me)  # ฟอนต์สำหรับ "ธ.ผู้รับ"
-font_order = ImageFont.truetype(font_path_order, font_size_order)  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ"
+font_phone = ImageFont.truetype(font_path_phone, font_size_phone)
+font_order = ImageFont.truetype(font_path_order, font_size_order)  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ",
+font_money = ImageFont.truetype(font_path_money, font_size_money)
+font_time = ImageFont.truetype(font_path_user, font_size_time)
 
 # ข้อความที่ต้องการใส่ลงในภาพ
-
 text_name_user = name_user_id
 text_bank_user = bank_user_id
 text_name_phone = f"{phone[:3]}-xxx-{phone[6:]}"
