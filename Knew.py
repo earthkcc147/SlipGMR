@@ -30,12 +30,13 @@ font_size_time = 37
 font_path_money = "Font/PSL158.ttf"  # ที่อยู่ฟอนต์สำหรับจำนวนเงิน
 font_path_user = "Font/PSL159.ttf"  # ที่อยู่ฟอนต์สำหรับชื่อผู้โอน
 font_path_phone = "Font/PSL160.ttf"  # ที่อยู่ฟอนต์สำหรับเบอร์โทร
-font_money = ImageFont.truetype(font_path_money, font_size_money)  # โหลดฟอนต์สำหรับจำนวนเงิน
+
 font_user = ImageFont.truetype(font_path_user, font_size_user)  # โหลดฟอนต์สำหรับชื่อผู้โอน
 font_me = ImageFont.truetype(font_path_user, font_size_me)  # โหลดฟอนต์สำหรับชื่อผู้รับ
 font_phone = ImageFont.truetype(font_path_phone, font_size_phone)  # โหลดฟอนต์สำหรับเบอร์โทร
 font_time = ImageFont.truetype(font_path_user, font_size_time)  # โหลดฟอนต์สำหรับเวลา
 font_order = ImageFont.truetype(font_path_user, font_size_time)  # ฟอนต์สำหรับหมายเลขคำสั่ง
+font_money = ImageFont.truetype(font_path_money, font_size_money)  # โหลดฟอนต์สำหรับจำนวนเงิน
 
 # ข้อความที่ต้องการใส่ลงในภาพ
 phone = phone_me_id
