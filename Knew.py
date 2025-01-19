@@ -110,16 +110,16 @@ def select_background(bank_name):
     print(f"เลือกภาพพื้นหลังสำหรับธนาคาร {bank_name}:")
 
     if bank_name == "K-bank":
-        print("1. K-bank 4 🌇")
-        print("2. K-bank 3 🌆")
-        print("3. K-bank 2 🌃")
-        print("4. K-bank 1 🌌")
-        print("5. K-bank 0 🌠")
+        print("1. K-bank ธรรมดา 🌇")
+        print("2. K-bank คริสมาสต์ 🌆")
+        print("3. K-bank ใจเขียว 🌃")
+        print("4. K-bank หมาคาบเงิน 🌌")
+        print("5. K-bank พิเศษ 🌠")
     elif bank_name == "SCB":
-        print("1. SCB 🌇")
+        print("1. SCB ไทยพาณิชย์ 🌇")
         print("เร็วๆนี้")
     elif bank_name == "Bangkok":
-        print("1. Bangkok 🌇")
+        print("1. Bangkok กรุงเทพ 🌇")
         print("เร็วๆนี้")
     elif bank_name == "TTB":
         print("1. TTB 🌇")
