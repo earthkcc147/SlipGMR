@@ -28,9 +28,9 @@ font_size_me = 48
 font_size_phone = 40
 font_size_time = 37
 
-font_path_money = "../Font/PSL159.ttf"
-font_path_user = "../Font/PSL160.ttf"
-font_path_phone = "../Font/PSL159.ttf"
+font_path_money = "Font/PSL159.ttf"
+font_path_user = "Font/PSL160.ttf"
+font_path_phone = "Font/PSL159.ttf"
 
 font_money = ImageFont.truetype(font_path_money, font_size_money)
 font_user = ImageFont.truetype(font_path_user, font_size_user)
