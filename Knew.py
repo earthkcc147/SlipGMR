@@ -70,16 +70,16 @@ text_money = money_id + ".00"
 text_name_time = f"  {day}/{month}/{year} {time}"
 
 
-# ตำแหน่งข้อความใหม่
-text_position_user = (302, 285)  # ชื่อผู้โอน
-text_position_bank_user = (302, 550)  # ธ.ผู้โอน
-text_position_phone_user = (302, 615)  # เบอร์ผู้โอน
-text_position_me = (302, 680)  # ชื่อผู้รับ
-text_position_bank_me = (302, 745)  # ธ.ผู้รับ
-text_position_phone = (302, 810)  # เบอร์ผู้รับ
-text_position_order = (302, 875)  # เลขออเดอร์
-text_position_money = (302, 940)  # จำนวนเงิน
-text_position_time = (302, 1005)  # เวลา
+# ตำแหน่งข้อความ
+text_position_user = (250, 220) # ชื่อผู้โอน
+text_position_bank_user = (250, 280)  # ธ.ผู้โอน
+text_position_phone_user = (250, 340)  # เบอร์ผู้โอน
+text_position_me = (250, 540) # ชื่อผู้รับ
+text_position_bank_me = (250, 600)  # ธ.ผู้รับ
+text_position_phone = (250, 660) # เบอร์ผู้รับ
+text_position_order = (445, 820) # เลขออเดอร์
+text_position_money = (370, 900) # จำนวนเงิน
+text_position_time = (55, 100) # เวลา
 
 
 # สีของข้อความ
