@@ -17,7 +17,7 @@ month = current_time_thailand.strftime("%m")
 year = current_time_thailand.strftime("%Y")
 
 # โหลดภาพพื้นหลัง
-image = Image.open("K-bank 4.png")  # แก้ไขที่อยู่ไฟล์ภาพให้ถูกต้อง
+image = Image.open("Kbank/K-bank 4.png")
 draw = ImageDraw.Draw(image)
 
 # กำหนดขนาดและฟอนต์
