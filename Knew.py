@@ -6,27 +6,33 @@ import requests
 # ฟังก์ชั่นสำหรับเลือกภาพพื้นหลัง
 def select_background():
     print("เลือกภาพพื้นหลัง:")
-    print("1. K-bank 4")
-    print("2. K-bank 5")
-    print("3. K-bank 6")
+    print("1. K-bank 4 🌇")
+    print("2. K-bank 3 🌆")
+    print("3. K-bank 2 🌃")
+    print("4. K-bank 1 🌌")
+    print("5. K-bank 0 🌠")
 
-    choice = input("กรุณาเลือกหมายเลข (1-3): ")
+    choice = input("กรุณาเลือกหมายเลข (1-5): ")
 
     if choice == "1":
         return "Bank/K-bank 4.png"
     elif choice == "2":
-        return "Bank/K-bank 2.png"
-    elif choice == "3":
         return "Bank/K-bank 3.png"
+    elif choice == "3":
+        return "Bank/K-bank 2.png"
+    elif choice == "4":
+        return "Bank/K-bank 1.png"
+    elif choice == "5":
+        return "Bank/K-bank 0.png"
     else:
-        print("ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
+        print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_background()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
 
 # ฟังก์ชั่นสำหรับเลือกโลโก้
 def select_logo(background_image):
     print("เลือกโลโก้:")
-    print("1. K-bank")
-    print("2. Another Logo")  # เพิ่มโลโก้ตัวเลือกอื่นๆ ได้
+    print("1. K-bank 🏦")
+    print("2. Another Logo 🎨")  # เพิ่มโลโก้ตัวเลือกอื่นๆ ได้
     choice = input("กรุณาเลือกหมายเลข (1-2): ")
 
     if choice == "1":
@@ -34,7 +40,7 @@ def select_logo(background_image):
     elif choice == "2":
         logo_image = "Bank/AnotherLogo.png"  # ตัวอย่างโลโก้อื่นๆ
     else:
-        print("ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
+        print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_logo(background_image)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
 
     # กำหนดตำแหน่งและขนาดโลโก้ตามภาพพื้นหลังที่เลือก
@@ -108,7 +114,67 @@ def main_menu():
         font_path_order = "Font/PSL159.ttf"
         font_path_money = "Font/PSL158.ttf"
 
+    elif background_image == "Bank/K-bank 3.png":
+        font_size_user = 50
+        font_size_bank_user = 50
+        font_size_phone_user = 42
+        font_size_me = 50
+        font_size_bank_me = 50
+        font_size_phone = 42
+        font_size_order = 38
+        font_size_money = 90
+        font_size_time = 39
+
+        font_path_user = "Font/PSL160.ttf"
+        font_path_bank_user = "Font/PSL160.ttf"
+        font_path_phone_user = "Font/PSL159.ttf"
+        font_path_name_me = "Font/PSL160.ttf"
+        font_path_bank_me = "Font/PSL160.ttf"
+        font_path_phone = "Font/PSL159.ttf"
+        font_path_order = "Font/PSL160.ttf"
+        font_path_money = "Font/PSL159.ttf"
+
     elif background_image == "Bank/K-bank 2.png":
+        font_size_user = 50
+        font_size_bank_user = 50
+        font_size_phone_user = 42
+        font_size_me = 50
+        font_size_bank_me = 50
+        font_size_phone = 42
+        font_size_order = 38
+        font_size_money = 90
+        font_size_time = 39
+
+        font_path_user = "Font/PSL160.ttf"
+        font_path_bank_user = "Font/PSL160.ttf"
+        font_path_phone_user = "Font/PSL159.ttf"
+        font_path_name_me = "Font/PSL160.ttf"
+        font_path_bank_me = "Font/PSL160.ttf"
+        font_path_phone = "Font/PSL159.ttf"
+        font_path_order = "Font/PSL160.ttf"
+        font_path_money = "Font/PSL159.ttf"
+
+    elif background_image == "Bank/K-bank 1.png":
+        font_size_user = 50
+        font_size_bank_user = 50
+        font_size_phone_user = 42
+        font_size_me = 50
+        font_size_bank_me = 50
+        font_size_phone = 42
+        font_size_order = 38
+        font_size_money = 90
+        font_size_time = 39
+
+        font_path_user = "Font/PSL160.ttf"
+        font_path_bank_user = "Font/PSL160.ttf"
+        font_path_phone_user = "Font/PSL159.ttf"
+        font_path_name_me = "Font/PSL160.ttf"
+        font_path_bank_me = "Font/PSL160.ttf"
+        font_path_phone = "Font/PSL159.ttf"
+        font_path_order = "Font/PSL160.ttf"
+        font_path_money = "Font/PSL159.ttf"
+
+    elif background_image == "Bank/K-bank 0.png":
         font_size_user = 50
         font_size_bank_user = 50
         font_size_phone_user = 42
@@ -183,7 +249,40 @@ def main_menu():
         text_position_money = (370, 900)
         text_position_time = (55, 100)
 
+    elif background_image == "Bank/K-bank 3.png":
+        text_position_user = (250, 230)
+        text_position_bank_user = (250, 290)
+        text_position_phone_user = (250, 350)
+        text_position_me = (250, 550)
+        text_position_bank_me = (250, 610)
+        text_position_phone = (250, 670)
+        text_position_order = (460, 840)
+        text_position_money = (380, 920)
+        text_position_time = (60, 110)
+
     elif background_image == "Bank/K-bank 2.png":
+        text_position_user = (250, 230)
+        text_position_bank_user = (250, 290)
+        text_position_phone_user = (250, 350)
+        text_position_me = (250, 550)
+        text_position_bank_me = (250, 610)
+        text_position_phone = (250, 670)
+        text_position_order = (460, 840)
+        text_position_money = (380, 920)
+        text_position_time = (60, 110)
+
+    elif background_image == "Bank/K-bank 1.png":
+        text_position_user = (250, 230)
+        text_position_bank_user = (250, 290)
+        text_position_phone_user = (250, 350)
+        text_position_me = (250, 550)
+        text_position_bank_me = (250, 610)
+        text_position_phone = (250, 670)
+        text_position_order = (460, 840)
+        text_position_money = (380, 920)
+        text_position_time = (60, 110)
+
+    elif background_image == "Bank/K-bank 0.png":
         text_position_user = (250, 230)
         text_position_bank_user = (250, 290)
         text_position_phone_user = (250, 350)
@@ -278,5 +377,3 @@ def main_menu():
 # เรียกใช้เมนูหลัก
 if __name__ == "__main__":
     main_menu()
-
-
