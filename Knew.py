@@ -78,13 +78,13 @@ def select_logo(background_image):
 # ฟังก์ชั่นสำหรับเลือกธนาคาร
 def select_bank():
     print("เลือกธนาคารผู้โอน:")
-    print("1. K-bank 🏦")
-    print("2. SCB 🏧")
-    print("3. Bangkok 🏙️")
-    print("4. TTB 🏛️")
-    print("5. กรุงศรี 🏦")
-    print("6. กรุงไทย 🏦")
-    print("7. Other Bank 🎨")  # เพิ่มธนาคารตัวเลือกอื่นๆ ได้
+    print("1. K-bank 🏦 (ธนาคารกสิกรไทย)")
+    print("2. SCB 🏧 (ธนาคารไทยพาณิชย์)")
+    print("3. Bangkok 🏙️ (ธนาคารกรุงเทพ)")
+    print("4. TTB 🏛️ (ธนาคารทหารไทยธนชาต)")
+    print("5. กรุงศรี 🏦 (ธนาคารกรุงศรีอยุธยา)")
+    print("6. กรุงไทย 🏦 (ธนาคารกรุงไทย)")
+    print("7. Other Bank 🎨 (ธนาคารอื่นๆ)")  # เพิ่มธนาคารตัวเลือกอื่นๆ ได้
     choice = input("กรุณาเลือกหมายเลข (1-7): ")
 
     if choice == "1":
