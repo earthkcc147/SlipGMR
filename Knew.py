@@ -10,25 +10,28 @@ def select_logo(background_image):
     print("1. K-bank 🏦")
     print("2. SCB 🏦")
     print("3. Bangkok 🏦")
-    print("4. TTB 🏦")
+    print("4. ออมสิน 🏦")
     print("5. กรุงศรี 🏦")
     print("6. กรุงไทย 🏦")
-    print("7. Another Logo 🎨")  # เพิ่มโลโก้ตัวเลือกอื่นๆ ได้
+    print("7. UOB 🏦")
+    print("8. Another Logo 🎨")  # เพิ่มโลโก้ตัวเลือกอื่นๆ ได้
     choice = input("กรุณาเลือกหมายเลข (1-7): ")
 
     if choice == "1":
         logo_image = "Bank/K-bank.png"
     elif choice == "2":
-        logo_image = "Bank/SCB.png"
+        logo_image = "Bank/imgbin_thailand-siam-commercial-bank-refinancing-kasikornbank-png.png"
     elif choice == "3":
-        logo_image = "Bank/Bangkok.png"
+        logo_image = "Bank/Asset-2@4x (0_3).png"
     elif choice == "4":
-        logo_image = "Bank/TTB.png"
+        logo_image = "Bank/truemoneywallet-Promptpay-aw-logobank-20220325-1a-400x183 (1_2).png"
     elif choice == "5":
-        logo_image = "Bank/กรุงศรี.png"
+        logo_image = "Bank/truemoneywallet-Promptpay-aw-logobank-20220325-1a-400x183 (0_2).png"
     elif choice == "6":
-        logo_image = "Bank/กรุงไทย.png"
+        logo_image = "Bank/krung-thai-bank-money.png"
     elif choice == "7":
+        logo_image = "Bank/Logo-bank (1_4).png"
+    elif choice == "8":
         logo_image = "Bank/AnotherLogo.png"  # ตัวอย่างโลโก้อื่นๆ
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
