@@ -13,11 +13,15 @@ def select_background():
     print("4. K-bank 1 🌌")
     print("5. K-bank 0 🌠")
     print("SCB")
-    print("6. SCB 5 🌅")
-    print("7. SCB 6 🌄")
-    print("8. SCB 7 🌋")
-    print("9. SCB 8 🌙")
-    print("10. SCB 9 🌑")
+    print("6. SCB 🌅")
+    print("Bangkok")
+    print("7. Bangkok 🌄")
+    print("TTB")
+    print("8. TTB 🌋")
+    print("กรุงศรี")
+    print("9. กรุงศรี 🌙")
+    print("กรุงไทย")
+    print("10. กรุงไทย 🌑")
 
     choice = input("กรุณาเลือกหมายเลข (1-10): ")
 
@@ -34,13 +38,13 @@ def select_background():
     elif choice == "6":
         return "Bank/SCB copy.png"
     elif choice == "7":
-        return "Bank/K-bank 6.png"
+        return "Bank/Bangkok.png"
     elif choice == "8":
-        return "Bank/K-bank 7.png"
+        return "Bank/TTB.jpg"
     elif choice == "9":
-        return "Bank/K-bank 8.png"
+        return "Bank/กรุงศรี.png"
     elif choice == "10":
-        return "Bank/K-bank 9.png"
+        return "Bank/กรุงไทย.png"
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_background()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
