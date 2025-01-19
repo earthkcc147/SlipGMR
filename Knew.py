@@ -103,7 +103,7 @@ draw.text(text_position_money, text_money, font=font_money, fill=text_color_mone
 draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
 
 # โหลดโลโก้
-logo = Image.open("Bank/truemoneywallet-Promptpay-aw-logobank-20220325-1a-400x183 (0_1).png")
+logo = Image.open("Bank/K-bank.png")
 
 # ปรับขนาดโลโก้ให้เล็กลง
 logo = logo.resize((100, 50))
