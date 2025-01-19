@@ -77,7 +77,7 @@ text_position_me = (302, 648)
 text_position_bank_me = (302, 960)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้รับ"
 text_position_phone = (302, 720)
 text_position_order = (827, 953)
-text_position_money = (560, 270)
+text_position_money = (560, 750)
 text_position_time = (781, 885)
 
 
