@@ -9,8 +9,8 @@ def select_background():
     print("1. K-bank 4")
     print("2. K-bank 3")
     print("3. K-bank 2")
-    print("1. K-bank 1")
-    print("2. K-bank 0")
+    print("4. K-bank 1")
+    print("5. K-bank 0")
 
     choice = input("กรุณาเลือกหมายเลข (1-3): ")
 
@@ -20,9 +20,9 @@ def select_background():
         return "Bank/K-bank 3.png"
     elif choice == "3":
         return "Bank/K-bank 2.png"
-elif choice == "2":
+elif choice == "4":
         return "Bank/K-bank 1.png"
-    elif choice == "3":
+    elif choice == "5":
         return "Bank/K-bank 0.png"
     else:
         print("ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
