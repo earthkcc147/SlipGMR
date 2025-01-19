@@ -60,7 +60,7 @@ font_time = ImageFont.truetype(font_path_user, font_size_time)
 # ข้อความที่ต้องการใส่ลงในภาพ
 text_name_user = name_user_id
 text_bank_user = bank_user_id
-text_name_phone = f"{phone[:3]}-xxx-{phone[6:]}"
+text_name_phone = f"{phone_me_id[:3]}-xxx-{phone_me_id[6:]}"
 text_phone_user = phone_user_id
 text_name_me = name_me_id
 text_bank_me = bank_me_id
