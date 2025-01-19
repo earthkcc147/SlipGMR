@@ -92,15 +92,16 @@ text_color_phone_user = (60, 60, 60)  # สีข้อความสำหร�
 text_color_bank_me = (60, 60, 60)  # สีข้อความสำหรับ "ธ.ผู้รับ"
 
 # ใส่ข้อความลงในภาพ
-draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
 draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user)
-draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)  # ใช้ font_me สำหรับชื่อผู้รับ
-draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone)
-draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
-draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)  # ใส่ข้อความ "หมายเลขคำสั่งซื้อ"
 draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)  # ใส่ข้อความ "ธ.ผู้โอน"
 draw.text(text_position_phone_user, text_phone_user, font=font_phone_user, fill=text_color_phone_user)  # ใส่ข้อความ "เบอร์ผู้โอน"
+draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)  # ใช้ font_me สำหรับชื่อผู้รับ
 draw.text(text_position_bank_me, text_bank_me, font=font_bank_me, fill=text_color_bank_me)  # ใส่ข้อความ "ธ.ผู้รับ"
+draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone)
+draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)  # ใส่ข้อความ "หมายเลขคำสั่งซื้อ"
+draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
+draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
+
 
 # บันทึกภาพที่มีข้อความ
 image.save("truemoney_with_textnew.png")
