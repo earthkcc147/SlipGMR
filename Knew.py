@@ -106,10 +106,10 @@ draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_ti
 logo = Image.open("Bank/K-bank.png")
 
 # ปรับขนาดโลโก้ให้เล็กลง
-logo = logo.resize((100, 50))
+logo = logo.resize((130, 130))
 
-# ตำแหน่งโลโก้
-logo_position = (50, image.height - logo.height - 100)
+# ตำแน่งของ logo
+logo_position = (50, image.height - logo.height - 500)
 
 # แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
 image.paste(logo, logo_position, logo)  # ใช้ `mask` ที่เป็นตัวโลโก้เพื่อให้พื้นหลังโปร่งใส
