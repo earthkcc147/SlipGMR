@@ -27,9 +27,9 @@ font_size_me = 48
 font_size_phone = 40
 font_size_time = 37
 
-font_path_money = "Lato-Heavy.ttf"  # แก้ไขที่อยู่ไฟล์ฟอนต์ให้ถูกต้อง
-font_path_user = "Kanit-ExtraLight.ttf"  # แก้ไขที่อยู่ไฟล์ฟอนต์ให้ถูกต้อง
-font_path_phone = "Prompt-Light.ttf"  # แก้ไขที่อยู่ไฟล์ฟอนต์ให้ถูกต้อง
+font_path_money = "../Font/Lato-Heavy.ttf"
+font_path_user = "../Font/Kanit-ExtraLight.ttf"
+font_path_phone = "../Font/Prompt-Light.ttf"
 
 font_money = ImageFont.truetype(font_path_money, font_size_money)
 font_user = ImageFont.truetype(font_path_user, font_size_user)
