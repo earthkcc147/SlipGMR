@@ -114,7 +114,67 @@ def main_menu():
         font_path_order = "Font/PSL159.ttf"
         font_path_money = "Font/PSL158.ttf"
 
+    elif background_image == "Bank/K-bank 3.png":
+        font_size_user = 50
+        font_size_bank_user = 50
+        font_size_phone_user = 42
+        font_size_me = 50
+        font_size_bank_me = 50
+        font_size_phone = 42
+        font_size_order = 38
+        font_size_money = 90
+        font_size_time = 39
+
+        font_path_user = "Font/PSL160.ttf"
+        font_path_bank_user = "Font/PSL160.ttf"
+        font_path_phone_user = "Font/PSL159.ttf"
+        font_path_name_me = "Font/PSL160.ttf"
+        font_path_bank_me = "Font/PSL160.ttf"
+        font_path_phone = "Font/PSL159.ttf"
+        font_path_order = "Font/PSL160.ttf"
+        font_path_money = "Font/PSL159.ttf"
+
     elif background_image == "Bank/K-bank 2.png":
+        font_size_user = 50
+        font_size_bank_user = 50
+        font_size_phone_user = 42
+        font_size_me = 50
+        font_size_bank_me = 50
+        font_size_phone = 42
+        font_size_order = 38
+        font_size_money = 90
+        font_size_time = 39
+
+        font_path_user = "Font/PSL160.ttf"
+        font_path_bank_user = "Font/PSL160.ttf"
+        font_path_phone_user = "Font/PSL159.ttf"
+        font_path_name_me = "Font/PSL160.ttf"
+        font_path_bank_me = "Font/PSL160.ttf"
+        font_path_phone = "Font/PSL159.ttf"
+        font_path_order = "Font/PSL160.ttf"
+        font_path_money = "Font/PSL159.ttf"
+
+    elif background_image == "Bank/K-bank 1.png":
+        font_size_user = 50
+        font_size_bank_user = 50
+        font_size_phone_user = 42
+        font_size_me = 50
+        font_size_bank_me = 50
+        font_size_phone = 42
+        font_size_order = 38
+        font_size_money = 90
+        font_size_time = 39
+
+        font_path_user = "Font/PSL160.ttf"
+        font_path_bank_user = "Font/PSL160.ttf"
+        font_path_phone_user = "Font/PSL159.ttf"
+        font_path_name_me = "Font/PSL160.ttf"
+        font_path_bank_me = "Font/PSL160.ttf"
+        font_path_phone = "Font/PSL159.ttf"
+        font_path_order = "Font/PSL160.ttf"
+        font_path_money = "Font/PSL159.ttf"
+
+    elif background_image == "Bank/K-bank 0.png":
         font_size_user = 50
         font_size_bank_user = 50
         font_size_phone_user = 42
