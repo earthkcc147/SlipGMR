@@ -109,7 +109,7 @@ logo = Image.open("Bank/K-bank.png")
 logo = logo.resize((100, 50))
 
 # ตำแหน่งโลโก้
-logo_position = (image.width - logo.width - 10, image.height - logo.height - 10)
+logo_position = (50, image.height - logo.height - 100)
 
 # แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
 image.paste(logo, logo_position, logo)  # ใช้ `mask` ที่เป็นตัวโลโก้เพื่อให้พื้นหลังโปร่งใส
