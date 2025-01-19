@@ -456,6 +456,18 @@ def main_menu():
     text_color_money = (44, 44, 44)
     text_color_time = (60, 60, 60)
 
+    # สีของข้อความ
+    debug_print("🎨 สีของข้อความ:")
+    debug_print(f"🖤 text_color_user: {text_color_user}")
+    debug_print(f"💬 text_color_bank_user: {text_color_bank_user}")
+    debug_print(f"📱 text_color_phone_user: {text_color_phone_user}")
+    debug_print(f"🧑‍💻 text_color_me: {text_color_me}")
+    debug_print(f"💳 text_color_bank_me: {text_color_bank_me}")
+    debug_print(f"📞 text_color_phone: {text_color_phone}")
+    debug_print(f"💰 text_color_order: {text_color_order}")
+    debug_print(f"💸 text_color_money: {text_color_money}")
+    debug_print(f"⏰ text_color_time: {text_color_time}")
+
     # ใส่ข้อความลงในภาพ
     debug_print("🖼️ กำลังใส่ข้อความลงในภาพ...")
     draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user)
