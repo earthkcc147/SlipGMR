@@ -26,22 +26,32 @@ year = current_time_thailand.strftime("%Y")
 image = Image.open("Bank/K-bank 4.png")
 draw = ImageDraw.Draw(image)
 
+
 # กำหนดฟอนต์
 font_size_money = 87
 font_size_user = 48
 font_size_me = 48
 font_size_phone = 40
 font_size_time = 37
+font_size_bank_user = 48  # ขนาดฟอนต์สำหรับ "ธ.ผู้โอน"
+font_size_phone_user = 40  # ขนาดฟอนต์สำหรับ "เบอร์ผู้โอน"
+font_size_bank_me = 48  # ขนาดฟอนต์สำหรับ "ธ.ผู้รับ"
+
 font_path_money = "Font/PSL158.ttf"
 font_path_user = "Font/PSL159.ttf"
 font_path_phone = "Font/PSL160.ttf"
+font_path_bank_user = "Font/PSL159.ttf"  # กำหนดฟอนต์สำหรับ "ธ.ผู้โอน"
+font_path_phone_user = "Font/PSL160.ttf"  # กำหนดฟอนต์สำหรับ "เบอร์ผู้โอน"
+font_path_bank_me = "Font/PSL159.ttf"  # กำหนดฟอนต์สำหรับ "ธ.ผู้รับ"
 
 font_money = ImageFont.truetype(font_path_money, font_size_money)
 font_user = ImageFont.truetype(font_path_user, font_size_user)
 font_me = ImageFont.truetype(font_path_user, font_size_me)
 font_phone = ImageFont.truetype(font_path_phone, font_size_phone)
 font_time = ImageFont.truetype(font_path_user, font_size_time)
-font_order = ImageFont.truetype(font_path_user, font_size_time)
+font_bank_user = ImageFont.truetype(font_path_bank_user, font_size_bank_user)  # ฟอนต์สำหรับ "ธ.ผู้โอน"
+font_phone_user = ImageFont.truetype(font_path_phone_user, font_size_phone_user)  # ฟอนต์สำหรับ "เบอร์ผู้โอน"
+font_bank_me = ImageFont.truetype(font_path_bank_me, font_size_bank_me)  # ฟอนต์สำหรับ "ธ.ผู้รับ"
 
 # ข้อความที่ต้องการใส่ลงในภาพ
 phone = phone_me_id
@@ -62,9 +72,9 @@ text_position_me = (302, 648)
 text_position_phone = (302, 720)
 text_position_time = (781, 885)
 text_position_order = (827, 953)
-text_position_bank_user = (302, 820)  # เพิ่มตำแหน่งสำหรับธ.ผู้โอน
-text_position_phone_user = (302, 890)  # เพิ่มตำแหน่งสำหรับเบอร์ผู้โอน
-text_position_bank_me = (302, 960)  # เพิ่มตำแหน่งสำหรับธ.ผู้รับ
+text_position_bank_user = (302, 820)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้โอน"
+text_position_phone_user = (302, 890)  # เพิ่มตำแหน่งสำหรับ "เบอร์ผู้โอน"
+text_position_bank_me = (302, 960)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้รับ"
 
 # สีของข้อความ
 text_color_money = (44, 44, 44)
@@ -73,9 +83,9 @@ text_color_me = (-20, -20, -20)
 text_color_phone = (80, 80, 80)
 text_color_time = (60, 60, 60)
 text_color_order = (60, 60, 60)
-text_color_bank_user = (60, 60, 60)  # สีข้อความสำหรับธ.ผู้โอน
-text_color_phone_user = (60, 60, 60)  # สีข้อความสำหรับเบอร์ผู้โอน
-text_color_bank_me = (60, 60, 60)  # สีข้อความสำหรับธ.ผู้รับ
+text_color_bank_user = (60, 60, 60)  # สีข้อความสำหรับ "ธ.ผู้โอน"
+text_color_phone_user = (60, 60, 60)  # สีข้อความสำหรับ "เบอร์ผู้โอน"
+text_color_bank_me = (60, 60, 60)  # สีข้อความสำหรับ "ธ.ผู้รับ"
 
 # ใส่ข้อความลงในภาพ
 draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
@@ -83,10 +93,10 @@ draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_us
 draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)
 draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone)
 draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
-draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)
-draw.text(text_position_bank_user, text_bank_user, font=font_user, fill=text_color_bank_user)  # ใส่ข้อความธ.ผู้โอน
-draw.text(text_position_phone_user, text_phone_user, font=font_phone, fill=text_color_phone_user)  # ใส่ข้อความเบอร์ผู้โอน
-draw.text(text_position_bank_me, text_bank_me, font=font_user, fill=text_color_bank_me)  # ใส่ข้อความธ.ผู้รับ
+draw.text(text_position_order, text_name_order, font=font_user, fill=text_color_order)  # ใช้ฟอนต์ font_user แทน font_order
+draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)  # ใส่ข้อความ "ธ.ผู้โอน"
+draw.text(text_position_phone_user, text_phone_user, font=font_phone_user, fill=text_color_phone_user)  # ใส่ข้อความ "เบอร์ผู้โอน"
+draw.text(text_position_bank_me, text_bank_me, font=font_bank_me, fill=text_color_bank_me)  # ใส่ข้อความ "ธ.ผู้รับ"
 
 # บันทึกภาพที่มีข้อความ
 image.save("truemoney_with_textnew.png")
