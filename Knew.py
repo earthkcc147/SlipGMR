@@ -14,7 +14,8 @@ def select_logo(background_image):
     print("5. กรุงศรี 🏦")
     print("6. กรุงไทย 🏦")
     print("7. UOB 🏦")
-    print("8. Another Logo 🎨")  # เพิ่มโลโก้ตัวเลือกอื่นๆ ได้
+    print("8. Citi 🏦")
+    print("9. Another Logo 🎨")  # เพิ่มโลโก้ตัวเลือกอื่นๆ ได้
     choice = input("กรุณาเลือกหมายเลข (1-7): ")
 
     if choice == "1":
@@ -32,6 +33,8 @@ def select_logo(background_image):
     elif choice == "7":
         logo_image = "Bank/Logo-bank (1_4).png"
     elif choice == "8":
+        logo_image = "Bank/Logo-bank (1_2).png"
+    elif choice == "9":
         logo_image = "Bank/AnotherLogo.png"  # ตัวอย่างโลโก้อื่นๆ
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
