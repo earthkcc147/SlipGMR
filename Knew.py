@@ -4,6 +4,15 @@ from datetime import datetime
 import requests
 
 
+# ตัวแปรสำหรับเปิด/ปิดโหมดดีบัก
+debug_mode = True  # เปลี่ยนเป็น False เพื่อปิดโหมดดีบัก
+
+# ฟังก์ชันสำหรับการดีบักที่สามารถเปิดปิดได้
+def debug_print(message):
+    if debug_mode:
+        print(message)
+
+
 # ฟังก์ชั่นสำหรับเลือกโลโก้
 def select_logo(background_image):
     print("เลือกธนาคารผู้รับ:")
@@ -448,7 +457,7 @@ def main_menu():
     text_color_time = (60, 60, 60)
 
     # ใส่ข้อความลงในภาพ
-    print("🖼️ กำลังใส่ข้อความลงในภาพ...")
+    debug_print("🖼️ กำลังใส่ข้อความลงในภาพ...")
     draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user)
     draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)
     draw.text(text_position_phone_user, text_phone_user, font=font_phone_user, fill=text_color_phone_user)
@@ -458,7 +467,7 @@ def main_menu():
     draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)
     draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
     draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
-    print("✅ ข้อความทั้งหมดถูกเพิ่มลงในภาพเรียบร้อยแล้ว ✅")
+    debug_print("✅ ข้อความทั้งหมดถูกเพิ่มลงในภาพเรียบร้อยแล้ว")
 
 
     print(f"🔧 [DEBUG] โลโก้ถูกโหลดเรียบร้อยแล้วจากตำแหน่ง {logo_position}")
