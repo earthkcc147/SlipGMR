@@ -32,7 +32,7 @@ def select_background():
     elif choice == "5":
         return "Bank/K-bank 0.png"
     elif choice == "6":
-        return "Bank/K-bank 5.png"
+        return "Bank/SCB copy.png"
     elif choice == "7":
         return "Bank/K-bank 6.png"
     elif choice == "8":
