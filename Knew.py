@@ -108,34 +108,19 @@ def select_background(bank_name):
         print("5. K-bank 0 🌠")
     elif bank_name == "SCB":
         print("1. SCB 4 🌇")
-        print("2. SCB 3 🌆")
-        print("3. SCB 2 🌃")
-        print("4. SCB 1 🌌")
-        print("5. SCB 0 🌠")
+        print("เร็วๆนี้")
     elif bank_name == "Bangkok":
         print("1. Bangkok 4 🌇")
-        print("2. Bangkok 3 🌆")
-        print("3. Bangkok 2 🌃")
-        print("4. Bangkok 1 🌌")
-        print("5. Bangkok 0 🌠")
+        print("เร็วๆนี้")
     elif bank_name == "TTB":
         print("1. TTB 4 🌇")
-        print("2. TTB 3 🌆")
-        print("3. TTB 2 🌃")
-        print("4. TTB 1 🌌")
-        print("5. TTB 0 🌠")
+        print("เร็วๆนี้")
     elif bank_name == "กรุงศรี":
         print("1. กรุงศรี 4 🌇")
-        print("2. กรุงศรี 3 🌆")
-        print("3. กรุงศรี 2 🌃")
-        print("4. กรุงศรี 1 🌌")
-        print("5. กรุงศรี 0 🌠")
+        print("เร็วๆนี้")
     elif bank_name == "กรุงไทย":
         print("1. กรุงไทย 4 🌇")
-        print("2. กรุงไทย 3 🌆")
-        print("3. กรุงไทย 2 🌃")
-        print("4. กรุงไทย 1 🌌")
-        print("5. กรุงไทย 0 🌠")
+        print("เร็วๆนี้")
     else:
         print("ไม่มีพื้นหลังสำหรับธนาคารนี้")
 
@@ -154,58 +139,23 @@ def select_background(bank_name):
     
     elif choice == "1" and bank_name == "SCB":
         return "Bank/SCB 4.png"
-    elif choice == "2" and bank_name == "SCB":
-        return "Bank/SCB 3.png"
-    elif choice == "3" and bank_name == "SCB":
-        return "Bank/SCB 2.png"
-    elif choice == "4" and bank_name == "SCB":
-        return "Bank/SCB 1.png"
-    elif choice == "5" and bank_name == "SCB":
-        return "Bank/SCB 0.png"
+    
     
     elif choice == "1" and bank_name == "Bangkok":
         return "Bank/Bangkok 4.png"
-    elif choice == "2" and bank_name == "Bangkok":
-        return "Bank/Bangkok 3.png"
-    elif choice == "3" and bank_name == "Bangkok":
-        return "Bank/Bangkok 2.png"
-    elif choice == "4" and bank_name == "Bangkok":
-        return "Bank/Bangkok 1.png"
-    elif choice == "5" and bank_name == "Bangkok":
-        return "Bank/Bangkok 0.png"
+    
     
     elif choice == "1" and bank_name == "TTB":
         return "Bank/TTB 4.png"
-    elif choice == "2" and bank_name == "TTB":
-        return "Bank/TTB 3.png"
-    elif choice == "3" and bank_name == "TTB":
-        return "Bank/TTB 2.png"
-    elif choice == "4" and bank_name == "TTB":
-        return "Bank/TTB 1.png"
-    elif choice == "5" and bank_name == "TTB":
-        return "Bank/TTB 0.png"
+    
     
     elif choice == "1" and bank_name == "กรุงศรี":
         return "Bank/กรุงศรี 4.png"
-    elif choice == "2" and bank_name == "กรุงศรี":
-        return "Bank/กรุงศรี 3.png"
-    elif choice == "3" and bank_name == "กรุงศรี":
-        return "Bank/กรุงศรี 2.png"
-    elif choice == "4" and bank_name == "กรุงศรี":
-        return "Bank/กรุงศรี 1.png"
-    elif choice == "5" and bank_name == "กรุงศรี":
-        return "Bank/กรุงศรี 0.png"
+    
     
     elif choice == "1" and bank_name == "กรุงไทย":
         return "Bank/กรุงไทย 4.png"
-    elif choice == "2" and bank_name == "กรุงไทย":
-        return "Bank/กรุงไทย 3.png"
-    elif choice == "3" and bank_name == "กรุงไทย":
-        return "Bank/กรุงไทย 2.png"
-    elif choice == "4" and bank_name == "กรุงไทย":
-        return "Bank/กรุงไทย 1.png"
-    elif choice == "5" and bank_name == "กรุงไทย":
-        return "Bank/กรุงไทย 0.png"
+    
     
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
