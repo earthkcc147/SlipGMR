@@ -40,10 +40,10 @@ def select_logo():
 # เมนูหลัก
 def main_menu():
     print("ระบบสร้างใบโอนจ่าย")
-    
+
     # เลือกภาพพื้นหลัง
     background_image = select_background()
-    
+
     # เลือกโลโก้
     logo_image = select_logo()
 
@@ -113,15 +113,45 @@ def main_menu():
     text_name_time = f"  {day}/{month}/{year} {time}"
 
     # ตำแหน่งข้อความ
-    text_position_user = (250, 220) # ชื่อผู้โอน
-    text_position_bank_user = (250, 280)  # ธ.ผู้โอน
-    text_position_phone_user = (250, 340)  # เบอร์ผู้โอน
-    text_position_me = (250, 540) # ชื่อผู้รับ
-    text_position_bank_me = (250, 600)  # ธ.ผู้รับ
-    text_position_phone = (250, 660) # เบอร์ผู้รับ
-    text_position_order = (445, 820) # เลขออเดอร์
-    text_position_money = (370, 900) # จำนวนเงิน
-    text_position_time = (55, 100) # เวลา
+    # การกำหนดตำแหน่งจะถูกปรับตามพื้นหลังที่เลือก
+    if background_image == "Bank/K-bank 1.png":
+        text_position_user = (250, 220)
+        text_position_bank_user = (250, 280)
+        text_position_phone_user = (250, 340)
+        text_position_me = (250, 540)
+        text_position_bank_me = (250, 600)
+        text_position_phone = (250, 660)
+        text_position_order = (445, 820)
+        text_position_money = (370, 900)
+        text_position_time = (55, 100)
+
+        logo_position = (50, image.height - 130 - 100)  # ตำแหน่งโลโก้สำหรับภาพพื้นหลัง 1
+
+    elif background_image == "Bank/K-bank 2.png":
+        text_position_user = (250, 230)
+        text_position_bank_user = (250, 290)
+        text_position_phone_user = (250, 350)
+        text_position_me = (250, 550)
+        text_position_bank_me = (250, 610)
+        text_position_phone = (250, 670)
+        text_position_order = (460, 840)
+        text_position_money = (380, 920)
+        text_position_time = (60, 110)
+
+        logo_position = (60, image.height - 130 - 100)  # ตำแหน่งโลโก้สำหรับภาพพื้นหลัง 2
+
+    else:
+        text_position_user = (250, 240)
+        text_position_bank_user = (250, 300)
+        text_position_phone_user = (250, 360)
+        text_position_me = (250, 560)
+        text_position_bank_me = (250, 620)
+        text_position_phone = (250, 680)
+        text_position_order = (470, 860)
+        text_position_money = (390, 940)
+        text_position_time = (65, 120)
+
+        logo_position = (70, image.height - 130 - 100)  # ตำแหน่งโลโก้สำหรับภาพพื้นหลัง 3
 
     # สีของข้อความ
     text_color_user = (-20, -20, -20)
@@ -148,9 +178,6 @@ def main_menu():
     # โหลดโลโก้ที่มีพื้นหลังโปร่งใส
     logo = Image.open(logo_image)
     logo = logo.resize((130, 130))
-
-    # ตำแหน่งโลโก้
-    logo_position = (50, image.height - logo.height - 500)
 
     # แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
     image.paste(logo, logo_position, logo)
