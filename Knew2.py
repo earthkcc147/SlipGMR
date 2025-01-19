@@ -26,6 +26,7 @@ year = current_time_thailand.strftime("%Y")
 image = Image.open("Bank/K-bank 4.png")
 draw = ImageDraw.Draw(image)
 
+
 # กำหนดฟอนต์
 font_size_money = 87
 font_size_user = 48
@@ -92,7 +93,7 @@ draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_us
 draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)
 draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone)
 draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
-draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)
+draw.text(text_position_order, text_name_order, font=font_user, fill=text_color_order)  # ใช้ฟอนต์ font_user แทน font_order
 draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)  # ใส่ข้อความ "ธ.ผู้โอน"
 draw.text(text_position_phone_user, text_phone_user, font=font_phone_user, fill=text_color_phone_user)  # ใส่ข้อความ "เบอร์ผู้โอน"
 draw.text(text_position_bank_me, text_bank_me, font=font_bank_me, fill=text_color_bank_me)  # ใส่ข้อความ "ธ.ผู้รับ"
