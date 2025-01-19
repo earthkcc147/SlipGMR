@@ -1,3 +1,27 @@
+from PIL import Image, ImageDraw, ImageFont
+import pytz
+from datetime import datetime
+import requests
+
+# ฟังก์ชั่นสำหรับเลือกภาพพื้นหลัง
+def select_background():
+    print("เลือกภาพพื้นหลัง:")
+    print("1. K-bank 4")
+    print("2. K-bank 5")
+    print("3. K-bank 6")
+
+    choice = input("กรุณาเลือกหมายเลข (1-3): ")
+
+    if choice == "1":
+        return "Bank/K-bank 4.png"
+    elif choice == "2":
+        return "Bank/K-bank 5.png"
+    elif choice == "3":
+        return "Bank/K-bank 6.png"
+    else:
+        print("ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
+        return select_background()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
+
 # ฟังก์ชั่นสำหรับเลือกโลโก้
 def select_logo():
     print("เลือกโลโก้:")
