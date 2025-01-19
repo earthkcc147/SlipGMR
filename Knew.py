@@ -9,26 +9,61 @@ def select_background():
     print("1. K-bank 4")
     print("2. K-bank 5")
     print("3. K-bank 6")
-    
+
     choice = input("กรุณาเลือกหมายเลข (1-3): ")
-    
+
     if choice == "1":
         return "Bank/K-bank 4.png"
     elif choice == "2":
-        return "Bank/K-bank 5.png"
+        return "Bank/K-bank 2.png"
     elif choice == "3":
-        return "Bank/K-bank 6.png"
+        return "Bank/K-bank 3.png"
     else:
         print("ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_background()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
 
+# ฟังก์ชั่นสำหรับเลือกโลโก้
+def select_logo(background_image):
+    print("เลือกโลโก้:")
+    print("1. K-bank")
+    print("2. Another Logo")  # เพิ่มโลโก้ตัวเลือกอื่นๆ ได้
+    choice = input("กรุณาเลือกหมายเลข (1-2): ")
+
+    if choice == "1":
+        logo_image = "Bank/K-bank.png"
+    elif choice == "2":
+        logo_image = "Bank/AnotherLogo.png"  # ตัวอย่างโลโก้อื่นๆ
+    else:
+        print("ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
+        return select_logo(background_image)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
+
+    # กำหนดตำแหน่งและขนาดโลโก้ตามภาพพื้นหลังที่เลือก
+    if background_image == "Bank/K-bank 4.png":
+        logo_size = (130, 130)
+        logo_position = (45, 540)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 1
+    elif background_image == "Bank/K-bank 2.png":
+        logo_size = (150, 150)
+        logo_position = (60, 1200)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 2
+    else:
+        logo_size = (120, 120)
+        logo_position = (70, 1300)  # ตัวอย่างตำแหน่งโลโก้สำหรับพื้นหลัง 3
+
+    # โหลดโลโก้ที่มีพื้นหลังโปร่งใส
+    logo = Image.open(logo_image)
+    logo = logo.resize(logo_size)
+
+    return logo, logo_position
+
 # เมนูหลัก
 def main_menu():
     print("ระบบสร้างใบโอนจ่าย")
-    
+
     # เลือกภาพพื้นหลัง
     background_image = select_background()
-    
+
+    # เลือกโลโก้และตำแหน่งของโลโก้
+    logo, logo_position = select_logo(background_image)
+
     # ข้อมูลจากผู้ใช้
     name_user_id = input("ชื่อผู้โอนจ่าย: ")
     bank_user_id = input("ธ.ผู้โอน: ")
@@ -95,15 +130,39 @@ def main_menu():
     text_name_time = f"  {day}/{month}/{year} {time}"
 
     # ตำแหน่งข้อความ
-    text_position_user = (250, 220) # ชื่อผู้โอน
-    text_position_bank_user = (250, 280)  # ธ.ผู้โอน
-    text_position_phone_user = (250, 340)  # เบอร์ผู้โอน
-    text_position_me = (250, 540) # ชื่อผู้รับ
-    text_position_bank_me = (250, 600)  # ธ.ผู้รับ
-    text_position_phone = (250, 660) # เบอร์ผู้รับ
-    text_position_order = (445, 820) # เลขออเดอร์
-    text_position_money = (370, 900) # จำนวนเงิน
-    text_position_time = (55, 100) # เวลา
+    # การกำหนดตำแหน่งจะถูกปรับตามพื้นหลังที่เลือก
+    if background_image == "Bank/K-bank 4.png":
+        text_position_user = (250, 220)
+        text_position_bank_user = (250, 280)
+        text_position_phone_user = (250, 340)
+        text_position_me = (250, 540)
+        text_position_bank_me = (250, 600)
+        text_position_phone = (250, 660)
+        text_position_order = (445, 820)
+        text_position_money = (370, 900)
+        text_position_time = (55, 100)
+
+    elif background_image == "Bank/K-bank 2.png":
+        text_position_user = (250, 230)
+        text_position_bank_user = (250, 290)
+        text_position_phone_user = (250, 350)
+        text_position_me = (250, 550)
+        text_position_bank_me = (250, 610)
+        text_position_phone = (250, 670)
+        text_position_order = (460, 840)
+        text_position_money = (380, 920)
+        text_position_time = (60, 110)
+
+    else:
+        text_position_user = (250, 240)
+        text_position_bank_user = (250, 300)
+        text_position_phone_user = (250, 360)
+        text_position_me = (250, 560)
+        text_position_bank_me = (250, 620)
+        text_position_phone = (250, 680)
+        text_position_order = (470, 860)
+        text_position_money = (390, 940)
+        text_position_time = (65, 120)
 
     # สีของข้อความ
     text_color_user = (-20, -20, -20)
@@ -127,18 +186,12 @@ def main_menu():
     draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
     draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
 
-    # โหลดโลโก้ที่มีพื้นหลังโปร่งใส
-    logo = Image.open("Bank/K-bank.png")
-    logo = logo.resize((130, 130))
-
-    # ตำแหน่งโลโก้
-    logo_position = (50, image.height - logo.height - 500)
-
     # แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
     image.paste(logo, logo_position, logo)
 
     # บันทึกภาพที่มีข้อความและโลโก้
     image.save("truemoney_with_text_and_logo.png")
+
 
     # ส่งข้อมูลไปยัง Discord webhook
     discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
@@ -184,4 +237,3 @@ def main_menu():
 # เรียกใช้เมนูหลัก
 if __name__ == "__main__":
     main_menu()
-
