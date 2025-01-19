@@ -12,8 +12,14 @@ def select_background():
     print("3. K-bank 2 🌃")
     print("4. K-bank 1 🌌")
     print("5. K-bank 0 🌠")
+    print("SCB")
+    print("6. SCB 5 🌅")
+    print("7. SCB 6 🌄")
+    print("8. SCB 7 🌋")
+    print("9. SCB 8 🌙")
+    print("10. SCB 9 🌑")
 
-    choice = input("กรุณาเลือกหมายเลข (1-5): ")
+    choice = input("กรุณาเลือกหมายเลข (1-10): ")
 
     if choice == "1":
         return "Bank/K-bank 4.png"
@@ -25,6 +31,16 @@ def select_background():
         return "Bank/K-bank 1.png"
     elif choice == "5":
         return "Bank/K-bank 0.png"
+    elif choice == "6":
+        return "Bank/K-bank 5.png"
+    elif choice == "7":
+        return "Bank/K-bank 6.png"
+    elif choice == "8":
+        return "Bank/K-bank 7.png"
+    elif choice == "9":
+        return "Bank/K-bank 8.png"
+    elif choice == "10":
+        return "Bank/K-bank 9.png"
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_background()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
