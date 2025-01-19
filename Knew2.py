@@ -114,7 +114,7 @@ def main_menu():
     image = Image.open(background_image)
     draw = ImageDraw.Draw(image)
 
-    # กำหนดฟอนต์และขนาดตามพื้นหลัง
+        # กำหนดฟอนต์และขนาดตามพื้นหลัง
     if background_image == "Bank/K-bank 4.png":
         font_size_user = 48
         font_size_bank_user = 48
@@ -134,42 +134,6 @@ def main_menu():
         font_path_phone = "Font/PSL160.ttf"
         font_path_order = "Font/PSL159.ttf"
         font_path_money = "Font/PSL158.ttf"
-    # ... เพิ่มกรณีฟอนต์สำหรับพื้นหลังอื่นๆ ...
-
-    # โหลดฟอนต์ที่ใช้
-    font_user = ImageFont.truetype(font_path_user, font_size_user)
-    font_bank_user = ImageFont.truetype(font_path_bank_user, font_size_bank_user)
-    font_phone_user = ImageFont.truetype(font_path_phone_user, font_size_phone_user)
-    font_me = ImageFont.truetype(font_path_name_me, font_size_me)
-    font_bank_me = ImageFont.truetype(font_path_bank_me, font_size_bank_me)
-    font_phone = ImageFont.truetype(font_path_phone, font_size_phone)
-    font_order = ImageFont.truetype(font_path_order, font_size_order)
-    font_money = ImageFont.truetype(font_path_money, font_size_money)
-    font_time = ImageFont.truetype(font_path_user, font_size_time)
-
-    # ข้อความที่ต้องการใส่ลงในภาพ
-    text_name_user = name_user_id
-    text_bank_user = bank_user_id
-    text_name_phone = f"{phone_me_id[:3]}-xxx-{phone_me_id[6:]}"
-    text_phone_user = phone_user_id
-    text_name_me = name_me_id
-    text_bank_me = bank_me_id
-    phone = phone_me_id
-    text_name_order = "50018935012188"
-    text_money = money_id + ".00"
-    text_name_time = f"  {day}/{month}/{year} {time}"
-
-    # ตำแหน่งข้อความ
-    if background_image == "Bank/K-bank 4.png":
-        text_position_user = (250, 220)
-        text_position_bank_user = (250, 280)
-        text_position_phone_user = (250, 340)
-        text_position_me = (250, 540)
-        text_position_bank_me = (250, 600)
-        text_position_phone = (250, 660)
-        text_position_order = (445, 820)
-        text_position_money = (370, 900)
-        text_position_time = (55, 100)
 
     elif background_image == "Bank/K-bank 3.png":
         font_size_user = 48
