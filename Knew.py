@@ -1,151 +1,68 @@
-import pytz
-from datetime import datetime
-from PIL import Image, ImageDraw, ImageFont
-import requests
+import pytz from datetime import datetime from PIL import Image, ImageDraw, ImageFont import requests
 
-# ข้อมูลจากผู้ใช้
-name_user_id = input("ชื่อผู้โอนจ่าย: ")
-bank_user_id = input("ธ.ผู้โอน: ")  # ช่องกรอกสำหรับธ.ผู้โอน
-phone_user_id = input("เบอร์ผู้โอน: ")  # ช่องกรอกสำหรับเบอร์ผู้โอน
+ข้อมูลจากผู้ใช้
 
-name_me_id = input("ชื่อผู้รับเงิน: ")
-bank_me_id = input("ธ.ผู้รับ: ")  # ช่องกรอกสำหรับธ.ผู้รับ
-phone_me_id = input("เบอร์โทรศัพท์ผู้รับ: ")
+name_user_id = input("ชื่อผู้โอนจ่าย: ") bank_user_id = input("ธ.ผู้โอน: ")  # ช่องกรอกสำหรับธ.ผู้โอน phone_user_id = input("เบอร์ผู้โอน: ")  # ช่องกรอกสำหรับเบอร์ผู้โอน
+
+name_me_id = input("ชื่อผู้รับเงิน: ") bank_me_id = input("ธ.ผู้รับ: ")  # ช่องกรอกสำหรับธ.ผู้รับ phone_me_id = input("เบอร์โทรศัพท์ผู้รับ: ")
 
 money_id = input("จำนวนเงิน: ")
 
-# เวลาในประเทศไทย
-thailand_timezone = pytz.timezone('Asia/Bangkok')
-current_time_thailand = datetime.now(thailand_timezone)
-time = current_time_thailand.strftime("%H:%M:%S")
-day = current_time_thailand.strftime("%d")
-month = current_time_thailand.strftime("%m")
-year = current_time_thailand.strftime("%Y")
+เวลาในประเทศไทย
 
-# โหลดภาพพื้นหลัง
-image = Image.open("Bank/K-bank 4.png")
-draw = ImageDraw.Draw(image)
+thailand_timezone = pytz.timezone('Asia/Bangkok') current_time_thailand = datetime.now(thailand_timezone) time = current_time_thailand.strftime("%H:%M:%S") day = current_time_thailand.strftime("%d") month = current_time_thailand.strftime("%m") year = current_time_thailand.strftime("%Y")
 
-# กำหนดฟอนต์
-font_size_user = 48
-font_size_bank_user = 48  # ขนาดฟอนต์สำหรับ "ธ.ผู้โอน"
-font_size_phone_user = 40  # ขนาดฟอนต์สำหรับ "เบอร์ผู้โอน"
-font_size_me = 48  # ขนาดฟอนต์สำหรับ "ชื่อผู้รับเงิน"
-font_size_bank_me = 48  # ขนาดฟอนต์สำหรับ "ธ.ผู้รับ"
-font_size_phone = 40
-font_size_order = 36  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ"
-font_size_money = 87
-font_size_time = 37
+โหลดภาพพื้นหลัง
 
-font_path_user = "Font/PSL159.ttf"
-font_path_bank_user = "Font/PSL159.ttf"  # กำหนดฟอนต์สำหรับ "ธ.ผู้โอน"
-font_path_phone_user = "Font/PSL160.ttf"  # กำหนดฟอนต์สำหรับ "เบอร์ผู้โอน"
-font_path_name_me = "Font/PSL159.ttf"  # ฟอนต์สำหรับ "ชื่อผู้รับเงิน"
-font_path_bank_me = "Font/PSL159.ttf"  # กำหนดฟอนต์สำหรับ "ธ.ผู้รับ"
-font_path_phone = "Font/PSL160.ttf"
-font_path_order = "Font/PSL159.ttf"  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ"
-font_path_money = "Font/PSL158.ttf"
+image = Image.open("Bank/K-bank 4.png") draw = ImageDraw.Draw(image)
 
+กำหนดฟอนต์
 
-font_user = ImageFont.truetype(font_path_user, font_size_user)
-font_bank_user = ImageFont.truetype(font_path_bank_user, font_size_bank_user)  # ฟอนต์สำหรับ "ธ.ผู้โอน"
-font_phone_user = ImageFont.truetype(font_path_phone_user, font_size_phone_user)  # ฟอนต์สำหรับ "เบอร์ผู้โอน"
-font_me = ImageFont.truetype(font_path_name_me, font_size_me)  # ใช้ฟอนต์สำหรับชื่อผู้รับ
-font_bank_me = ImageFont.truetype(font_path_bank_me, font_size_bank_me)  # ฟอนต์สำหรับ "ธ.ผู้รับ"
-font_phone = ImageFont.truetype(font_path_phone, font_size_phone)
-font_order = ImageFont.truetype(font_path_order, font_size_order)  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ",
-font_money = ImageFont.truetype(font_path_money, font_size_money)
-font_time = ImageFont.truetype(font_path_user, font_size_time)
+font_size_user = 48 font_size_bank_user = 48  # ขนาดฟอนต์สำหรับ "ธ.ผู้โอน" font_size_phone_user = 40  # ขนาดฟอนต์สำหรับ "เบอร์ผู้โอน" font_size_me = 48  # ขนาดฟอนต์สำหรับ "ชื่อผู้รับเงิน" font_size_bank_me = 48  # ขนาดฟอนต์สำหรับ "ธ.ผู้รับ" font_size_phone = 40 font_size_order = 36  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ" font_size_money = 87 font_size_time = 37
 
-# ข้อความที่ต้องการใส่ลงในภาพ
-text_name_user = name_user_id
-text_bank_user = bank_user_id
-text_name_phone = f"{phone_me_id[:3]}-xxx-{phone_me_id[6:]}"
-text_phone_user = phone_user_id
-text_name_me = name_me_id
-text_bank_me = bank_me_id
-phone = phone_me_id
-text_name_order = "50018935012188"
-text_money = money_id + ".00"
-text_name_time = f"  {day}/{month}/{year} {time}"
+font_path_user = "Font/PSL159.ttf" font_path_bank_user = "Font/PSL159.ttf"  # กำหนดฟอนต์สำหรับ "ธ.ผู้โอน" font_path_phone_user = "Font/PSL160.ttf"  # กำหนดฟอนต์สำหรับ "เบอร์ผู้โอน" font_path_name_me = "Font/PSL159.ttf"  # ฟอนต์สำหรับ "ชื่อผู้รับเงิน" font_path_bank_me = "Font/PSL159.ttf"  # กำหนดฟอนต์สำหรับ "ธ.ผู้รับ" font_path_phone = "Font/PSL160.ttf" font_path_order = "Font/PSL159.ttf"  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ" font_path_money = "Font/PSL158.ttf"
 
-# ตำแหน่งข้อความ
-text_position_user = (302, 485)
-text_position_bank_user = (302, 820)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้โอน"
-text_position_phone_user = (302, 890)  # เพิ่มตำแหน่งสำหรับ "เบอร์ผู้โอน"
-text_position_me = (302, 648)
-text_position_bank_me = (302, 960)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้รับ"
-text_position_phone = (302, 720)
-text_position_order = (827, 953)
-text_position_money = (560, 270)
-text_position_time = (781, 885)
+font_user = ImageFont.truetype(font_path_user, font_size_user) font_bank_user = ImageFont.truetype(font_path_bank_user, font_size_bank_user)  # ฟอนต์สำหรับ "ธ.ผู้โอน" font_phone_user = ImageFont.truetype(font_path_phone_user, font_size_phone_user)  # ฟอนต์สำหรับ "เบอร์ผู้โอน" font_me = ImageFont.truetype(font_path_name_me, font_size_me)  # ใช้ฟอนต์สำหรับชื่อผู้รับ font_bank_me = ImageFont.truetype(font_path_bank_me, font_size_bank_me)  # ฟอนต์สำหรับ "ธ.ผู้รับ" font_phone = ImageFont.truetype(font_path_phone, font_size_phone) font_order = ImageFont.truetype(font_path_order, font_size_order)  # ฟอนต์สำหรับ "หมายเลขคำสั่งซื้อ", font_money = ImageFont.truetype(font_path_money, font_size_money) font_time = ImageFont.truetype(font_path_user, font_size_time)
 
+ข้อความที่ต้องการใส่ลงในภาพ
 
-# สีของข้อความ
-text_color_user = (-20, -20, -20)
-text_color_bank_user = (60, 60, 60)  # สีข้อความสำหรับ "ธ.ผู้โอน"
-text_color_phone_user = (60, 60, 60)  # สีข้อความสำหรับ "เบอร์ผู้โอน"
-text_color_me = (-20, -20, -20)
-text_color_bank_me = (60, 60, 60)  # สีข้อความสำหรับ "ธ.ผู้รับ"
-text_color_phone = (80, 80, 80)
-text_color_order = (60, 60, 60)
-text_color_money = (44, 44, 44)
-text_color_time = (60, 60, 60)
+text_name_user = name_user_id text_bank_user = bank_user_id text_name_phone = f"{phone[:3]}-xxx-{phone[6:]}" text_phone_user = phone_user_id text_name_me = name_me_id text_bank_me = bank_me_id phone = phone_me_id text_name_order = "50018935012188" text_money = money_id + ".00" text_name_time = f"  {day}/{month}/{year} {time}"
 
+ตำแหน่งข้อความ
 
-# ใส่ข้อความลงในภาพ
-draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user)
-draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)  # ใส่ข้อความ "ธ.ผู้โอน"
-draw.text(text_position_phone_user, text_phone_user, font=font_phone_user, fill=text_color_phone_user)  # ใส่ข้อความ "เบอร์ผู้โอน"
-draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)  # ใช้ font_me สำหรับชื่อผู้รับ
-draw.text(text_position_bank_me, text_bank_me, font=font_bank_me, fill=text_color_bank_me)  # ใส่ข้อความ "ธ.ผู้รับ"
-draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone)
-draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)  # ใส่ข้อความ "หมายเลขคำสั่งซื้อ"
-draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
-draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
+text_position_user = (302, 485) text_position_bank_user = (302, 820)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้โอน" text_position_phone_user = (302, 890)  # เพิ่มตำแหน่งสำหรับ "เบอร์ผู้โอน" text_position_me = (302, 648) text_position_bank_me = (302, 960)  # เพิ่มตำแหน่งสำหรับ "ธ.ผู้รับ" text_position_phone = (302, 720) text_position_order = (827, 953) text_position_money = (560, 270) text_position_time = (781, 885)
 
+สีของข้อความ
 
-# บันทึกภาพที่มีข้อความ
+text_color_user = (-20, -20, -20) text_color_bank_user = (60, 60, 60)  # สีข้อความสำหรับ "ธ.ผู้โอน" text_color_phone_user = (60, 60, 60)  # สีข้อความสำหรับ "เบอร์ผู้โอน" text_color_me = (-20, -20, -20) text_color_bank_me = (60, 60, 60)  # สีข้อความสำหรับ "ธ.ผู้รับ" text_color_phone = (80, 80, 80) text_color_order = (60, 60, 60) text_color_money = (44, 44, 44) text_color_time = (60, 60, 60)
+
+ใส่ข้อความลงในภาพ
+
+draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user) draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)  # ใส่ข้อความ "ธ.ผู้โอน" draw.text(text_position_phone_user, text_phone_user, font=font_phone_user, fill=text_color_phone_user)  # ใส่ข้อความ "เบอร์ผู้โอน" draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)  # ใช้ font_me สำหรับชื่อผู้รับ draw.text(text_position_bank_me, text_bank_me, font=font_bank_me, fill=text_color_bank_me)  # ใส่ข้อความ "ธ.ผู้รับ" draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone) draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)  # ใส่ข้อความ "หมายเลขคำสั่งซื้อ" draw.text(text_position_money, text_money, font=font_money, fill=text_color_money) draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
+
+บันทึกภาพที่มีข้อความ
+
 image.save("truemoney_with_textnew.png")
 
-# ส่งข้อมูลไปยัง Discord webhook
+ส่งข้อมูลไปยัง Discord webhook
+
 discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
 
-# สร้างคำขอ JSON สำหรับ Discord Embed พร้อมกับ add.fields
-embed_data = {
-    "content": "ข้อมูลการโอนจ่าย",
-    "embeds": [
-        {
-            "title": "รายละเอียดการโอนเงิน",
-            "description": f"ผู้โอน: {name_user_id}\nผู้รับ: {name_me_id}\nเบอร์โทรศัพท์ผู้รับ: {text_name_phone}\nจำนวนเงิน: {money_id} บาท\nธ.ผู้โอน: {text_bank_user}\nเบอร์ผู้โอน: {text_phone_user}\nธ.ผู้รับ: {text_bank_me}",
-            "color": 5814783,
-            "fields": [
-                {"name": "ผู้โอนจ่าย", "value": name_user_id, "inline": True},
-                {"name": "ผู้รับเงิน", "value": name_me_id, "inline": True},
-                {"name": "เบอร์โทรศัพท์ผู้รับ", "value": text_name_phone, "inline": True},
-                {"name": "จำนวนเงิน", "value": f"{money_id} บาท", "inline": True},
-                {"name": "เวลาการโอน", "value": f"{day}/{month}/{year} {time}", "inline": True},
-                {"name": "ธ.ผู้โอน", "value": text_bank_user, "inline": True},
-                {"name": "เบอร์ผู้โอน", "value": text_phone_user, "inline": True},
-                {"name": "ธ.ผู้รับ", "value": text_bank_me, "inline": True}
-            ]
-        }
-    ]
-}
+สร้างคำขอ JSON สำหรับ Discord Embed พร้อมกับ add.fields
 
-# ส่งคำขอไปยัง Discord webhook
+embed_data = { "content": "ข้อมูลการโอนจ่าย", "embeds": [ { "title": "รายละเอียดการโอนเงิน", "description": f"ผู้โอน: {name_user_id}\nผู้รับ: {name_me_id}\nเบอร์โทรศัพท์ผู้รับ: {text_name_phone}\nจำนวนเงิน: {money_id} บาท\nธ.ผู้โอน: {text_bank_user}\nเบอร์ผู้โอน: {text_phone_user}\nธ.ผู้รับ: {text_bank_me}", "color": 5814783, "fields": [ {"name": "ผู้โอนจ่าย", "value": name_user_id, "inline": True}, {"name": "ผู้รับเงิน", "value": name_me_id, "inline": True}, {"name": "เบอร์โทรศัพท์ผู้รับ", "value": text_name_phone, "inline": True}, {"name": "จำนวนเงิน", "value": f"{money_id} บาท", "inline": True}, {"name": "เวลาการโอน", "value": f"{day}/{month}/{year} {time}", "inline": True}, {"name": "ธ.ผู้โอน", "value": text_bank_user, "inline": True}, {"name": "เบอร์ผู้โอน", "value": text_phone_user, "inline": True}, {"name": "ธ.ผู้รับ", "value": text_bank_me, "inline": True} ] } ] }
+
+ส่งคำขอไปยัง Discord webhook
+
 response = requests.post(discord_webhook_url, json=embed_data)  # ใช้ json แทน data
 
-# ส่งภาพหลังจาก Embed
-with open("truemoney_with_textnew.png", "rb") as f:
-    image_file = f.read()
+ส่งภาพหลังจาก Embed
 
-response = requests.post(
-    discord_webhook_url,
-    files={'file': ('truemoney_with_textnew.png', image_file)}
-)
+with open("truemoney_with_textnew.png", "rb") as f: image_file = f.read()
 
-if response.status_code == 200:
-    print("ส่งข้อมูลไปยัง Discord สำเร็จ")
-else:
-    print(f"เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
+response = requests.post( discord_webhook_url, files={'file': ('truemoney_with_textnew.png', image_file)} )
+
+if response.status_code == 200: print("ส่งข้อมูลไปยัง Discord สำเร็จ") else: print(f"เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
+
+ปรับให้ฉันและแสดงแบบเต็มสคริปต์
+
