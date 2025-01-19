@@ -102,7 +102,7 @@ draw.text(text_position_order, text_name_order, font=font_order, fill=text_color
 draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
 draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
 
-# โหลดโลโก้
+# โหลดโลโก้ที่มีพื้นหลังโปร่งใส
 logo = Image.open("Bank/K-bank.png")
 
 # ปรับขนาดโลโก้ให้เล็กลง
@@ -111,8 +111,8 @@ logo = logo.resize((100, 50))
 # ตำแหน่งโลโก้
 logo_position = (image.width - logo.width - 10, image.height - logo.height - 10)
 
-# แทรกโลโก้ลงในภาพ
-image.paste(logo, logo_position)
+# แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
+image.paste(logo, logo_position, logo)  # ใช้ `mask` ที่เป็นตัวโลโก้เพื่อให้พื้นหลังโปร่งใส
 
 # บันทึกภาพที่มีข้อความและโลโก้
 image.save("truemoney_with_text_and_logo.png")
