@@ -241,8 +241,7 @@ def select_logo(background_image):
     return logo, logo_position
 
 
-if not login():
-    return  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
+
 # เทนูหลัก
 def main_menu():
     # if not login():
