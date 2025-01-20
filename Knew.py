@@ -83,6 +83,10 @@ def select_logo(background_image):
     logo = Image.open(logo_image)
     logo = logo.resize(logo_size)
 
+    debug_print(f"โลโก้ที่เลือก: {logo_image} 🖼️")
+    debug_print(f"ขนาดโลโก้ที่เลือก: {logo_size} 📏")
+    debug_print(f"ตำแหน่งโลโก้ที่เลือก: {logo_position} 📍")
+
     return logo, logo_position
 
 # ฟังก์ชั่นสำหรับเลือกธนาคาร
