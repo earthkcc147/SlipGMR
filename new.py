@@ -321,10 +321,16 @@ def main_menu():
     # เวลาในประเทศไทย
     thailand_timezone = pytz.timezone('Asia/Bangkok')
     current_time_thailand = datetime.now(thailand_timezone)
-    time = current_time_thailand.strftime("%H:%M:%S")
+    thai_months = {
+    "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.", "05": "พ.ค.", "06": "มิ.ย.",
+    "07": "ก.ค.", "08": "ส.ค.", "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
+    }
     day = current_time_thailand.strftime("%d")
     month = current_time_thailand.strftime("%m")
-    year = current_time_thailand.strftime("%Y")
+    year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
+    time = current_time_thailand.strftime("%H:%M:%S")
+    thai_month = thai_months[month]
+    
 
     # โหลดภาพพื้นหลังตามที่เลือก
     image = Image.open(background_image)
@@ -485,7 +491,7 @@ def main_menu():
     phone = phone_me_id
     text_name_order = "50018935012188"
     text_money = money_id + ".00"
-    text_name_time = f"  {day}/{month}/{year} {time}"
+    text_name_time = f"{day} {thai_month} {year} {time}"
 
     # ข้อความที่ต้องการใส่ลงในภาพ
     debug_print("📝 ข้อความที่จะใส่ในภาพ:")
@@ -496,7 +502,7 @@ def main_menu():
     debug_print(f"🧑‍💻 name_me_id: {name_me_id}")
     debug_print(f"🏦 bank_me_id: {bank_me_id}")
     debug_print(f"💵 money_id: {money_id}")
-    debug_print(f"📅 day: {day}, month: {month}, year: {year}, time: {time}")
+    debug_print(f"📅 day: {day}, month: {thai_month}, year: {year}, time: {time}")
 
     # ตำแหน่งข้อความ
     if background_image == "Bank/K-bank 4.png":
