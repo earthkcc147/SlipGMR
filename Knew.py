@@ -445,6 +445,18 @@ def main_menu():
         text_position_money = (390, 940)
         text_position_time = (65, 120)
 
+    # ตำแหน่งข้อความ
+    debug_print("📍 ตำแหน่งข้อความที่ใช้ในภาพ:")
+    debug_print(f"✏️ text_position_user: {text_position_user}")
+    debug_print(f"✏️ text_position_bank_user: {text_position_bank_user}")
+    debug_print(f"✏️ text_position_phone_user: {text_position_phone_user}")
+    debug_print(f"✏️ text_position_me: {text_position_me}")
+    debug_print(f"✏️ text_position_bank_me: {text_position_bank_me}")
+    debug_print(f"✏️ text_position_phone: {text_position_phone}")
+    debug_print(f"✏️ text_position_order: {text_position_order}")
+    debug_print(f"✏️ text_position_money: {text_position_money}")
+    debug_print(f"✏️ text_position_time: {text_position_time}")
+
     # สีของข้อความ
     text_color_user = (-20, -20, -20)
     text_color_bank_user = (60, 60, 60)
