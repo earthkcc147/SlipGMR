@@ -378,6 +378,17 @@ def main_menu():
     text_money = money_id + ".00"
     text_name_time = f"  {day}/{month}/{year} {time}"
 
+    # ข้อความที่ต้องการใส่ลงในภาพ
+    debug_print("📝 ข้อความที่จะใส่ในภาพ:")
+    debug_print(f"👤 name_user_id: {name_user_id}")
+    debug_print(f"🏦 bank_user_id: {bank_user_id}")
+    debug_print(f"📞 phone_me_id: {phone_me_id}")
+    debug_print(f"📱 phone_user_id: {phone_user_id}")
+    debug_print(f"🧑‍💻 name_me_id: {name_me_id}")
+    debug_print(f"🏦 bank_me_id: {bank_me_id}")
+    debug_print(f"💵 money_id: {money_id}")
+    debug_print(f"📅 day: {day}, month: {month}, year: {year}, time: {time}")
+
     # ตำแหน่งข้อความ
     if background_image == "Bank/K-bank 4.png":
         text_position_user = (250, 220)
