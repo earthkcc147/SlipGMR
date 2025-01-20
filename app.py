@@ -41,6 +41,13 @@ def login():
         print("❌ ชื่อผู้ใช้ไม่ถูกต้อง")
     return False
 
+# เรียกใช้งานฟังก์ชัน login
+if not login():
+    print("Login failed. Exiting program.")
+    exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
+else:
+    print("เข้าสู่ระบบสำเร็จ!")
+
 
 # ตัวแปรสำหรับเปิด/ปิดโหมดดีบัก
 debug_mode = False  # เปลี่ยนเป็น True/ False เพื่อปิดโหมดดีบัก
@@ -652,13 +659,7 @@ def main_menu():
         print(f"⚠️ เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
 
 
-
-if not login():
-    print("Login failed. Exiting program.")
-    exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
-else:
-    main_menu()  # ถ้าล็อกอินสำเร็จให้ไปที่เมนูหลัก
-
+login()
 # เรียกใช้เมนูหลัก
 # if __name__ == "__main__":
     # main_menu()
