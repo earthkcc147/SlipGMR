@@ -491,7 +491,7 @@ def main_menu():
         text_position_phone = (250, 660)
         text_position_order = (445, 820)
         text_position_money = (370, 900)
-        text_position_time = (60, 100)
+        text_position_time = (70, 100)
 
     elif background_image == "Bank/K-bank 3.png":
         text_position_user = (250, 220)
