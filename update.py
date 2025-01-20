@@ -1,3 +1,3 @@
-from function import autoupdate_repository
+from .function import autoupdate_repository
 
 autoupdate_repository()
