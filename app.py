@@ -178,7 +178,7 @@ def select_logo(background_image):
     choice = input("กรุณาเลือกหมายเลข (1-10 หรือ 00 เพื่อเลือกพื้นหลังใหม่): ")
 
     if choice == "00":
-        return select_background(background_image)  # เรียกฟังก์ชั่นเลือกพื้นหลังใหม่
+        return select_background(bank_name)  # เรียกฟังก์ชั่นเลือกพื้นหลังใหม่
 
     if choice == "1":
         logo_image = "Bank/K-bank.png"
