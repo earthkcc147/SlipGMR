@@ -224,6 +224,9 @@ def select_background(bank_name):
     elif choice == "1" and bank_name == "กรุงไทย":
         return "Bank/กรุงไทย.png"
 
+    elif choice == "1" and bank_name == "TrueWallet":
+        return "Bank/truemoney.png"
+
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_background(bank_name)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
