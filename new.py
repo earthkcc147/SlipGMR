@@ -557,4 +557,95 @@ def main_menu():
     text_color_bank_me = (60, 60, 60)
     text_color_phone = (80, 80, 80)
     text_color_order = (60, 60, 60)
- 
+    text_color_money = (44, 44, 44)
+    text_color_time = (60, 60, 60)
+
+    # สีของข้อความ
+    debug_print("🎨 สีของข้อความ:")
+    debug_print(f"🖤 text_color_user: {text_color_user}")
+    debug_print(f"💬 text_color_bank_user: {text_color_bank_user}")
+    debug_print(f"📱 text_color_phone_user: {text_color_phone_user}")
+    debug_print(f"🧑‍💻 text_color_me: {text_color_me}")
+    debug_print(f"💳 text_color_bank_me: {text_color_bank_me}")
+    debug_print(f"📞 text_color_phone: {text_color_phone}")
+    debug_print(f"💰 text_color_order: {text_color_order}")
+    debug_print(f"💸 text_color_money: {text_color_money}")
+    debug_print(f"⏰ text_color_time: {text_color_time}")
+
+    # ใส่ข้อความลงในภาพ
+    debug_print("🖼️ กำลังใส่ข้อความลงในภาพ...")
+    draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user)
+    draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)
+    draw.text(text_position_phone_user, text_phone_user, font=font_phone_user, fill=text_color_phone_user)
+    draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)
+    draw.text(text_position_bank_me, text_bank_me, font=font_bank_me, fill=text_color_bank_me)
+    draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone)
+    draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)
+    draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
+    draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
+    debug_print("✅ ข้อความทั้งหมดถูกเพิ่มลงในภาพเรียบร้อยแล้ว")
+
+    # แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
+    image.paste(logo, logo_position, logo)
+    print("✅ แทรกโลโก้ลงในภาพเรียบร้อยแล้ว")
+
+    # บันทึกภาพที่มีข้อความและโลโก้
+    image.save("truemoney_with_text_and_logo.png")
+    print("✅ บันทึกภาพสำเร็จเป็น truemoney_with_text_and_logo.png")
+
+
+    # ส่งข้อมูลไปยัง Discord webhook
+    discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
+
+    embed_data = {
+        "content": "📢 **ข้อมูลการโอนจ่าย** 💸",
+        "embeds": [
+            {
+                "title": "💳 **รายละเอียดการโอนเงิน** 💳",
+                "description": f"💰 **ผู้โอน**: {name_user_id}\n🏠 **ผู้รับ**: {name_me_id}\n📞 **เบอร์โทรศัพท์ผู้รับ**: {text_name_phone}\n💵 **จำนวนเงิน**: {money_id} บาท\n🏦 **ธ.ผู้โอน**: {text_bank_user}\n📱 **เบอร์ผู้โอน**: {text_phone_user}\n🏧 **ธ.ผู้รับ**: {text_bank_me}",
+                "color": 5814783,
+                "fields": [
+                    {"name": "👤 ผู้โอนจ่าย", "value": name_user_id, "inline": True},
+                    {"name": "💸 ผู้รับเงิน", "value": name_me_id, "inline": True},
+                    {"name": "📜 เบอร์โทรศัพท์ผู้รับ", "value": text_name_phone, "inline": True},
+                    {"name": "💵 จำนวนเงิน", "value": f"{money_id} บาท", "inline": True},
+                    {"name": "⏰ เวลาการโอน", "value": f"{day}/{month}/{year} {time}", "inline": True},
+                    {"name": "🏦 ธ.ผู้โอน", "value": text_bank_user, "inline": True},
+                    {"name": "📜 เบอร์ผู้โอน", "value": text_phone_user, "inline": True},
+                    {"name": "🏦 ธ.ผู้รับ", "value": text_bank_me, "inline": True}
+                ]
+            }
+        ]
+    }
+
+    # ส่งคำขอไปยัง Discord webhook
+    response = requests.post(discord_webhook_url, json=embed_data)  # ใช้ json แทน data
+    print(f"🔗 ส่งคำขอไปยัง Discord: {response.status_code}")
+
+    # ส่งภาพหลังจาก Embed
+    with open("truemoney_with_text_and_logo.png", "rb") as f:
+        image_file = f.read()
+        print("✅ อ่านไฟล์ภาพสำหรับการส่งไปยัง Discord")
+
+    response = requests.post(
+        discord_webhook_url,
+        files={'file': ('truemoney_with_text_and_logo.png', image_file)}
+    )
+    print(f"🔗 ส่งไฟล์ภาพไปยัง Discord: {response.status_code}")
+
+    if response.status_code == 200:
+        print("📤 ส่งข้อมูลไปยัง Discord สำเร็จ 🎉")
+    else:
+        print(f"⚠️ เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
+
+
+
+if not login():
+    print("Login failed. Exiting program.")
+    exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
+else:
+    main_menu()  # ถ้าล็อกอินสำเร็จให้ไปที่เมนูหลัก
+
+# เรียกใช้เมนูหลัก
+# if __name__ == "__main__":
+    # main_menu()
