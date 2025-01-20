@@ -639,6 +639,14 @@ def main_menu():
     else:
         print(f"⚠️ เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
 
+
+
+if not login():
+    print("Login failed. Exiting program.")
+    exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
+else:
+    main_menu()  # ถ้าล็อกอินสำเร็จให้ไปที่เมนูหลัก
+
 # เรียกใช้เมนูหลัก
-if __name__ == "__main__":
-    main_menu()
+# if __name__ == "__main__":
+    # main_menu()
