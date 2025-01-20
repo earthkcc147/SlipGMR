@@ -366,6 +366,19 @@ def main_menu():
     font_money = ImageFont.truetype(font_path_money, font_size_money)
     font_time = ImageFont.truetype(font_path_user, font_size_time)
 
+    # โหลดฟอนต์ที่ใช้
+    debug_print("🔄 กำลังโหลดฟอนต์ที่ใช้...")
+    debug_print(f"🖋️ font_user: {font_path_user}, font_size_user: {font_size_user}")
+    debug_print(f"🖋️ font_bank_user: {font_path_bank_user}, font_size_bank_user: {font_size_bank_user}")
+    debug_print(f"🖋️ font_phone_user: {font_path_phone_user}, font_size_phone_user: {font_size_phone_user}")
+    debug_print(f"🖋️ font_me: {font_path_name_me}, font_size_me: {font_size_me}")
+    debug_print(f"🖋️ font_bank_me: {font_path_bank_me}, font_size_bank_me: {font_size_bank_me}")
+    debug_print(f"🖋️ font_phone: {font_path_phone}, font_size_phone: {font_size_phone}")
+    debug_print(f"🖋️ font_order: {font_path_order}, font_size_order: {font_size_order}")
+    debug_print(f"🖋️ font_money: {font_path_money}, font_size_money: {font_size_money}")
+    debug_print(f"🖋️ font_time: {font_path_user}, font_size_time: {font_size_time}")
+
+
     # ข้อความที่ต้องการใส่ลงในภาพ
     text_name_user = name_user_id
     text_bank_user = bank_user_id
