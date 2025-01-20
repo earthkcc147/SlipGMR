@@ -31,13 +31,13 @@ def select_logo(background_image):
     if choice == "1":
         logo_image = "Bank/K-bank.png"
     elif choice == "2":
-        logo_image = "Bank/imgbin_thailand-siam-commercial-bank-refinancing-kasikornbank->
+        logo_image = "Bank/imgbin_thailandimgbin_thailand-siam-commercial-bank-refinancing-kasikornbank-png.png"
     elif choice == "3":
         logo_image = "Bank/Asset-2@4x (0_3).png"
     elif choice == "4":
-        logo_image = "Bank/truemoneywallet-Promptpay-aw-logobank-20220325-1a-400x183 (1_2>
+        logo_image = "Bank/truemoneywallet-Promptpay-aw-logobank-20220325-1a-400x183 (1_2).png"
     elif choice == "5":
-        logo_image = "Bank/truemoneywallet-Promptpay-aw-logobank-20220325-1a-400x183 (0_2>
+        logo_image = "Bank/truemoneywallet-Promptpay-aw-logobank-20220325-1a-400x183 (0_2).png"
     elif choice == "6":
         logo_image = "Bank/krung-thai-bank-money.png"
     elif choice == "7":
