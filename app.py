@@ -659,7 +659,6 @@ def main_menu():
         print(f"⚠️ เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
 
 
-login()
 # เรียกใช้เมนูหลัก
-# if __name__ == "__main__":
-    # main_menu()
+if __name__ == "__main__":
+    main_menu()
