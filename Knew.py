@@ -5,7 +5,7 @@ import requests
 
 
 # ตัวแปรสำหรับเปิด/ปิดโหมดดีบัก
-debug_mode = Flase  # เปลี่ยนเป็น True/ False เพื่อปิดโหมดดีบัก
+debug_mode = False  # เปลี่ยนเป็น True/ False เพื่อปิดโหมดดีบัก
 
 # ฟังก์ชันสำหรับการดีบักที่สามารถเปิดปิดได้
 def debug_print(message):
