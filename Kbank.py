@@ -4,6 +4,51 @@ from datetime import datetime
 import requests
 
 
+import os
+import json
+from dotenv import load_dotenv
+
+# โหลดไฟล์ .env
+load_dotenv()
+
+# ดึงข้อมูล USERS จาก .env
+USERS_JSON = os.getenv("USERS")
+
+# แปลงข้อมูล USERS_JSON เป็น dictionary
+try:
+    users_data = json.loads(USERS_JSON)
+except json.JSONDecodeError:
+    print("ไม่สามารถแปลงข้อมูล USERS จาก .env ได้ ❌")
+    exit()
+
+# ฟังก์ชันสำหรับล็อกอิน
+def login():
+    print("📄 ระบบล็อกอิน 📄")
+    print("===================================")
+
+    # รับข้อมูลชื่อผู้ใช้และรหัสผ่าน
+    username = input("👤 ชื่อผู้ใช้: ")
+    password = input("🔒 รหัสผ่าน: ")
+
+    # ตรวจสอบข้อมูลกับฐานข้อมูลจากไฟล์ .env
+    if username in users_data:
+        if users_data[username]["password"] == password:
+            print("✔️ การล็อกอินสำเร็จ")
+            return True
+        else:
+            print("❌ รหัสผ่านไม่ถูกต้อง")
+    else:
+        print("❌ ชื่อผู้ใช้ไม่ถูกต้อง")
+    return False
+
+# เรียกใช้งานฟังก์ชัน login
+if not login():
+    print("Login failed. Exiting program.")
+    exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
+else:
+    print("เข้าสู่ระบบสำเร็จ!")
+
+
 # ตัวแปรสำหรับเปิด/ปิดโหมดดีบัก
 debug_mode = False  # เปลี่ยนเป็น True/ False เพื่อปิดโหมดดีบัก
 
@@ -11,6 +56,116 @@ debug_mode = False  # เปลี่ยนเป็น True/ False เพื่
 def debug_print(message):
     if debug_mode:
         print(message)
+
+
+# ฟังก์ชันสำหรับเลือกธนาคาร
+def select_bank():
+    print("เลือกธนาคารผู้โอน:")
+    print("1. K-bank 🏦 (ธนาคารกสิกรไทย)")
+    print("2. SCB 🏧 (ธนาคารไทยพาณิชย์)")
+    print("3. Bangkok 🏙️ (ธนาคารกรุงเทพ)")
+    print("4. TTB 🏛️ (ธนาคารทหารไทยธนชาต)")
+    print("5. กรุงศรี 🏦 (ธนาคารกรุงศรีอยุธยา)")
+    print("6. กรุงไทย 🏦 (ธนาคารกรุงไทย)")
+    print("7. TrueWallet 💳 (ทรูวอลเล็ท)")  # เพิ่ม TrueWallet
+    print("8. Other Bank 🎨 (ธนาคารอื่นๆ)")  # ตัวเลือกธนาคารอื่นๆ
+    print("00. ออกโปรแกรม")  # เพิ่มตัวเลือกออกจากโปรแกรม
+    choice = input("กรุณาเลือกหมายเลข (1-8 หรือ 00 เพื่อออกโปรแกรม): ")
+
+    if choice == "1":
+        return "K-bank"
+    elif choice == "2":
+        return "SCB"
+    elif choice == "3":
+        return "Bangkok"
+    elif choice == "4":
+        return "TTB"
+    elif choice == "5":
+        return "กรุงศรี"
+    elif choice == "6":
+        return "กรุงไทย"
+    elif choice == "7":
+        return "TrueWallet"  # คืนค่าถ้าเลือก TrueWallet
+    elif choice == "8":
+        return "Other Bank"  # คืนค่าถ้าเลือกธนาคารอื่น
+    elif choice == "00":
+        print("โปรแกรมถูกปิดแล้ว.")
+        exit()  # ออกจากโปรแกรม
+    else:
+        print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
+        return select_bank()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
+
+
+# ฟังก์ชั่นสำหรับเลือกภาพพื้นหลังตามธนาคาร
+def select_background(bank_name):
+    print(f"เลือกภาพพื้นหลังสำหรับธนาคาร {bank_name}:")
+
+    if bank_name == "K-bank":
+        print("1. K-bank ธรรมดา 🌇")
+        print("2. K-bank คริสมาสต์ 🌆")
+        print("3. K-bank ใจเขียว 🌃")
+        print("4. K-bank หมาคาบเงิน 🌌")
+        print("5. K-bank พิเศษ 🌠")
+    elif bank_name == "SCB":
+        print("1. SCB ไทยพาณิชย์ 🌇")
+        print("เร็วๆนี้")
+    elif bank_name == "Bangkok":
+        print("1. Bangkok กรุงเทพ 🌇")
+        print("เร็วๆนี้")
+    elif bank_name == "TTB":
+        print("1. TTB 🌇")
+        print("เร็วๆนี้")
+    elif bank_name == "กรุงศรี":
+        print("1. กรุงศรี 🌇")
+        print("เร็วๆนี้")
+    elif bank_name == "กรุงไทย":
+        print("1. กรุงไทย 🌇")
+        print("เร็วๆนี้")
+    elif bank_name == "TrueWallet":
+        print("1. TrueWallet 🌇")
+        print("เร็วๆนี้")
+    else:
+        print("ไม่มีพื้นหลังสำหรับธนาคารนี้")
+
+    print("00. ย้อนกลับ")
+
+    choice = input("กรุณาเลือกหมายเลข (0-5): ")
+
+    if choice == "00":
+        main_menu()  # เพิ่มตัวเลือกย้อนกลับ
+    elif choice == "1" and bank_name == "K-bank":
+        return "Bank/K-bank 4.png"
+    elif choice == "2" and bank_name == "K-bank":
+        return "Bank/K-bank 3.png"
+    elif choice == "3" and bank_name == "K-bank":
+        return "Bank/K-bank 2.png"
+    elif choice == "4" and bank_name == "K-bank":
+        return "Bank/K-bank 1.png"
+    elif choice == "5" and bank_name == "K-bank":
+        return "Bank/K-bank 0.png"
+
+    elif choice == "1" and bank_name == "SCB":
+        return "Bank/SCB copy.png"
+
+    elif choice == "1" and bank_name == "Bangkok":
+        return "Bank/Bangkok.png"
+
+    elif choice == "1" and bank_name == "TTB":
+        return "Bank/TTB.jpg"
+
+    elif choice == "1" and bank_name == "กรุงศรี":
+        return "Bank/กรุงศรี.png"
+
+    elif choice == "1" and bank_name == "กรุงไทย":
+        return "Bank/กรุงไทย.png"
+
+    elif choice == "1" and bank_name == "TrueWallet":
+        return "Bank/truemoney.png"
+
+    else:
+        print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
+        return select_background(bank_name)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
+
 
 
 # ฟังก์ชั่นสำหรับเลือกโลโก้
@@ -26,12 +181,16 @@ def select_logo(background_image):
     print("8. Citi 🏦 (ธนาคารซิตี้แบงก์)")
     print("9. TTB 🏦 (ธนาคารทหารไทยธนชาต)")
     print("10. Another Logo 🎨 (โลโก้ธนาคารอื่นๆ)")  # เพิ่มโลโก้ตัวเลือกอื่นๆ ได้
-    choice = input("กรุณาเลือกหมายเลข (1-7): ")
+    print("00. เริ่มใหม่ 🔄")  # เพิ่มตัวเลือกสำหรับเลือกพื้นหลังใหม่
+    choice = input("กรุณาเลือกหมายเลข (1-10 หรือ 00 เพื่อเลือกพื้นหลังใหม่): ")
+
+    if choice == "00":
+        main_menu()  # เพิ่มตัวเลือกย้อนกลับ
 
     if choice == "1":
         logo_image = "Bank/K-bank.png"
     elif choice == "2":
-        logo_image = "Bank/imgbin_thailandimgbin_thailand-siam-commercial-bank-refinancing-kasikornbank-png.png"
+        logo_image = "Bank/imgbin_thailand-siam-commercial-bank-refinancing-kasikornbank-png.png"
     elif choice == "3":
         logo_image = "Bank/Asset-2@4x (0_3).png"
     elif choice == "4":
@@ -51,7 +210,6 @@ def select_logo(background_image):
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_logo(background_image)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
-
 
     # กำหนดตำแหน่งและขนาดโลโก้ตามภาพพื้นหลังที่เลือก
     if background_image == "Bank/K-bank 4.png":
@@ -89,104 +247,13 @@ def select_logo(background_image):
 
     return logo, logo_position
 
-# ฟังก์ชั่นสำหรับเลือกธนาคาร
-def select_bank():
-    print("เลือกธนาคารผู้โอน:")
-    print("1. K-bank 🏦 (ธนาคารกสิกรไทย)")
-    print("2. SCB 🏧 (ธนาคารไทยพาณิชย์)")
-    print("3. Bangkok 🏙️ (ธนาคารกรุงเทพ)")
-    print("4. TTB 🏛️ (ธนาคารทหารไทยธนชาต)")
-    print("5. กรุงศรี 🏦 (ธนาคารกรุงศรีอยุธยา)")
-    print("6. กรุงไทย 🏦 (ธนาคารกรุงไทย)")
-    print("7. Other Bank 🎨 (ธนาคารอื่นๆ)")  # เพิ่มธนาคารตัวเลือกอื่นๆ ได้
-    choice = input("กรุณาเลือกหมายเลข (1-7): ")
-
-    if choice == "1":
-        return "K-bank"
-    elif choice == "2":
-        return "SCB"
-    elif choice == "3":
-        return "Bangkok"
-    elif choice == "4":
-        return "TTB"
-    elif choice == "5":
-        return "กรุงศรี"
-    elif choice == "6":
-        return "กรุงไทย"
-    elif choice == "7":
-        return "Other Bank"  # คุณสามารถเพิ่มธนาคารอื่น ๆ ได้
-    else:
-        print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
-        return select_bank()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
-
-
-# ฟังก์ชั่นสำหรับเลือกภาพพื้นหลังตามธนาคาร
-def select_background(bank_name):
-    print(f"เลือกภาพพื้นหลังสำหรับธนาคาร {bank_name}:")
-
-    if bank_name == "K-bank":
-        print("1. K-bank ธรรมดา 🌇")
-        print("2. K-bank คริสมาสต์ 🌆")
-        print("3. K-bank ใจเขียว 🌃")
-        print("4. K-bank หมาคาบเงิน 🌌")
-        print("5. K-bank พิเศษ 🌠")
-    elif bank_name == "SCB":
-        print("1. SCB ไทยพาณิชย์ 🌇")
-        print("เร็วๆนี้")
-    elif bank_name == "Bangkok":
-        print("1. Bangkok กรุงเทพ 🌇")
-        print("เร็วๆนี้")
-    elif bank_name == "TTB":
-        print("1. TTB 🌇")
-        print("เร็วๆนี้")
-    elif bank_name == "กรุงศรี":
-        print("1. กรุงศรี 🌇")
-        print("เร็วๆนี้")
-    elif bank_name == "กรุงไทย":
-        print("1. กรุงไทย 🌇ั")
-        print("เร็วๆนี้")
-    else:
-        print("ไม่มีพื้นหลังสำหรับธนาคารนี้")
-
-    print("0. ย้อนกลับ")
-
-    choice = input("กรุณาเลือกหมายเลข (0-5): ")
-
-    if choice == "0":
-        main_menu()  # เพิ่มตัวเลือกย้อนกลับ
-    elif choice == "1" and bank_name == "K-bank":
-        return "Bank/K-bank 4.png"
-    elif choice == "2" and bank_name == "K-bank":
-        return "Bank/K-bank 3.png"
-    elif choice == "3" and bank_name == "K-bank":
-        return "Bank/K-bank 2.png"
-    elif choice == "4" and bank_name == "K-bank":
-        return "Bank/K-bank 1.png"
-    elif choice == "5" and bank_name == "K-bank":
-        return "Bank/K-bank 0.png"
-
-    elif choice == "1" and bank_name == "SCB":
-        return "Bank/SCB copy.png"
-
-    elif choice == "1" and bank_name == "Bangkok":
-        return "Bank/Bangkok.png"
-
-    elif choice == "1" and bank_name == "TTB":
-        return "Bank/TTB.jpg"
-
-    elif choice == "1" and bank_name == "กรุงศรี":
-        return "Bank/กรุงศรี.png"
-
-    elif choice == "1" and bank_name == "กรุงไทย":
-        return "Bank/กรุงไทย.png"
-
-    else:
-        print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
-        return select_background(bank_name)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
 
 
 # เทนูหลัก
 def main_menu():
+    # if not login():
+        # return  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
+
     print("📄 ระบบสร้างใบโอนจ่าย 📄")
     print("===================================")
 
@@ -233,9 +300,20 @@ def main_menu():
     thailand_timezone = pytz.timezone('Asia/Bangkok')
     current_time_thailand = datetime.now(thailand_timezone)
     time = current_time_thailand.strftime("%H:%M:%S")
+
+    thai_months = {
+    "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.", "05": "พ.ค.", "06": "มิ.ย.",
+    "07": "ก.ค.", "08": "ส.ค.", "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
+    }
     day = current_time_thailand.strftime("%d")
     month = current_time_thailand.strftime("%m")
-    year = current_time_thailand.strftime("%Y")
+    year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
+
+    thai_month = thai_months[month]
+
+    # day = current_time_thailand.strftime("%d")
+    # month = current_time_thailand.strftime("%m")
+    # year = current_time_thailand.strftime("%Y")
 
     # โหลดภาพพื้นหลังตามที่เลือก
     image = Image.open(background_image)
@@ -396,7 +474,8 @@ def main_menu():
     phone = phone_me_id
     text_name_order = "50018935012188"
     text_money = money_id + ".00"
-    text_name_time = f"  {day}/{month}/{year} {time}"
+    text_name_time = f"{day} {thai_month} {year} {time}"
+    # text_name_time = f"  {day}/{month}/{year} {time}"
 
     # ข้อความที่ต้องการใส่ลงในภาพ
     debug_print("📝 ข้อความที่จะใส่ในภาพ:")
@@ -407,7 +486,7 @@ def main_menu():
     debug_print(f"🧑‍💻 name_me_id: {name_me_id}")
     debug_print(f"🏦 bank_me_id: {bank_me_id}")
     debug_print(f"💵 money_id: {money_id}")
-    debug_print(f"📅 day: {day}, month: {month}, year: {year}, time: {time}")
+    debug_print(f"📅 day: {day}, month: {thai_month}, year: {year}, time: {time}")
 
     # ตำแหน่งข้อความ
     if background_image == "Bank/K-bank 4.png":
@@ -419,7 +498,7 @@ def main_menu():
         text_position_phone = (250, 660)
         text_position_order = (445, 820)
         text_position_money = (370, 900)
-        text_position_time = (55, 100)
+        text_position_time = (70, 100)
 
     elif background_image == "Bank/K-bank 3.png":
         text_position_user = (250, 220)
@@ -481,102 +560,4 @@ def main_menu():
     debug_print(f"✏️ text_position_user: {text_position_user}")
     debug_print(f"✏️ text_position_bank_user: {text_position_bank_user}")
     debug_print(f"✏️ text_position_phone_user: {text_position_phone_user}")
-    debug_print(f"✏️ text_position_me: {text_position_me}")
-    debug_print(f"✏️ text_position_bank_me: {text_position_bank_me}")
-    debug_print(f"✏️ text_position_phone: {text_position_phone}")
-    debug_print(f"✏️ text_position_order: {text_position_order}")
-    debug_print(f"✏️ text_position_money: {text_position_money}")
-    debug_print(f"✏️ text_position_time: {text_position_time}")
-
-    # สีของข้อความ
-    text_color_user = (-20, -20, -20)
-    text_color_bank_user = (60, 60, 60)
-    text_color_phone_user = (60, 60, 60)
-    text_color_me = (-20, -20, -20)
-    text_color_bank_me = (60, 60, 60)
-    text_color_phone = (80, 80, 80)
-    text_color_order = (60, 60, 60)
-    text_color_money = (44, 44, 44)
-    text_color_time = (60, 60, 60)
-
-    # สีของข้อความ
-    debug_print("🎨 สีของข้อความ:")
-    debug_print(f"🖤 text_color_user: {text_color_user}")
-    debug_print(f"💬 text_color_bank_user: {text_color_bank_user}")
-    debug_print(f"📱 text_color_phone_user: {text_color_phone_user}")
-    debug_print(f"🧑‍💻 text_color_me: {text_color_me}")
-    debug_print(f"💳 text_color_bank_me: {text_color_bank_me}")
-    debug_print(f"📞 text_color_phone: {text_color_phone}")
-    debug_print(f"💰 text_color_order: {text_color_order}")
-    debug_print(f"💸 text_color_money: {text_color_money}")
-    debug_print(f"⏰ text_color_time: {text_color_time}")
-
-    # ใส่ข้อความลงในภาพ
-    debug_print("🖼️ กำลังใส่ข้อความลงในภาพ...")
-    draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user)
-    draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)
-    draw.text(text_position_phone_user, text_phone_user, font=font_phone_user, fill=text_color_phone_user)
-    draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)
-    draw.text(text_position_bank_me, text_bank_me, font=font_bank_me, fill=text_color_bank_me)
-    draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone)
-    draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)
-    draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
-    draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
-    debug_print("✅ ข้อความทั้งหมดถูกเพิ่มลงในภาพเรียบร้อยแล้ว")
-
-    # แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
-    image.paste(logo, logo_position, logo)
-    print("✅ แทรกโลโก้ลงในภาพเรียบร้อยแล้ว")
-
-    # บันทึกภาพที่มีข้อความและโลโก้
-    image.save("truemoney_with_text_and_logo.png")
-    print("✅ บันทึกภาพสำเร็จเป็น truemoney_with_text_and_logo.png")
-
-
-    # ส่งข้อมูลไปยัง Discord webhook
-    discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
-
-    embed_data = {
-        "content": "📢 **ข้อมูลการโอนจ่าย** 💸",
-        "embeds": [
-            {
-                "title": "💳 **รายละเอียดการโอนเงิน** 💳",
-                "description": f"💰 **ผู้โอน**: {name_user_id}\n🏠 **ผู้รับ**: {name_me_id}\n📞 **เบอร์โทรศัพท์ผู้รับ**: {text_name_phone}\n💵 **จำนวนเงิน**: {money_id} บาท\n🏦 **ธ.ผู้โอน**: {text_bank_user}\n📱 **เบอร์ผู้โอน**: {text_phone_user}\n🏧 **ธ.ผู้รับ**: {text_bank_me}",
-                "color": 5814783,
-                "fields": [
-                    {"name": "👤 ผู้โอนจ่าย", "value": name_user_id, "inline": True},
-                    {"name": "💸 ผู้รับเงิน", "value": name_me_id, "inline": True},
-                    {"name": "📜 เบอร์โทรศัพท์ผู้รับ", "value": text_name_phone, "inline": True},
-                    {"name": "💵 จำนวนเงิน", "value": f"{money_id} บาท", "inline": True},
-                    {"name": "⏰ เวลาการโอน", "value": f"{day}/{month}/{year} {time}", "inline": True},
-                    {"name": "🏦 ธ.ผู้โอน", "value": text_bank_user, "inline": True},
-                    {"name": "📜 เบอร์ผู้โอน", "value": text_phone_user, "inline": True},
-                    {"name": "🏦 ธ.ผู้รับ", "value": text_bank_me, "inline": True}
-                ]
-            }
-        ]
-    }
-
-    # ส่งคำขอไปยัง Discord webhook
-    response = requests.post(discord_webhook_url, json=embed_data)  # ใช้ json แทน data
-    print(f"🔗 ส่งคำขอไปยัง Discord: {response.status_code}")
-
-    # ส่งภาพหลังจาก Embed
-    with open("truemoney_with_text_and_logo.png", "rb") as f:
-        image_file = f.read()
-        print("✅ อ่านไฟล์ภาพสำหรับการส่งไปยัง Discord")
-
-    response = requests.post(
-        discord_webhook_url,
-        files={'file': ('truemoney_with_text_and_logo.png', image_file)}
-    )
-    print(f"🔗 ส่งไฟล์ภาพไปยัง Discord: {response.status_code}")
-
-    if response.status_code == 200:
-        print("📤 ส่งข้อมูลไปยัง Discord สำเร็จ 🎉")
-    else:
-        print(f"⚠️ เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
-
-# เรียกใช้เมนูหลัก
-if __name__ == "__main__":
-    main_menu()
+    debug_print(f"✏️ text_pos
