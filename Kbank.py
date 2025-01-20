@@ -248,6 +248,27 @@ def select_logo(background_image):
     return logo, logo_position
 
 
+def get_thailand_time():
+    thailand_timezone = pytz.timezone('Asia/Bangkok')
+    current_time_thailand = datetime.now(thailand_timezone)
+    time = current_time_thailand.strftime("%H:%M:%S")
+
+    thai_months = {
+        "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.", "05": "พ.ค.", "06": "มิ.ย.",
+        "07": "ก.ค.", "08": "ส.ค.", "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
+    }
+    day = current_time_thailand.strftime("%d")
+    month = current_time_thailand.strftime("%m")
+    year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
+
+    thai_month = thai_months[month]
+    text_name_time = f"{day} {thai_month} {year} {time}"
+
+    return text_name_time
+
+# การเรียกใช้ฟังก์ชัน
+# text_name_time = get_thailand_time()
+# debug_print(f"📅 day: {text_name_time}")
 
 # เทนูหลัก
 def main_menu():
