@@ -29,6 +29,11 @@ def autoupdate_repository():
         # รีเซ็ตไฟล์ทั้งหมดให้ตรงกับ branch main
         subprocess.run(['git', '-C', repo_dir, 'reset', '--hard', 'origin/main'], check=True)
         print(Fore.GREEN + "✔️ การอัปเดตสำเร็จ!")
+        
+        # ลบไฟล์ที่ไม่อยู่ใน repository
+        print(Fore.YELLOW + "⛔ กำลังลบไฟล์ที่ไม่ถูกติดตาม...")
+        subprocess.run(['git', '-C', repo_dir, 'clean', '-fd'], check=True)  # ลบไฟล์ที่ไม่ถูกติดตาม (untracked files)
+        print(Fore.GREEN + "✔️ ลบไฟล์ที่ไม่ถูกติดตามเสร็จสิ้น!")
     else:
         print(Fore.RED + "❌ ไม่พบ repository กำลังทำการ clone...")
         # ใช้ฟังก์ชัน clone_with_progress เพื่อแสดง progress bar
