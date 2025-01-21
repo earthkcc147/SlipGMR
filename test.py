@@ -82,7 +82,7 @@ def set_text_positions_for_background(background_file):
     """กำหนดตำแหน่งของข้อความในภาพพื้นหลังแต่ละแบบ"""
     positions = {}
 
-    if background_file == "Bank/K-bank 1.png":
+    if background_file == "Bank/K-bank 4.png":
         positions = {
             'money': (560, 270),
             'user': (302, 485),
