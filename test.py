@@ -57,9 +57,9 @@ def get_user_defined_time():
         time = current_time_thailand.strftime("%H:%M") + " น."
 
     # รวมวันที่และเวลาเป็นข้อความเดียวโดยไม่มีเครื่องหมาย "/"
-    # defined_time = f"{day} {month} {year} {time}"
+    defined_time = f"{day} {month} {year} {time}"
     # แก้ไขการจัดรูปแบบในส่วนที่รวมวันที่และเวลา
-    defined_time = f"{day} {month} {year} {time}".strip()
+    # defined_time = f"{day} {month} {year} {time}".strip()
 
     # ส่งคืน defined_time
     return defined_time
