@@ -280,7 +280,8 @@ def send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_use
     """ส่งข้อมูลและภาพไปที่ Discord Webhook"""
     
     # URL ของ Webhook Discord
-    webhook_url = "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL"
+    webhook_url = "https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz"
+    
 
     # เตรียมข้อมูลแบบ Embed
     embed = {
