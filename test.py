@@ -130,7 +130,7 @@ def set_text_positions_for_background(background_file):
             'user': (302, 485),
             'me': (302, 648),
             'phone': (302, 720),
-            'time': (781, 885),
+            'time': (70, 100),
             'order': (827, 953),
             'account': (302, 805),
             'bank': (302, 860),
