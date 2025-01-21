@@ -307,8 +307,11 @@ def send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_use
         with open(image_path, 'rb') as file:
             # ส่งข้อมูลและรูปภาพไปยัง Discord Webhook
             files = {'file': file}
-            data = {'embeds': [embed]}
-            
+            data = {
+                'embeds': [embed],  # ส่งข้อมูล Embed
+                'file': image_path  # ส่งไฟล์ภาพ
+            }
+
             # ส่งคำขอไปยัง Discord Webhook
             response = requests.post(webhook_url, json=data, files=files)
 
