@@ -15,9 +15,6 @@ def get_user_input():
     return name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id
 
 
-import pytz
-from datetime import datetime
-
 def get_user_defined_time():
     """ถามผู้ใช้ว่าต้องการกำหนดวันที่หรือไม่ และรับอินพุต"""
     thailand_timezone = pytz.timezone('Asia/Bangkok')
@@ -35,10 +32,17 @@ def get_user_defined_time():
 
     if use_custom_time == "y":
         print("กรุณากรอกวันที่และเวลา:")
+
+        # ให้ผู้ใช้เลือกเดือนจากตัวเลข
         input_date = input("วันที่ (รูปแบบ DD): ")
-        input_month = input("เดือน (รูปแบบ MM): ")
+        input_month = input("เดือน (เลือกจากตัวเลข 01-12): ")
         input_year = input("ปี (พ.ศ.): ")
         input_time = input("เวลา (รูปแบบ HH:MM): ")
+
+        # ตรวจสอบว่าเดือนที่กรอกอยู่ในช่วงที่ถูกต้อง
+        if input_month not in thai_months:
+            print("เดือนที่กรอกไม่ถูกต้อง! ใช้เดือนปัจจุบันแทน")
+            input_month = current_time_thailand.strftime("%m")
 
         # ใช้ค่าที่ผู้ใช้ป้อน
         day = int(input_date) if input_date else int(current_time_thailand.strftime("%d"))
