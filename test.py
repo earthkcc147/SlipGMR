@@ -198,7 +198,6 @@ def choose_bank():
         except ValueError:
             print("กรุณากรอกหมายเลขที่ถูกต้อง!")
 
-
 def choose_logo():
     """ให้ผู้ใช้เลือกโลโก้ที่ต้องการ"""
     logos = {
@@ -221,6 +220,23 @@ def choose_logo():
         except ValueError:
             print("กรุณากรอกหมายเลขที่ถูกต้อง!")
 
+def get_logo_size_and_position(background_image_path):
+    """กำหนดขนาดและตำแหน่งของโลโก้ตามภาพพื้นหลัง"""
+    if background_image_path == "Bank/K-bank 1.png":
+        logo_size = (80, 80)  # ขนาดโลโก้สำหรับ K-Bank 1
+        logo_position = (30, 30)  # ตำแหน่งโลโก้สำหรับ K-Bank 1
+    elif background_image_path == "Bank/SCB 1.png":
+        logo_size = (120, 120)  # ขนาดโลโก้สำหรับ SCB 1
+        logo_position = (50, 50)  # ตำแหน่งโลโก้สำหรับ SCB 1
+    elif background_image_path == "Bank/Siam 1.png":
+        logo_size = (100, 100)  # ขนาดโลโก้สำหรับ Siam 1
+        logo_position = (40, 40)  # ตำแหน่งโลโก้สำหรับ Siam 1
+    else:
+        logo_size = (100, 100)  # ขนาดโลโก้ทั่วไป
+        logo_position = (20, 20)  # ตำแหน่งโลโก้ทั่วไป
+
+    return logo_size, logo_position
+
 def main():
     """ฟังก์ชันหลักในการประมวลผล"""
     # ให้ผู้ใช้เลือกธนาคารและภาพพื้นหลัง
@@ -242,12 +258,11 @@ def main():
     # โหลดโลโก้ที่เลือก
     logo = load_logo(logo_path)
 
-    # ปรับขนาดโลโก้ให้เหมาะสม
-    logo_size = (100, 100)  # ปรับขนาดตามที่ต้องการ
-    logo = logo.resize(logo_size)
+    # กำหนดขนาดและตำแหน่งของโลโก้ตามภาพพื้นหลัง
+    logo_size, logo_position = get_logo_size_and_position(background_image_path)
 
-    # ตำแหน่งในการวางโลโก้
-    logo_position = (20, 20)  # ปรับตำแหน่งตามที่ต้องการ
+    # ปรับขนาดโลโก้ให้เหมาะสม
+    logo = logo.resize(logo_size)
 
     # วางโลโก้ลงในภาพ
     image.paste(logo, logo_position, logo)  # ใช้ alpha channel ในกรณีที่โลโก้มีความโปร่งใส
@@ -274,4 +289,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
