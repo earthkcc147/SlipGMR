@@ -329,13 +329,9 @@ def main():
     # แยก defined_time ออกเป็นวัน เดือน ปี และเวลา
     date_part, time_part = defined_time.rsplit(" ", 1)  # แยกเวลาออกจากวันที่
 
-    # แยกวันที่ออกเป็นวันที่, เดือน และปี
-    date_parts = date_part.split(" ")
+    # เก็บข้อมูลวันและเวลาทั้งหมดในตัวแปรเดียว
     date_info = {
-        "day": date_parts[0],
-        "month": date_parts[1],
-        "year": date_parts[2],
-        "time": time_part
+        "date_time": f"{date_part} {time_part}"
     }
 
     # โหลดภาพพื้นหลังที่เลือก
@@ -358,7 +354,7 @@ def main():
     fonts = prepare_fonts()
 
     # เตรียมข้อความ
-    texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, date_info["day"], date_info["month"], date_info["year"], date_info["time"])
+    texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, date_info["date_time"])
 
     # กำหนดตำแหน่งข้อความตามภาพพื้นหลัง
     positions = set_text_positions_for_background(background_image_path)
@@ -376,8 +372,7 @@ def main():
     print("สลีปปลอมสำเร็จ! บันทึกเป็น output_image.png")
 
     # ส่งข้อมูลไปยัง Discord
-    send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, date_info["day"], date_info["month"], date_info["year"], date_info["time"])
-
+    send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, date_info["date_time"])
 
 if __name__ == "__main__":
     main()
