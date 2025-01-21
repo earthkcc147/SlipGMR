@@ -20,13 +20,6 @@ def get_user_defined_time():
     thailand_timezone = pytz.timezone('Asia/Bangkok')
     current_time_thailand = datetime.now(thailand_timezone)
 
-    # แปลงเดือนเป็นชื่อภาษาไทยแบบย่อ
-    thai_months = {
-        "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.",
-        "05": "พ.ค.", "06": "มิ.ย.", "07": "ก.ค.", "08": "ส.ค.",
-        "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
-    }
-
     # ถามว่าต้องการกำหนดวันที่เองหรือไม่
     use_custom_time = input("ต้องการดัดแปลงวันที่และเวลาหรือไม่? (y/n หรือ Enter = ไม่ดัดแปลง): ").lower()
 
@@ -40,27 +33,35 @@ def get_user_defined_time():
         input_time = input("เวลา (รูปแบบ HH:MM): ")
 
         # ตรวจสอบว่าเดือนที่กรอกอยู่ในช่วงที่ถูกต้อง
-        if input_month not in thai_months:
+        if input_month not in ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]:
             print("เดือนที่กรอกไม่ถูกต้อง! ใช้เดือนปัจจุบันแทน")
             input_month = current_time_thailand.strftime("%m")
 
         # ใช้ค่าที่ผู้ใช้ป้อน
         day = int(input_date) if input_date else int(current_time_thailand.strftime("%d"))
-        month = thai_months[input_month] if input_month else thai_months[current_time_thailand.strftime("%m")]
+        month = input_month if input_month else current_time_thailand.strftime("%m")
         year = str(int(input_year))[-2:] if input_year else str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
         time = input_time if input_time else current_time_thailand.strftime("%H:%M") + " น."
     else:
         # ใช้วันที่และเวลาปัจจุบัน
         day = int(current_time_thailand.strftime("%d"))
-        month = thai_months[current_time_thailand.strftime("%m")]
+        month = current_time_thailand.strftime("%m")
         year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
         time = current_time_thailand.strftime("%H:%M") + " น."
 
     # รวมวันที่และเวลาเป็นข้อความเดียวโดยไม่มีเครื่องหมาย "/"
     defined_time = f"{day} {month} {year} {time}"
 
-    # ส่งคืน defined_time
-    return defined_time
+    # ส่งคืน defined_time และแยกเป็นวัน เดือน ปี เวลา
+    date_part, time_part = defined_time.rsplit(" ", 1)
+    date_info = {
+        "day": date_part.split()[0], 
+        "month": date_part.split()[1],
+        "year": date_part.split()[2],
+        "time": time_part
+    }
+
+    return date_info
 
 
 
