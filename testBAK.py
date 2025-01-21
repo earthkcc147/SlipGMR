@@ -15,11 +15,8 @@ def get_user_input():
     return name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id
 
 
-import pytz
-from datetime import datetime
-
-def get_current_time():
-    """คืนค่าเวลาในประเทศไทยเป็น day, month, year, time"""
+def get_user_defined_time():
+    """ถามผู้ใช้ว่าต้องการกำหนดวันที่หรือไม่ และรับอินพุต"""
     thailand_timezone = pytz.timezone('Asia/Bangkok')
     current_time_thailand = datetime.now(thailand_timezone)
 
@@ -30,16 +27,38 @@ def get_current_time():
         "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
     }
 
-    day = int(current_time_thailand.strftime("%d"))  # วัน (เลขเต็ม)
-    month = thai_months[current_time_thailand.strftime("%m")]  # เดือนแบบย่อ
-    year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]  # ปี พ.ศ. แบบ 2 หลัก
-    time = current_time_thailand.strftime("%H:%M") + " น."  # เวลา
+    # ถามว่าต้องการกำหนดวันที่เองหรือไม่
+    use_custom_time = input("ต้องการดัดแปลงวันที่และเวลาหรือไม่? (y/n หรือ Enter = ไม่ดัดแปลง): ").lower()
+
+    if use_custom_time == "y":
+        print("กรุณากรอกวันที่และเวลา:")
+
+        # ให้ผู้ใช้เลือกเดือนจากตัวเลข
+        input_date = input("วันที่ (รูปแบบ DD): ")
+        input_month = input("เดือน (เลือกจากตัวเลข 01-12): ")
+        input_year = input("ปี (พ.ศ.): ")
+        input_time = input("เวลา (รูปแบบ HH:MM): ")
+
+        # ตรวจสอบว่าเดือนที่กรอกอยู่ในช่วงที่ถูกต้อง
+        if input_month not in thai_months:
+            print("เดือนที่กรอกไม่ถูกต้อง! ใช้เดือนปัจจุบันแทน")
+            input_month = current_time_thailand.strftime("%m")
+
+        # ใช้ค่าที่ผู้ใช้ป้อน
+        day = int(input_date) if input_date else int(current_time_thailand.strftime("%d"))
+        month = thai_months[input_month] if input_month else thai_months[current_time_thailand.strftime("%m")]
+        year = str(int(input_year))[-2:] if input_year else str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
+        time = input_time if input_time else current_time_thailand.strftime("%H:%M") + " น."
+    else:
+        # ใช้วันที่และเวลาปัจจุบัน
+        day = int(current_time_thailand.strftime("%d"))
+        month = thai_months[current_time_thailand.strftime("%m")]
+        year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
+        time = current_time_thailand.strftime("%H:%M") + " น."
 
     return day, month, year, time
 
 
-# ทดสอบฟังก์ชัน
-print(get_current_time())
 
 def load_image(image_path):
     """โหลดภาพพื้นหลัง"""
@@ -265,8 +284,8 @@ def main():
     # รับข้อมูลจากผู้ใช้
     name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id = get_user_input()
 
-    # รับเวลา
-    day, month, year, time = get_current_time()
+    # รับวันและเวลา (ผู้ใช้กำหนด หรือใช้ค่าเริ่มต้น)
+    day, month, year, time = get_user_defined_time()
 
     # โหลดภาพพื้นหลังที่เลือก
     image = load_image(background_image_path)
@@ -302,7 +321,7 @@ def main():
     # บันทึกภาพที่มีข้อความ
     save_image(image, "output_image.png")
 
-    print("สลีปปลอมสำเร็จ! บันทึกเป็น truemoney_with_text_and_banks_and_logo.png")
+    print("สลีปปลอมสำเร็จ! บันทึกเป็น output_image.png")
 
 if __name__ == "__main__":
     main()
