@@ -75,19 +75,36 @@ def prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_
 
     return text_money, text_name_user, text_name_me, text_name_phone, text_name_time, text_name_order, text_account_user, text_bank_user, text_bank_me
 
-def set_text_positions():
-    """กำหนดตำแหน่งของข้อความในภาพ"""
-    return {
-        'money': (560, 270),
-        'user': (302, 485),
-        'me': (302, 648),
-        'phone': (302, 720),
-        'time': (781, 885),
-        'order': (827, 953),
-        'account': (302, 805),
-        'bank': (302, 860),
-        'bank_me': (302, 933)
-    }
+def set_text_positions(background_choice):
+    """กำหนดตำแหน่งของข้อความในภาพตามพื้นหลังที่เลือก"""
+    # ตรวจสอบว่า background_choice เป็นค่าใดที่คาดหวัง
+    if background_choice == "K-Bank 1":
+        return {
+            'money': (560, 270),
+            'user': (302, 485),
+            'me': (302, 648),
+            'phone': (302, 720),
+            'time': (781, 885),
+            'order': (827, 953),
+            'account': (302, 805),
+            'bank': (302, 860),
+            'bank_me': (302, 933)
+        }
+    elif background_choice == "K-Bank 2":
+        return {
+            'money': (560, 290),
+            'user': (320, 500),
+            'me': (320, 670),
+            'phone': (320, 740),
+            'time': (800, 900),
+            'order': (850, 970),
+            'account': (320, 810),
+            'bank': (320, 870),
+            'bank_me': (320, 940)
+        }
+    else:
+        # ถ้า background_choice ไม่ตรงกับตัวเลือกที่กำหนด ส่งข้อความข้อผิดพลาด
+        raise ValueError(f"Invalid background choice: {background_choice}. Please choose 'K-Bank 1' or 'K-Bank 2'.")
 
 def set_text_colors():
     """กำหนดสีของข้อความ"""
@@ -201,8 +218,8 @@ def main():
     # เตรียมข้อความ
     texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time)
 
-    # กำหนดตำแหน่งและสีของข้อความ
-    positions = set_text_positions()
+    # กำหนดตำแหน่งและสีของข้อความตามภาพพื้นหลังที่เลือก
+    positions = set_text_positions(background_image_path)
     colors = set_text_colors()
 
     # ใส่ข้อความลงในภาพ
@@ -212,9 +229,3 @@ def main():
     save_image(image, "truemoney_with_text_and_banks_and_logo.png")
 
     print("สลีปปลอมสำเร็จ! บันทึกเป็น truemoney_with_text_and_banks_and_logo.png")
-
-if __name__ == "__main__":
-    main()
-
-
-
