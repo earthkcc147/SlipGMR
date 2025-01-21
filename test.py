@@ -277,16 +277,17 @@ def get_logo_size_and_position(background_image_path):
 
     return logo_size, logo_position
 
+
 import requests
 
-def send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time):
+def send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, defined_time):
     """ฟังก์ชันในการส่งข้อมูลไปยัง Discord Webhook พร้อมรูปภาพ"""
     webhook_url = "https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz"
 
     # เตรียมข้อมูล Embed ที่จะส่งไปยัง Discord
     embed = {
         "title": "ข้อมูลการโอนเงิน",
-        "description": f"จาก: {name_user_id}\nถึง: {name_me_id}\nหมายเลขบัญชีผู้รับ: {phone_me_id}\nจำนวนเงิน: {money_id}\nหมายเลขบัญชีผู้โอน: {account_user_id}\nธนาคารผู้โอน: {bank_user_id}\nธนาคารผู้รับ: {bank_me_id}\nวันที่: {date}\nเวลา: {time}",
+        "description": f"จาก: {name_user_id}\nถึง: {name_me_id}\nหมายเลขบัญชีผู้รับ: {phone_me_id}\nจำนวนเงิน: {money_id}\nหมายเลขบัญชีผู้โอน: {account_user_id}\nธนาคารผู้โอน: {bank_user_id}\nธนาคารผู้รับ: {bank_me_id}\nวันที่และเวลา: {defined_time}",
         "color": 65280  # สีเขียว
     }
 
