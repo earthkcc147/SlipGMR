@@ -51,20 +51,16 @@ def get_user_defined_time():
         day = int(input_date) if input_date else int(current_time_thailand.strftime("%d"))
         month = thai_months[input_month] if input_month else thai_months[current_time_thailand.strftime("%m")]
         year = str(int(input_year))[-2:] if input_year else str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
-        time = input_time if input_time else current_time_thailand.strftime("%H:%M") + " น."
+        time = input_time if input_time else current_time_thailand.strftime("%H:%M")
     else:
         # ใช้วันที่และเวลาปัจจุบัน
         day = int(current_time_thailand.strftime("%d"))
         month = thai_months[current_time_thailand.strftime("%m")]
         year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
-        time = current_time_thailand.strftime("%H:%M") + " น."
+        time = current_time_thailand.strftime("%H:%M")
 
-    # คืนค่าที่ได้ในรูปแบบที่มีการเว้นวรรค
-    return f"{day} {month} {year} เวลา {time}"
-
-# ทดสอบฟังก์ชัน
-# result = get_user_defined_time()
-# print(result)
+    # คืนค่าผลลัพธ์ในรูปแบบ "วัน เดือน ปี เวลา:นาที น."
+    return f"{day} {month} {year} {time} น."
 
 
 
@@ -344,7 +340,10 @@ def main():
     name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id = get_user_input()
 
     # รับวันและเวลา (ผู้ใช้กำหนด หรือใช้ค่าเริ่มต้น)
-    day, month, year, time = get_user_defined_time()
+    formatted_time = get_user_defined_time()
+
+# แสดงผลลัพธ์
+print(formatted_time)
 
     # โหลดภาพพื้นหลังที่เลือก
     image = load_image(background_image_path)
@@ -366,7 +365,7 @@ def main():
     fonts = prepare_fonts()
 
     # เตรียมข้อความ
-    texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time)
+    texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, formatted_time)
 
     # กำหนดตำแหน่งข้อความตามภาพพื้นหลัง
     positions = set_text_positions_for_background(background_image_path)
@@ -384,7 +383,7 @@ def main():
     print("สลีปปลอมสำเร็จ! บันทึกเป็น output_image.png")
 
     # ส่งข้อมูลและภาพไปยัง Discord
-    send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time, output_image_path)
+    send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, formatted_time, output_image_path)
 
 if __name__ == "__main__":
     main()
