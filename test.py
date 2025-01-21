@@ -63,6 +63,41 @@ def get_user_defined_time2(show_full_year=False):
     return defined_time
 
 
+
+def get_user_defined_time2.2(show_full_year=False):
+    """รับวันที่และเวลา พร้อมแสดงปีในรูปแบบเต็มหรือย่อ"""
+    thailand_timezone = pytz.timezone('Asia/Bangkok')
+    current_time_thailand = datetime.now(thailand_timezone)
+
+    # แปลงเดือนเป็นชื่อภาษาไทยแบบย่อ
+    thai_months = {
+        "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.",
+        "05": "พ.ค.", "06": "มิ.ย.", "07": "ก.ค.", "08": "ส.ค.",
+        "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
+    }
+
+    # ใช้วันที่และเวลาปัจจุบัน
+    day = int(current_time_thailand.strftime("%d"))
+    month = thai_months[current_time_thailand.strftime("%m")]
+    if show_full_year:
+        year = str(int(current_time_thailand.strftime("%Y")) + 543)  # ปีเต็ม (พ.ศ.)
+    else:
+        year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]  # ปีย่อ (พ.ศ. ย่อ)
+    
+    time = current_time_thailand.strftime("%H:%M") + " น."  # เพิ่มส่วนนี้หากไม่ต้องการให้เป็นค่าว่าง
+
+    # รวมวันที่และเวลาเป็นข้อความเดียว
+    defined_time = f"{day} {month} {year} {time}".strip()
+
+    # ส่งคืน defined_time
+    return defined_time
+
+
+
+
+
+
+
 def get_user_defined_time():
     """ถามผู้ใช้ว่าต้องการกำหนดวันที่หรือไม่ และรับอินพุต"""
     thailand_timezone = pytz.timezone('Asia/Bangkok')
