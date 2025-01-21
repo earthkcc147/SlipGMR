@@ -72,7 +72,7 @@ def get_user_defined_time():
     return defined_time
 
 
-def get_user_defined_time1.2(show_full_year=False):
+def get_user_defined_time2(show_full_year=False):
     """รับข้อมูลวันที่และเวลาโดยตรงจากผู้ใช้"""
     thailand_timezone = pytz.timezone('Asia/Bangkok')
     current_time_thailand = datetime.now(thailand_timezone)
@@ -114,6 +114,51 @@ def get_user_defined_time1.2(show_full_year=False):
     return defined_time
 
 
+def get_user_defined_time3(show_full_year=False, use_buddhist_year=True):
+    """รับข้อมูลวันที่และเวลาโดยตรงจากผู้ใช้ โดยสามารถเลือกได้ว่าใช้ปีพ.ศ. หรือปีค.ศ."""
+    thailand_timezone = pytz.timezone('Asia/Bangkok')
+    current_time_thailand = datetime.now(thailand_timezone)
+
+    # แปลงเดือนเป็นชื่อภาษาไทยแบบย่อ
+    thai_months = {
+        "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.",
+        "05": "พ.ค.", "06": "มิ.ย.", "07": "ก.ค.", "08": "ส.ค.",
+        "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
+    }
+
+    print("กรุณากรอกวันที่และเวลา:")
+
+    # ให้ผู้ใช้เลือกเดือนจากตัวเลข
+    input_date = input("วันที่ (รูปแบบ DD): ")
+    input_month = input("เดือน (เลือกจากตัวเลข 01-12): ")
+    input_year = input("ปี (พ.ศ. หรือ ค.ศ.): ")
+    input_time = input("เวลา (รูปแบบ HH:MM): ")
+
+    # ตรวจสอบว่าเดือนที่กรอกอยู่ในช่วงที่ถูกต้อง
+    if input_month not in thai_months:
+        print("เดือนที่กรอกไม่ถูกต้อง! ใช้เดือนปัจจุบันแทน")
+        input_month = current_time_thailand.strftime("%m")
+
+    # ใช้ค่าที่ผู้ใช้ป้อน
+    day = int(input_date) if input_date else int(current_time_thailand.strftime("%d"))
+    month = thai_months[input_month] if input_month else thai_months[current_time_thailand.strftime("%m")]
+    time = input_time.strip() if input_time.strip() else current_time_thailand.strftime("%H:%M") + " น."
+
+    # เลือกปีที่จะแสดงในรูปแบบ พ.ศ. หรือ ค.ศ.
+    if use_buddhist_year:
+        year = str(int(input_year) + 543) if input_year else str(int(current_time_thailand.strftime("%Y")) + 543)
+    else:
+        year = str(int(input_year) if input_year else int(current_time_thailand.strftime("%Y")))
+
+    # หากต้องการแสดงปีแบบเต็มหรือย่อ
+    if show_full_year:
+        year = year
+
+    # รวมวันที่และเวลาเป็นข้อความเดียว
+    defined_time = f"{day} {month} {year} {time}".strip()
+
+    # ส่งคืน defined_time
+    return defined_time
 
 
 
