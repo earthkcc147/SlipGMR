@@ -323,8 +323,10 @@ def main():
     # รับวันและเวลา (ผู้ใช้กำหนด หรือใช้ค่าเริ่มต้น)
     defined_time = get_user_defined_time()  # คืนค่าเป็นข้อความเดียวที่รวมวัน เดือน ปี และเวลา
 
-    # แยกวันที่และเวลาออกจาก defined_time โดยใช้วรรคเป็นตัวแบ่ง
-    date_part, time_part = defined_time.split(" ")
+    # แยกวันที่และเวลาออกจาก defined_time โดยใช้วรรคเป็นตัวแบ่ง (แยกครั้งเดียว)
+    parts = defined_time.split(" ", 1)  # ใช้การแยกเพียงครั้งเดียว
+    date_part = parts[0]  # วันที่
+    time_part = parts[1] if len(parts) > 1 else ""  # เวลา (หากมี)
 
     # โหลดภาพพื้นหลังที่เลือก
     image = load_image(background_image_path)
@@ -365,7 +367,6 @@ def main():
 
     # ส่งข้อมูลไปยัง Discord
     send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, date_part, time_part)
-
 
 if __name__ == "__main__":
     main()
