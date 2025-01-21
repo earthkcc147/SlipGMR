@@ -15,7 +15,7 @@ def get_user_input():
     return name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id
 
 
-def get_user_defined_time():
+def get_user_defined_time2():
     """ถามผู้ใช้ว่าต้องการกำหนดวันที่หรือไม่ และรับอินพุต"""
     # แปลงเดือนเป็นชื่อภาษาไทยแบบย่อ
     thai_months = {
@@ -55,7 +55,7 @@ def get_user_defined_time():
     return defined_time
 
 
-def get_user_defined_time2():
+def get_user_defined_time():
     """ถามผู้ใช้ว่าต้องการกำหนดวันที่หรือไม่ และรับอินพุต"""
     thailand_timezone = pytz.timezone('Asia/Bangkok')
     current_time_thailand = datetime.now(thailand_timezone)
