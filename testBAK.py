@@ -111,7 +111,7 @@ def prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_
     text_name_user = name_user_id
     text_name_me = name_me_id
     text_name_phone = f"{phone_me_id[:3]}-xxx-{phone_me_id[6:]}"
-    text_name_time = f"  {day}/{month}/{year} {time}"
+    text_name_time = f"  {day} {month} {year} {time}"
     text_name_order = "50018935012188"
     text_account_user = f"บัญชีผู้โอน: {account_user_id}"
     text_bank_user = f"ธนาคารผู้โอน: {bank_user_id}"
