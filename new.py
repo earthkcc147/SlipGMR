@@ -253,6 +253,28 @@ def select_logo(background_image):
     return logo, logo_position
 
 
+def get_thailand_time():
+    thailand_timezone = pytz.timezone('Asia/Bangkok')
+    current_time_thailand = datetime.now(thailand_timezone)
+    time = current_time_thailand.strftime("%H:%M:%S")
+
+    thai_months = {
+        "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.", "05": "พ.ค.", "06": "มิ.ย.",
+        "07": "ก.ค.", "08": "ส.ค.", "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
+    }
+    day = current_time_thailand.strftime("%d")
+    month = current_time_thailand.strftime("%m")
+    year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
+
+    thai_month = thai_months[month]
+    text_name_time = f"{day} {thai_month} {year} {time}"
+
+    return text_name_time
+
+# การเรียกใช้ฟังก์ชัน
+# text_name_time = get_thailand_time()
+# debug_print(f"📅 day: {text_name_time}")
+
 
 # ฟังก์ชันหลัก
 def main_menu():
@@ -317,19 +339,6 @@ def main_menu():
     print("===================================")
     print("✔️ ข้อมูลทั้งหมดถูกกรอกเรียบร้อยแล้ว ✔️")
     print("📑 ระบบกำลังสร้างใบโอนจ่าย...")
-
-    # เวลาในประเทศไทย
-    thailand_timezone = pytz.timezone('Asia/Bangkok')
-    current_time_thailand = datetime.now(thailand_timezone)
-    thai_months = {
-    "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.", "05": "พ.ค.", "06": "มิ.ย.",
-    "07": "ก.ค.", "08": "ส.ค.", "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
-    }
-    day = current_time_thailand.strftime("%d")
-    month = current_time_thailand.strftime("%m")
-    year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
-    time = current_time_thailand.strftime("%H:%M:%S")
-    thai_month = thai_months[month]
     
 
     # โหลดภาพพื้นหลังตามที่เลือก
@@ -491,7 +500,7 @@ def main_menu():
     phone = phone_me_id
     text_name_order = "50018935012188"
     text_money = money_id + ".00"
-    text_name_time = f"{day} {thai_month} {year} {time}"
+    text_name_time = get_thailand_time()
 
     # ข้อความที่ต้องการใส่ลงในภาพ
     debug_print("📝 ข้อความที่จะใส่ในภาพ:")
@@ -502,7 +511,7 @@ def main_menu():
     debug_print(f"🧑‍💻 name_me_id: {name_me_id}")
     debug_print(f"🏦 bank_me_id: {bank_me_id}")
     debug_print(f"💵 money_id: {money_id}")
-    debug_print(f"📅 day: {day}, month: {thai_month}, year: {year}, time: {time}")
+    debug_print(f"📅 day: {text_name_time}")
 
     # ตำแหน่งข้อความ
     if background_image == "Bank/K-bank 4.png":
@@ -644,7 +653,7 @@ def main_menu():
                     {"name": "💸 ผู้รับเงิน", "value": name_me_id, "inline": True},
                     {"name": "📜 เบอร์โทรศัพท์ผู้รับ", "value": text_name_phone, "inline": True},
                     {"name": "💵 จำนวนเงิน", "value": f"{money_id} บาท", "inline": True},
-                    {"name": "⏰ เวลาการโอน", "value": f"{day}/{month}/{year} {time}", "inline": True},
+                    {"name": "⏰ เวลาการโอน", "value": text_name_time, "inline": True},
                     {"name": "🏦 ธ.ผู้โอน", "value": text_bank_user, "inline": True},
                     {"name": "📜 เบอร์ผู้โอน", "value": text_phone_user, "inline": True},
                     {"name": "🏦 ธ.ผู้รับ", "value": text_bank_me, "inline": True}
