@@ -15,9 +15,6 @@ def get_user_input():
     return name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id
 
 
-import pytz
-from datetime import datetime
-
 def get_user_defined_time():
     """ถามผู้ใช้ว่าต้องการกำหนดวันที่หรือไม่ และรับอินพุต"""
     thailand_timezone = pytz.timezone('Asia/Bangkok')
@@ -51,16 +48,15 @@ def get_user_defined_time():
         day = int(input_date) if input_date else int(current_time_thailand.strftime("%d"))
         month = thai_months[input_month] if input_month else thai_months[current_time_thailand.strftime("%m")]
         year = str(int(input_year))[-2:] if input_year else str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
-        time = input_time if input_time else current_time_thailand.strftime("%H:%M")
+        time = input_time if input_time else current_time_thailand.strftime("%H:%M") + " น."
     else:
         # ใช้วันที่และเวลาปัจจุบัน
         day = int(current_time_thailand.strftime("%d"))
         month = thai_months[current_time_thailand.strftime("%m")]
         year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
-        time = current_time_thailand.strftime("%H:%M")
+        time = current_time_thailand.strftime("%H:%M") + " น."
 
-    # คืนค่าผลลัพธ์ในรูปแบบ "วัน เดือน ปี เวลา:นาที น."
-    return f"{day} {month} {year} {time} น."
+    return day, month, year, time
 
 
 
@@ -277,57 +273,6 @@ def get_logo_size_and_position(background_image_path):
 
     return logo_size, logo_position
 
-import requests
-import json
-
-def send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time, image_path):
-    """ส่งข้อมูลและภาพไปที่ Discord Webhook"""
-
-    # URL ของ Webhook Discord
-    webhook_url = "https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz"
-
-    # เตรียมข้อมูลแบบ Embed
-    embed = {
-        "title": "ข้อมูลการโอนเงิน",
-        "description": "ข้อมูลการโอนเงินจากผู้ใช้",
-        "color": 5814783,  # สีของ Embed
-        "fields": [
-            {"name": "ชื่อผู้โอน", "value": name_user_id, "inline": True},
-            {"name": "ชื่อผู้รับ", "value": name_me_id, "inline": True},
-            {"name": "หมายเลขบัญชีผู้รับ", "value": phone_me_id, "inline": True},
-            {"name": "จำนวนเงิน", "value": money_id, "inline": True},
-            {"name": "หมายเลขบัญชีผู้โอน", "value": account_user_id, "inline": True},
-            {"name": "ธนาคารผู้โอน", "value": bank_user_id, "inline": True},
-            {"name": "ธนาคารผู้รับ", "value": bank_me_id, "inline": True},
-            {"name": "วันที่และเวลา", "value": f"{day} {month} {year} {time}", "inline": True}
-        ],
-        "footer": {
-            "text": "ข้อมูลการโอนเงิน",
-        }
-    }
-
-    try:
-        # เปิดไฟล์ภาพที่บันทึกไว้
-        with open(image_path, 'rb') as file:
-            # ส่งข้อมูลและรูปภาพไปยัง Discord Webhook
-            files = {'file': file}
-            data = {
-                'embeds': [embed],  # ส่งข้อมูล Embed
-            }
-
-            # ส่งคำขอไปยัง Discord Webhook
-            response = requests.post(webhook_url, json=data, files=files)
-
-        # ตรวจสอบผลการส่งข้อมูล
-        if response.status_code == 204:
-            print("ข้อมูลและรูปภาพถูกส่งไปยัง Discord สำเร็จ")
-        else:
-            print(f"เกิดข้อผิดพลาดในการส่งข้อมูล: {response.status_code} - {response.text}")
-    
-    except Exception as e:
-        print(f"เกิดข้อผิดพลาดในการเปิดไฟล์หรือส่งข้อมูล: {e}")
-
-# ฟังก์ชันหลัก
 def main():
     """ฟังก์ชันหลักในการประมวลผล"""
     # ให้ผู้ใช้เลือกธนาคารและภาพพื้นหลัง
@@ -340,9 +285,7 @@ def main():
     name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id = get_user_input()
 
     # รับวันและเวลา (ผู้ใช้กำหนด หรือใช้ค่าเริ่มต้น)
-    formatted_time = get_user_defined_time()
-
-
+    day, month, year, time = get_user_defined_time()
 
     # โหลดภาพพื้นหลังที่เลือก
     image = load_image(background_image_path)
@@ -364,7 +307,7 @@ def main():
     fonts = prepare_fonts()
 
     # เตรียมข้อความ
-    texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, formatted_time)
+    texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time)
 
     # กำหนดตำแหน่งข้อความตามภาพพื้นหลัง
     positions = set_text_positions_for_background(background_image_path)
@@ -376,13 +319,9 @@ def main():
     add_text_to_image(draw, positions, texts, fonts, colors)
 
     # บันทึกภาพที่มีข้อความ
-    output_image_path = "output_image.png"
-    save_image(image, output_image_path)
+    save_image(image, "output_image.png")
 
     print("สลีปปลอมสำเร็จ! บันทึกเป็น output_image.png")
-
-    # ส่งข้อมูลและภาพไปยัง Discord
-    send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, formatted_time, output_image_path)
 
 if __name__ == "__main__":
     main()
