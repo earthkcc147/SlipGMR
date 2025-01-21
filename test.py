@@ -48,7 +48,8 @@ def get_user_defined_time():
         day = int(input_date) if input_date else int(current_time_thailand.strftime("%d"))
         month = thai_months[input_month] if input_month else thai_months[current_time_thailand.strftime("%m")]
         year = str(int(input_year))[-2:] if input_year else str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
-        time = input_time if input_time else current_time_thailand.strftime("%H:%M") + " น."
+        # time = input_time if input_time else current_time_thailand.strftime("%H:%M") + " น."
+        time = input_time.strip() if input_time.strip() else current_time_thailand.strftime("%H:%M") + " น."
     else:
         # ใช้วันที่และเวลาปัจจุบัน
         day = int(current_time_thailand.strftime("%d"))
