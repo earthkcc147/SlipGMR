@@ -222,7 +222,7 @@ def choose_logo():
 
 def get_logo_size_and_position(background_image_path):
     """กำหนดขนาดและตำแหน่งของโลโก้ตามภาพพื้นหลัง"""
-    if background_image_path == "Bank/K-bank 1.png":
+    if background_image_path == "Bank/K-bank 4.png":
         logo_size = (80, 80)  # ขนาดโลโก้สำหรับ K-Bank 1
         logo_position = (30, 30)  # ตำแหน่งโลโก้สำหรับ K-Bank 1
     elif background_image_path == "Bank/SCB 1.png":
