@@ -283,7 +283,7 @@ def send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id,
     # เตรียมข้อมูล Embed ที่จะส่งไปยัง Discord
     embed = {
         "title": "ข้อมูลการโอนเงิน",
-        "description": f"จาก: {name_user_id}\nถึง: {name_me_id}\nหมายเลขบัญชีผู้รับ: {phone_me_id}\nจำนวนเงิน: {money_id}\nหมายเลขบัญชีผู้โอน: {account_user_id}\nธนาคารผู้โอน: {bank_user_id}\nธนาคารผู้รับ: {bank_me_id}\nวันที่: {day} {month} {year}\nเวลา: {time}",
+        "description": f"จาก: {name_user_id}\nถึง: {name_me_id}\nหมายเลขบัญชีผู้รับ: {phone_me_id}\nจำนวนเงิน: {money_id}\nหมายเลขบัญชีผู้โอน: {account_user_id}\nธนาคารผู้โอน: {bank_user_id}\nธนาคารผู้รับ: {bank_me_id}\nวันที่: {date}\nเวลา: {time}",
         "color": 65280  # สีเขียว
     }
 
