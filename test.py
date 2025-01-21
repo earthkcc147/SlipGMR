@@ -55,8 +55,6 @@ def get_user_defined_time():
     return day, month, year, time
 
 
-# ทดสอบฟังก์ชัน
-print(get_current_time())
 
 def load_image(image_path):
     """โหลดภาพพื้นหลัง"""
