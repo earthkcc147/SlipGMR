@@ -15,8 +15,11 @@ def get_user_input():
     return name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id
 
 
+import pytz
+from datetime import datetime
+
 def get_current_time():
-    """คืนค่าเวลาในประเทศไทยในรูปแบบ 1 ม.ค. 68 12:59 น."""
+    """คืนค่าเวลาในประเทศไทยเป็น day, month, year, time"""
     thailand_timezone = pytz.timezone('Asia/Bangkok')
     current_time_thailand = datetime.now(thailand_timezone)
 
@@ -27,12 +30,12 @@ def get_current_time():
         "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
     }
 
-    day = current_time_thailand.strftime("%d")  # วัน
+    day = int(current_time_thailand.strftime("%d"))  # วัน (เลขเต็ม)
     month = thai_months[current_time_thailand.strftime("%m")]  # เดือนแบบย่อ
     year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]  # ปี พ.ศ. แบบ 2 หลัก
     time = current_time_thailand.strftime("%H:%M") + " น."  # เวลา
 
-    return f"{int(day)} {month} {year} {time}"
+    return day, month, year, time
 
 
 # ทดสอบฟังก์ชัน
