@@ -17,6 +17,52 @@ def get_user_input():
 
 def get_user_defined_time():
     """ถามผู้ใช้ว่าต้องการกำหนดวันที่หรือไม่ และรับอินพุต"""
+    # แปลงเดือนเป็นชื่อภาษาไทยแบบย่อ
+    thai_months = {
+        "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.",
+        "05": "พ.ค.", "06": "มิ.ย.", "07": "ก.ค.", "08": "ส.ค.",
+        "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
+    }
+
+    print("กรุณากรอกวันที่และเวลา (ต้องกรอกทุกช่อง):")
+
+    # รับข้อมูลวันที่และเวลา
+    input_date = input("วันที่ (รูปแบบ DD): ")
+    input_month = input("เดือน (เลือกจากตัวเลข 01-12): ")
+    input_year = input("ปี (พ.ศ.): ")
+    input_time = input("เวลา (รูปแบบ HH:MM): ")
+
+    # ตรวจสอบข้อมูลที่ผู้ใช้กรอก
+    if not input_date or not input_month or not input_year or not input_time:
+        print("กรุณากรอกข้อมูลให้ครบทุกช่อง!")
+        return None  # ยกเลิกการทำงานหากข้อมูลไม่ครบ
+
+    # ตรวจสอบว่าเดือนที่กรอกอยู่ในช่วงที่ถูกต้อง
+    if input_month not in thai_months:
+        print("เดือนที่กรอกไม่ถูกต้อง!")
+        return None  # ยกเลิกการทำงานหากเดือนผิดพลาด
+
+    # แปลงข้อมูล
+    day = int(input_date)
+    month = thai_months[input_month]
+    year = str(int(input_year))[-2:]  # แสดงเฉพาะสองหลักท้ายของ พ.ศ.
+    time = input_time + " น."
+
+    # รวมวันที่และเวลาเป็นข้อความเดียว
+    defined_time = f"{day} {month} {year} {time}".strip()
+
+    # ส่งคืน defined_time
+    return defined_time
+
+
+# ตัวอย่างการเรียกใช้งาน
+result = get_user_defined_time()
+if result:
+    print(f"วันที่และเวลาที่กำหนด: {result}")
+
+
+def get_user_defined_time2():
+    """ถามผู้ใช้ว่าต้องการกำหนดวันที่หรือไม่ และรับอินพุต"""
     thailand_timezone = pytz.timezone('Asia/Bangkok')
     current_time_thailand = datetime.now(thailand_timezone)
 
