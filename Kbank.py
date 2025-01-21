@@ -270,6 +270,18 @@ def get_thailand_time():
 # text_name_time = get_thailand_time()
 # debug_print(f"📅 day: {text_name_time}")
 
+
+
+def get_simple_thailand_time():
+    thailand_timezone = pytz.timezone('Asia/Bangkok')
+    current_time_thailand = datetime.now(thailand_timezone)
+    simple_time = current_time_thailand.strftime("%d/%m/%Y %H:%M:%S")
+    return simple_time
+
+# การเรียกใช้ฟังก์ชัน
+# simple_time = get_simple_thailand_time()
+# print(f"⏰ เวลาปัจจุบัน: {simple_time}")
+
 # เทนูหลัก
 def main_menu():
     # if not login():
