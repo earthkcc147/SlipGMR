@@ -309,7 +309,6 @@ def send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_use
             files = {'file': file}
             data = {
                 'embeds': [embed],  # ส่งข้อมูล Embed
-                'file': image_path  # ส่งไฟล์ภาพ
             }
 
             # ส่งคำขอไปยัง Discord Webhook
