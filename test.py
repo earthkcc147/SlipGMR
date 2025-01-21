@@ -56,8 +56,11 @@ def get_user_defined_time():
         year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
         time = current_time_thailand.strftime("%H:%M") + " น."
 
-    # ส่งคืนวันที่ในรูปแบบที่ต้องการ (วัน เดือน ปี)
-    return f"{day} {month} {year}", time
+    # รวมวันที่และเวลาเป็นข้อความเดียว
+    defined_time = f"{day} {month} {year}  {time}"
+
+    # ส่งคืน defined_time
+    return defined_time
 
 
 
