@@ -342,8 +342,7 @@ def main():
     # รับวันและเวลา (ผู้ใช้กำหนด หรือใช้ค่าเริ่มต้น)
     formatted_time = get_user_defined_time()
 
-# แสดงผลลัพธ์
-print(formatted_time)
+
 
     # โหลดภาพพื้นหลังที่เลือก
     image = load_image(background_image_path)
