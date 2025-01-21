@@ -78,19 +78,49 @@ def prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_
 
     return text_money, text_name_user, text_name_me, text_name_phone, text_name_time, text_name_order, text_account_user, text_bank_user, text_bank_me
 
-def set_text_positions():
-    """กำหนดตำแหน่งของข้อความในภาพ"""
-    return {
-        'money': (560, 270),
-        'user': (302, 485),
-        'me': (302, 648),
-        'phone': (302, 720),
-        'time': (781, 885),
-        'order': (827, 953),
-        'account': (302, 805),
-        'bank': (302, 860),
-        'bank_me': (302, 933)
-    }
+def set_text_positions_for_background(background_file):
+    """กำหนดตำแหน่งของข้อความในภาพพื้นหลังแต่ละแบบ"""
+    positions = {}
+
+    if background_file == "Bank/K-bank 1.png":
+        positions = {
+            'money': (560, 270),
+            'user': (302, 485),
+            'me': (302, 648),
+            'phone': (302, 720),
+            'time': (781, 885),
+            'order': (827, 953),
+            'account': (302, 805),
+            'bank': (302, 860),
+            'bank_me': (302, 933)
+        }
+    elif background_file == "Bank/SCB 1.png":
+        positions = {
+            'money': (480, 250),
+            'user': (250, 460),
+            'me': (250, 620),
+            'phone': (250, 690),
+            'time': (700, 850),
+            'order': (750, 910),
+            'account': (250, 770),
+            'bank': (250, 820),
+            'bank_me': (250, 880)
+        }
+    elif background_file == "Bank/Siam 1.png":
+        positions = {
+            'money': (500, 260),
+            'user': (280, 470),
+            'me': (280, 630),
+            'phone': (280, 700),
+            'time': (760, 870),
+            'order': (800, 930),
+            'account': (280, 780),
+            'bank': (280, 830),
+            'bank_me': (280, 890)
+        }
+    # เพิ่มกรณีที่ผู้ใช้เลือกภาพพื้นหลังอื่นๆ ตามที่ต้องการ
+
+    return positions
 
 def set_text_colors():
     """กำหนดสีของข้อความ"""
@@ -210,7 +240,7 @@ def main():
 
     # โหลดโลโก้ที่เลือก
     logo = load_logo(logo_path)
-    
+
     # ปรับขนาดโลโก้ให้เหมาะสม
     logo_size = (100, 100)  # ปรับขนาดตามที่ต้องการ
     logo = logo.resize(logo_size)
@@ -227,15 +257,17 @@ def main():
     # เตรียมข้อความ
     texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time)
 
-    # กำหนดตำแหน่งและสีของข้อความ
-    positions = set_text_positions()
+    # กำหนดตำแหน่งข้อความตามภาพพื้นหลัง
+    positions = set_text_positions_for_background(background_image_path)
+
+    # กำหนดสีของข้อความ
     colors = set_text_colors()
 
     # ใส่ข้อความลงในภาพ
     add_text_to_image(draw, positions, texts, fonts, colors)
 
-    # บันทึกภาพ
-    save_image(image, "truemoney_with_text_and_banks_and_logo.png")
+    # บันทึกภาพที่มีข้อความ
+    save_image(image, "output_image.png")
 
     print("สลีปปลอมสำเร็จ! บันทึกเป็น truemoney_with_text_and_banks_and_logo.png")
 
