@@ -273,6 +273,53 @@ def get_logo_size_and_position(background_image_path):
 
     return logo_size, logo_position
 
+import requests
+import json
+
+def send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time, image_path):
+    """ส่งข้อมูลและภาพไปที่ Discord Webhook"""
+    
+    # URL ของ Webhook Discord
+    webhook_url = "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL"
+
+    # เตรียมข้อมูลแบบ Embed
+    embed = {
+        "title": "ข้อมูลการโอนเงิน",
+        "description": "ข้อมูลการโอนเงินจากผู้ใช้",
+        "color": 5814783,  # สีของ Embed
+        "fields": [
+            {"name": "ชื่อผู้โอน", "value": name_user_id, "inline": True},
+            {"name": "ชื่อผู้รับ", "value": name_me_id, "inline": True},
+            {"name": "หมายเลขบัญชีผู้รับ", "value": phone_me_id, "inline": True},
+            {"name": "จำนวนเงิน", "value": money_id, "inline": True},
+            {"name": "หมายเลขบัญชีผู้โอน", "value": account_user_id, "inline": True},
+            {"name": "ธนาคารผู้โอน", "value": bank_user_id, "inline": True},
+            {"name": "ธนาคารผู้รับ", "value": bank_me_id, "inline": True},
+            {"name": "วันที่และเวลา", "value": f"{day} {month} {year} {time}", "inline": True}
+        ],
+        "footer": {
+            "text": "ข้อมูลการโอนเงิน",
+        }
+    }
+
+    # เปิดไฟล์ภาพที่บันทึกไว้
+    with open(image_path, 'rb') as file:
+        # ส่งข้อมูลและรูปภาพไปยัง Discord Webhook
+        files = {
+            'file': file
+        }
+        data = {
+            'embeds': [embed]
+        }
+        response = requests.post(webhook_url, data=data, files=files)
+
+    # ตรวจสอบผลการส่งข้อมูล
+    if response.status_code == 204:
+        print("ข้อมูลและรูปภาพถูกส่งไปยัง Discord สำเร็จ")
+    else:
+        print(f"เกิดข้อผิดพลาดในการส่งข้อมูล: {response.status_code}")
+
+# ฟังก์ชันหลัก
 def main():
     """ฟังก์ชันหลักในการประมวลผล"""
     # ให้ผู้ใช้เลือกธนาคารและภาพพื้นหลัง
@@ -319,9 +366,13 @@ def main():
     add_text_to_image(draw, positions, texts, fonts, colors)
 
     # บันทึกภาพที่มีข้อความ
-    save_image(image, "output_image.png")
+    output_image_path = "output_image.png"
+    save_image(image, output_image_path)
 
     print("สลีปปลอมสำเร็จ! บันทึกเป็น output_image.png")
+
+    # ส่งข้อมูลและภาพไปยัง Discord
+    send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time, output_image_path)
 
 if __name__ == "__main__":
     main()
