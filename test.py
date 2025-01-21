@@ -171,7 +171,7 @@ def choose_bank():
 def choose_logo():
     """ให้ผู้ใช้เลือกโลโก้ที่ต้องการ"""
     logos = {
-        1: {"name": "Logo 1", "file": "Logos/logo1.png"},
+        1: {"name": "Logo 1", "file": "Bank/K-bank.png"},
         2: {"name": "Logo 2", "file": "Logos/logo2.png"},
         3: {"name": "Logo 3", "file": "Logos/logo3.png"},
     }
