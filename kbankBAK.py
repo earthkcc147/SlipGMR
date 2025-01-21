@@ -115,16 +115,43 @@ def save_image(image, output_path):
     """บันทึกภาพที่มีข้อความ"""
     image.save(output_path)
 
+
+def choose_background_image():
+    """ให้ผู้ใช้เลือกภาพพื้นหลังจากตัวเลือก โดยใช้ชื่อแทนเส้นทาง"""
+    background_images = {
+        1: {"name": "K-Bank 1", "file": "Bank/K-bank 1.png"},
+        2: {"name": "K-Bank 2", "file": "Bank/K-bank 2.png"},
+        3: {"name": "K-Bank 3", "file": "Bank/K-bank 3.png"},
+        4: {"name": "K-Bank 4", "file": "Bank/K-bank 4.png"},
+    }
+    
+    print("เลือกภาพพื้นหลัง (กรุณาเลือกหมายเลข):")
+    for key, value in background_images.items():
+        print(f"{key}: {value['name']}")
+    
+    while True:
+        try:
+            choice = int(input("เลือกหมายเลขภาพพื้นหลังที่ต้องการ: "))
+            if choice in background_images:
+                return background_images[choice]["file"]
+            else:
+                print("กรุณาเลือกหมายเลขที่ถูกต้อง!")
+        except ValueError:
+            print("กรุณากรอกหมายเลขที่ถูกต้อง!")
+
 def main():
     """ฟังก์ชันหลักในการประมวลผล"""
+    # ให้ผู้ใช้เลือกภาพพื้นหลัง
+    background_image_path = choose_background_image()
+
     # รับข้อมูลจากผู้ใช้
     name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id = get_user_input()
 
     # รับเวลา
     day, month, year, time = get_current_time()
 
-    # โหลดภาพพื้นหลัง
-    image = load_image("Bank/K-bank 4.png")
+    # โหลดภาพพื้นหลังที่เลือก
+    image = load_image(background_image_path)
     draw = ImageDraw.Draw(image)
 
     # เตรียมฟอนต์
@@ -147,5 +174,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
