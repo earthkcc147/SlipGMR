@@ -278,10 +278,9 @@ import json
 
 def send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time, image_path):
     """ส่งข้อมูลและภาพไปที่ Discord Webhook"""
-    
+
     # URL ของ Webhook Discord
     webhook_url = "https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz"
-    
 
     # เตรียมข้อมูลแบบ Embed
     embed = {
@@ -303,22 +302,24 @@ def send_to_discord(name_user_id, name_me_id, phone_me_id, money_id, account_use
         }
     }
 
-    # เปิดไฟล์ภาพที่บันทึกไว้
-    with open(image_path, 'rb') as file:
-        # ส่งข้อมูลและรูปภาพไปยัง Discord Webhook
-        files = {
-            'file': file
-        }
-        data = {
-            'embeds': [embed]
-        }
-        response = requests.post(webhook_url, data=data, files=files)
+    try:
+        # เปิดไฟล์ภาพที่บันทึกไว้
+        with open(image_path, 'rb') as file:
+            # ส่งข้อมูลและรูปภาพไปยัง Discord Webhook
+            files = {'file': file}
+            data = {'embeds': [embed]}
+            
+            # ส่งคำขอไปยัง Discord Webhook
+            response = requests.post(webhook_url, json=data, files=files)
 
-    # ตรวจสอบผลการส่งข้อมูล
-    if response.status_code == 204:
-        print("ข้อมูลและรูปภาพถูกส่งไปยัง Discord สำเร็จ")
-    else:
-        print(f"เกิดข้อผิดพลาดในการส่งข้อมูล: {response.status_code}")
+        # ตรวจสอบผลการส่งข้อมูล
+        if response.status_code == 204:
+            print("ข้อมูลและรูปภาพถูกส่งไปยัง Discord สำเร็จ")
+        else:
+            print(f"เกิดข้อผิดพลาดในการส่งข้อมูล: {response.status_code} - {response.text}")
+    
+    except Exception as e:
+        print(f"เกิดข้อผิดพลาดในการเปิดไฟล์หรือส่งข้อมูล: {e}")
 
 # ฟังก์ชันหลัก
 def main():
