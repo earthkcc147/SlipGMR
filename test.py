@@ -42,6 +42,7 @@ def prepare_fonts():
     font_size_account = 40
     font_size_bank = 40
     font_size_bank_me = 40
+    font_size_order = 40  # เพิ่มฟอนต์สำหรับข้อความ 'order'
 
     font_path_money = "Font/PSL158.ttf"
     font_path_user = "Font/PSL159.ttf"
@@ -49,6 +50,7 @@ def prepare_fonts():
     font_path_account = "Font/PSL160.ttf"
     font_path_bank = "Font/PSL160.ttf"
     font_path_bank_me = "Font/PSL160.ttf"
+    font_path_order = "Font/PSL160.ttf"  # เพิ่มเส้นทางฟอนต์สำหรับข้อความ 'order'
 
     font_money = ImageFont.truetype(font_path_money, font_size_money)
     font_user = ImageFont.truetype(font_path_user, font_size_user)
@@ -58,8 +60,9 @@ def prepare_fonts():
     font_account = ImageFont.truetype(font_path_account, font_size_account)
     font_bank = ImageFont.truetype(font_path_bank, font_size_bank)
     font_bank_me = ImageFont.truetype(font_path_bank_me, font_size_bank_me)
+    font_order = ImageFont.truetype(font_path_order, font_size_order)  # สร้างฟอนต์สำหรับข้อความ 'order'
 
-    return font_money, font_user, font_me, font_phone, font_time, font_account, font_bank, font_bank_me
+    return font_money, font_user, font_me, font_phone, font_time, font_account, font_bank, font_bank_me, font_order
 
 def prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time):
     """เตรียมข้อความที่จะใส่ลงในภาพ"""
