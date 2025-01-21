@@ -59,8 +59,13 @@ def get_user_defined_time():
         year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
         time = current_time_thailand.strftime("%H:%M") + " น."
 
-    # คืนค่าที่ได้ในรูปแบบที่มีการเว้นวรรค
-    return f"{day} {month} {year} เวลา {time}"
+    return day, month, year, time  # คืนค่าแยกเป็นตัวแปร
+
+# รับวันและเวลา (ผู้ใช้กำหนด หรือใช้ค่าเริ่มต้น)
+# day, month, year, time = get_user_defined_time()
+
+# แสดงผลลัพธ์
+# print(f"วันที่: {day} {month} {year} เวลา: {time}")
 
 # ทดสอบฟังก์ชัน
 # result = get_user_defined_time()
