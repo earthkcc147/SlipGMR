@@ -229,3 +229,7 @@ def main():
     save_image(image, "truemoney_with_text_and_banks_and_logo.png")
 
     print("สลีปปลอมสำเร็จ! บันทึกเป็น truemoney_with_text_and_banks_and_logo.png")
+
+
+if __name__ == "__main__":
+    main()
