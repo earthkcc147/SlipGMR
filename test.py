@@ -75,56 +75,19 @@ def prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_
 
     return text_money, text_name_user, text_name_me, text_name_phone, text_name_time, text_name_order, text_account_user, text_bank_user, text_bank_me
 
-def set_text_positions(background_choice):
-    """กำหนดตำแหน่งของข้อความในภาพตามแต่ละภาพพื้นหลัง"""
-    # กำหนดตำแหน่งของข้อความในแต่ละภาพพื้นหลัง
-    positions = {
-        1: {  # K-Bank 1
-            'money': (560, 270),
-            'user': (302, 485),
-            'me': (302, 648),
-            'phone': (302, 720),
-            'time': (781, 885),
-            'order': (827, 953),
-            'account': (302, 805),
-            'bank': (302, 860),
-            'bank_me': (302, 933)
-        },
-        2: {  # K-Bank 2
-            'money': (560, 270),
-            'user': (302, 485),
-            'me': (302, 648),
-            'phone': (302, 720),
-            'time': (781, 885),
-            'order': (827, 953),
-            'account': (302, 805),
-            'bank': (302, 860),
-            'bank_me': (302, 933)
-        },
-        3: {  # K-Bank 3
-            'money': (560, 270),
-            'user': (302, 485),
-            'me': (302, 648),
-            'phone': (302, 720),
-            'time': (781, 885),
-            'order': (827, 953),
-            'account': (302, 805),
-            'bank': (302, 860),
-            'bank_me': (302, 933)
-        },
-        4: {  # K-Bank 4
-            'money': (560, 270),
-            'user': (302, 485),
-            'me': (302, 648),
-            'phone': (302, 720),
-            'time': (781, 885),
-            'order': (827, 953),
-            'account': (302, 805),
-            'bank': (302, 860),
-            'bank_me': (302, 933)
-        },
+def set_text_positions():
+    """กำหนดตำแหน่งของข้อความในภาพ"""
+    return {
+        'money': (560, 270),
+        'user': (302, 485),
+        'me': (302, 648),
+        'phone': (302, 720),
+        'time': (781, 885),
+        'order': (827, 953),
+        'account': (302, 805),
+        'bank': (302, 860),
+        'bank_me': (302, 933)
     }
-    return positions.get(background_choice, positions[1])  # Default to K-Bank 1
 
 def set_text_colors():
     """กำหนดสีของข้อความ"""
@@ -182,7 +145,7 @@ def choose_background_image():
 def choose_logo():
     """ให้ผู้ใช้เลือกโลโก้ที่ต้องการ"""
     logos = {
-        1: {"name": "Logo 1", "file": "Logos/K-bank.png"},
+        1: {"name": "Logo 1", "file": "Logos/logo1.png"},
         2: {"name": "Logo 2", "file": "Logos/logo2.png"},
         3: {"name": "Logo 3", "file": "Logos/logo3.png"},
     }
@@ -238,8 +201,8 @@ def main():
     # เตรียมข้อความ
     texts = prepare_texts(name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id, day, month, year, time)
 
-    # กำหนดตำแหน่งและสีของข้อความตามภาพพื้นหลังที่เลือก
-    positions = set_text_positions(background_image_path)
+    # กำหนดตำแหน่งและสีของข้อความ
+    positions = set_text_positions()
     colors = set_text_colors()
 
     # ใส่ข้อความลงในภาพ
@@ -252,3 +215,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
