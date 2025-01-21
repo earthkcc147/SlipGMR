@@ -54,12 +54,10 @@ def get_user_defined_time():
         day = int(current_time_thailand.strftime("%d"))
         month = thai_months[current_time_thailand.strftime("%m")]
         year = str(int(current_time_thailand.strftime("%Y")) + 543)[-2:]
-        time = current_time_thailand.strftime("%H:%M") + " น."
+        time = current_time_thailand.strftime("%H:%M") + " น."  # เพิ่มส่วนนี้หากไม่ต้องการให้เป็นค่าว่าง
 
-    # รวมวันที่และเวลาเป็นข้อความเดียวโดยไม่มีเครื่องหมาย "/"
-    defined_time = f"{day} {month} {year} {time}"
-    # แก้ไขการจัดรูปแบบในส่วนที่รวมวันที่และเวลา
-    # defined_time = f"{day} {month} {year} {time}".strip()
+    # รวมวันที่และเวลาเป็นข้อความเดียว
+    defined_time = f"{day} {month} {year} {time}".strip()
 
     # ส่งคืน defined_time
     return defined_time
