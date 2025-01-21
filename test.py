@@ -15,8 +15,11 @@ def get_user_input():
     return name_user_id, name_me_id, phone_me_id, money_id, account_user_id, bank_user_id, bank_me_id
 
 
-def get_user_defined_time2():
+def get_user_defined_time2(show_full_year=False):
     """ถามผู้ใช้ว่าต้องการกำหนดวันที่หรือไม่ และรับอินพุต"""
+    thailand_timezone = pytz.timezone('Asia/Bangkok')
+    current_time_thailand = datetime.now(thailand_timezone)
+
     # แปลงเดือนเป็นชื่อภาษาไทยแบบย่อ
     thai_months = {
         "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.",
@@ -24,29 +27,34 @@ def get_user_defined_time2():
         "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
     }
 
-    print("กรุณากรอกวันที่และเวลา (ต้องกรอกทุกช่อง):")
+    # ถามว่าต้องการกำหนดวันที่เองหรือไม่
+    use_custom_time = input("ต้องการดัดแปลงวันที่และเวลาหรือไม่? (y/n หรือ Enter = ไม่ดัดแปลง): ").lower()
 
-    # รับข้อมูลวันที่และเวลา
-    input_date = input("วันที่ (รูปแบบ DD): ")
-    input_month = input("เดือน (เลือกจากตัวเลข 01-12): ")
-    input_year = input("ปี (พ.ศ.): ")
-    input_time = input("เวลา (รูปแบบ HH:MM): ")
+    if use_custom_time == "y":
+        print("กรุณากรอกวันที่และเวลา:")
 
-    # ตรวจสอบข้อมูลที่ผู้ใช้กรอก
-    if not input_date or not input_month or not input_year or not input_time:
-        print("กรุณากรอกข้อมูลให้ครบทุกช่อง!")
-        return None  # ยกเลิกการทำงานหากข้อมูลไม่ครบ
+        # ให้ผู้ใช้เลือกเดือนจากตัวเลข
+        input_date = input("วันที่ (รูปแบบ DD): ")
+        input_month = input("เดือน (เลือกจากตัวเลข 01-12): ")
+        input_year = input("ปี (พ.ศ.): ")
+        input_time = input("เวลา (รูปแบบ HH:MM): ")
 
-    # ตรวจสอบว่าเดือนที่กรอกอยู่ในช่วงที่ถูกต้อง
-    if input_month not in thai_months:
-        print("เดือนที่กรอกไม่ถูกต้อง!")
-        return None  # ยกเลิกการทำงานหากเดือนผิดพลาด
+        # ตรวจสอบว่าเดือนที่กรอกอยู่ในช่วงที่ถูกต้อง
+        if input_month not in thai_months:
+            print("เดือนที่กรอกไม่ถูกต้อง! ใช้เดือนปัจจุบันแทน")
+            input_month = current_time_thailand.strftime("%m")
 
-    # แปลงข้อมูล
-    day = int(input_date)
-    month = thai_months[input_month]
-    year = str(int(input_year))[-2:]  # แสดงเฉพาะสองหลักท้ายของ พ.ศ.
-    time = input_time + " น."
+        # ใช้ค่าที่ผู้ใช้ป้อน
+        day = int(input_date) if input_date else int(current_time_thailand.strftime("%d"))
+        month = thai_months[input_month] if input_month else thai_months[current_time_thailand.strftime("%m")]
+        year = str(int(input_year)) if input_year else str(int(current_time_thailand.strftime("%Y")) + 543)
+        time = input_time.strip() if input_time.strip() else current_time_thailand.strftime("%H:%M") + " น."
+    else:
+        # ใช้วันที่และเวลาปัจจุบัน
+        day = int(current_time_thailand.strftime("%d"))
+        month = thai_months[current_time_thailand.strftime("%m")]
+        year = str(int(current_time_thailand.strftime("%Y")) + 543) if not show_full_year else str(current_time_thailand.strftime("%Y") + 543)
+        time = current_time_thailand.strftime("%H:%M") + " น."  # เพิ่มส่วนนี้หากไม่ต้องการให้เป็นค่าว่าง
 
     # รวมวันที่และเวลาเป็นข้อความเดียว
     defined_time = f"{day} {month} {year} {time}".strip()
