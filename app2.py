@@ -124,8 +124,6 @@ def debug_print(message):
 
 # ฟังก์ชันสำหรับเลือกธนาคาร
 def select_bank():
-    global global_status  # ใช้ global_status
-
     print("เลือกธนาคารผู้โอน:")
     print("1. K-bank 🏦 (ธนาคารกสิกรไทย)")
     print("2. SCB 🏧 (ธนาคารไทยพาณิชย์)")
@@ -138,41 +136,33 @@ def select_bank():
     print("00. ออกโปรแกรม")  # เพิ่มตัวเลือกออกจากโปรแกรม
     choice = input("กรุณาเลือกหมายเลข (1-8 หรือ 00 เพื่อออกโปรแกรม): ")
 
-    # ตรวจสอบการเลือกธนาคาร
     if choice == "1":
-        bank_name = "K-bank"
+        return "K-bank"
     elif choice == "2":
-        bank_name = "SCB"
+        return "SCB"
     elif choice == "3":
-        bank_name = "Bangkok"
+        return "Bangkok"
     elif choice == "4":
-        bank_name = "TTB"
+        return "TTB"
     elif choice == "5":
-        bank_name = "กรุงศรี"
+        return "กรุงศรี"
     elif choice == "6":
-        bank_name = "กรุงไทย"
+        return "กรุงไทย"
     elif choice == "7":
-        bank_name = "TrueWallet"
+        return "TrueWallet"  # คืนค่าถ้าเลือก TrueWallet
     elif choice == "8":
-        bank_name = "Other Bank"
+        return "Other Bank"  # คืนค่าถ้าเลือกธนาคารอื่น
     elif choice == "00":
-        reset_global_status()  # ล้างสถานะ
+        reset_global_status()
         print("โปรแกรมถูกปิดแล้ว.")
         exit()  # ออกจากโปรแกรม
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_bank()  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
 
-    # เก็บสถานะธนาคารที่เลือก
-    global_status["bank_name"] = bank_name
-    print(f"📊 คุณเลือกธนาคาร: {bank_name}")
-    return bank_name
 
-
-# ฟังก์ชันสำหรับเลือกภาพพื้นหลังตามธนาคาร
+# ฟังก์ชั่นสำหรับเลือกภาพพื้นหลังตามธนาคาร
 def select_background(bank_name):
-    global global_status  # ใช้ global_status เพื่อเก็บสถานะ
-
     print(f"เลือกภาพพื้นหลังสำหรับธนาคาร {bank_name}:")
 
     if bank_name == "K-bank":
@@ -207,46 +197,40 @@ def select_background(bank_name):
     choice = input("กรุณาเลือกหมายเลข (0-5): ")
 
     if choice == "00":
-        # ล้างสถานะที่มีอยู่ยกเว้น login_status
         clear_status()
         main_menu()  # เพิ่มตัวเลือกย้อนกลับ
     elif choice == "1" and bank_name == "K-bank":
-        global_status["background_image"] = "Bank/K-bank 4.png"
+        return "Bank/K-bank 4.png"
     elif choice == "2" and bank_name == "K-bank":
-        global_status["background_image"] = "Bank/K-bank 3.png"
+        return "Bank/K-bank 3.png"
     elif choice == "3" and bank_name == "K-bank":
-        global_status["background_image"] = "Bank/K-bank 2.png"
+        return "Bank/K-bank 2.png"
     elif choice == "4" and bank_name == "K-bank":
-        global_status["background_image"] = "Bank/K-bank 1.png"
+        return "Bank/K-bank 1.png"
     elif choice == "5" and bank_name == "K-bank":
-        global_status["background_image"] = "Bank/K-bank 0.png"
+        return "Bank/K-bank 0.png"
 
     elif choice == "1" and bank_name == "SCB":
-        global_status["background_image"] = "Bank/SCB copy.png"
+        return "Bank/SCB copy.png"
 
     elif choice == "1" and bank_name == "Bangkok":
-        global_status["background_image"] = "Bank/Bangkok.png"
+        return "Bank/Bangkok.png"
 
     elif choice == "1" and bank_name == "TTB":
-        global_status["background_image"] = "Bank/TTB.jpg"
+        return "Bank/TTB.jpg"
 
     elif choice == "1" and bank_name == "กรุงศรี":
-        global_status["background_image"] = "Bank/กรุงศรี.png"
+        return "Bank/กรุงศรี.png"
 
     elif choice == "1" and bank_name == "กรุงไทย":
-        global_status["background_image"] = "Bank/กรุงไทย.png"
+        return "Bank/กรุงไทย.png"
 
     elif choice == "1" and bank_name == "TrueWallet":
-        global_status["background_image"] = "Bank/truemoney.png"
+        return "Bank/truemoney.png"
 
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_background(bank_name)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
-
-    print(f"📸 ภาพพื้นหลังที่เลือก: {global_status['background_image']}")
-    return global_status["background_image"]
-
-
 
 
 
@@ -267,11 +251,8 @@ def select_logo(background_image):
     choice = input("กรุณาเลือกหมายเลข (1-10 หรือ 00 เพื่อเลือกพื้นหลังใหม่): ")
 
     if choice == "00":
-        # ล้างสถานะที่มีอยู่ยกเว้น login_status
         clear_status()
-        print("🔄 ระบบเริ่มใหม่! กรุณาเลือกอีกครั้ง.")
-        main_menu()  # เรียกเมนูหลักใหม่
-        return  # หยุดการทำงานในฟังก์ชันนี้
+        main_menu()  # เพิ่มตัวเลือกย้อนกลับ
 
     if choice == "1":
         logo_image = "Bank/K-bank.png"
@@ -330,10 +311,6 @@ def select_logo(background_image):
     debug_print(f"โลโก้ที่เลือก: {logo_image} 🖼️")
     debug_print(f"ขนาดโลโก้ที่เลือก: {logo_size} 📏")
     debug_print(f"ตำแหน่งโลโก้ที่เลือก: {logo_position} 📍")
-
-    # เก็บสถานะโลโก้ใน global_status
-    global_status["logo"] = logo_image
-    global_status["logo_position"] = logo_position
 
     return logo, logo_position
 
