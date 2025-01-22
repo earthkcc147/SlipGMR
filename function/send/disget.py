@@ -11,7 +11,7 @@ device_info = get_full_info()
 load_dotenv()
 
 # ดึงค่า Webhook URL จาก .env
-DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK")
+DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
 
 # ฟังก์ชันเพื่อส่งข้อความไปยัง Discord
 def smdc(message):
