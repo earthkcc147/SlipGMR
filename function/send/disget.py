@@ -14,14 +14,22 @@ load_dotenv()
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK")
 
 
-# ฟังก์ชันเพื่อส่งข้อความไปยัง Discord
+# ฟังก์ชันเพื่อส่งข้อความเป็น Embed ไปยัง Discord
 def smdc(message):
-    data = {
-        "content": message  # ข้อความที่จะส่ง
+    embed_data = {
+        "embeds": [{
+            "title": "🎉 ผู้ใช้เข้าสู่ระบบสำเร็จ",
+            "description": message,
+            "color": 3066993,  # สี Embed (สีเขียว)
+            "footer": {
+                "text": "ระบบตรวจสอบ",
+            }
+        }]
     }
+    
     try:
-        response = requests.post(DISCORD_WEBHOOK_URL, json=data)
-        if response.status_code == 204:  # 204 แปลว่าส่งสำเร็จ
+        response = requests.post(DISCORD_WEBHOOK_URL, json=embed_data)
+        if response.status_code == 204:
             print("ส่งข้อความไปที่ Discord สำเร็จ ✅")
         else:
             print(f"เกิดข้อผิดพลาด: {response.status_code} ❌")
@@ -38,7 +46,6 @@ def get_current_time():
 def send(username):
     current_time = get_current_time()  # รับเวลาปัจจุบัน
     message = (
-        f"🎉 ผู้ใช้ {username} เข้าสู่ระบบสำเร็จ ✅\n"
         f"🕒 เวลา: {current_time}\n"
         f"🖥️ อุปกรณ์ที่เข้าสู่ระบบ:\n"
         f"📍 IP: {device_info['IP']}\n"
@@ -49,9 +56,8 @@ def send(username):
         f"🖥️ ความละเอียดหน้าจอ: {device_info['Screen Resolution']}\n"
         f"💾 RAM: {device_info['Device']['memory']} (Used: {device_info['Memory']['used']} GB, Free: {device_info['Memory']['free']} GB, Usage: {device_info['Memory']['percent']}%)\n"
         f"🌐 เครือข่าย: {device_info['Network']}\n"
-        f"🖥️ ความละเอียดหน้าจอ: {device_info['Screen Resolution2']}\n"
-        f"💻 GPU: {device_info['GPU2']}\n"  # ข้อมูล GPU
-        f"💾 การใช้งานดิสก์: {device_info['Disk Usage2']}\n"  # ข้อมูลดิสก์
+        f"💻 GPU: {device_info['GPU2']}\n"
+        f"💾 การใช้งานดิสก์: {device_info['Disk Usage2']}\n"
     )
 
     # ส่งข้อความไปยัง Discord
