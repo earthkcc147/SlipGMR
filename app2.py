@@ -88,7 +88,7 @@ if not login():
     print("Login failed. Exiting program.")
     exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
 else:
-    send(global_status["logged_in_user"])
+    send(username)
     print(f"เข้าสู่ระบบสำเร็จ! ผู้ใช้ที่ล็อกอิน: {global_status['logged_in_user']}")
     show_all_status()
 
