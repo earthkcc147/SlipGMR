@@ -248,7 +248,7 @@ def select_logo(background_image):
     return logo, logo_position
 
 
-def get_thailand_time():
+def get_thailand_time1():
     thailand_timezone = pytz.timezone('Asia/Bangkok')
     current_time_thailand = datetime.now(thailand_timezone)
     time = current_time_thailand.strftime("%H:%M:%S")
@@ -269,6 +269,57 @@ def get_thailand_time():
 # การเรียกใช้ฟังก์ชัน
 # text_name_time = get_thailand_time()
 # debug_print(f"📅 day: {text_name_time}")
+
+
+
+
+from datetime import datetime
+import pytz
+
+
+def get_thailand_time():
+    thailand_timezone = pytz.timezone('Asia/Bangkok')
+    current_time_thailand = datetime.now(thailand_timezone)
+
+    print("กรุณากรอกวัน เดือน ปี เวลา (หรือกด Enter เพื่อใช้เวลาปัจจุบัน)")
+
+    # รับวัน
+    day = input("🗓️ วัน (01-31): ")
+    if not day:
+        day = current_time_thailand.strftime("%d")
+
+    # รับเดือน
+    month = input("📅 เดือน (01-12): ")
+    if not month:
+        month = current_time_thailand.strftime("%m")
+
+    # รับปี
+    year = input("📆 ปี (2 หรือ 4 หลัก เช่น 67 หรือ 2567): ")
+    if not year:
+        year = current_time_thailand.strftime("%Y")
+    elif len(year) == 2:
+        year = year
+    elif len(year) == 4:
+        year = year
+    else:
+        raise ValueError("กรุณากรอกปีในรูปแบบ 2 หลัก (67) หรือ 4 หลัก (2567)")
+
+    # รับเวลา
+    time = input("⏰ เวลา (HH:MM:SS เช่น 14:30:00): ")
+    if not time:
+        time = current_time_thailand.strftime("%H:%M:%S")
+
+    # แปลงเดือนเป็นภาษาไทย
+    thai_months = {
+        "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.", "05": "พ.ค.", "06": "มิ.ย.",
+        "07": "ก.ค.", "08": "ส.ค.", "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
+    }
+    thai_month = thai_months[month]
+
+    # รวมข้อมูล
+    text_name_time = f"{day} {thai_month} {year} {time}"
+    return text_name_time
+
 
 
 # เทนูหลัก
@@ -315,9 +366,19 @@ def main_menu():
     money_id = input("💰 จำนวนเงิน: ")
 
     print("===================================")
+
+    try:
+        # เรียกใช้งานฟังก์ชันเพื่อรับวันเวลา
+        custom_time = get_thailand_time()
+        print(f"📄 วันและเวลาที่เลือก: {custom_time}")
+    except ValueError as e:
+        print(f"❌ ข้อผิดพลาด: {e}")
+
+    print("===================================")
+
     print("✔️ ข้อมูลทั้งหมดถูกกรอกเรียบร้อยแล้ว ✔️")
     print("📑 ระบบกำลังสร้างใบโอนจ่าย...")
-    
+
     # day = current_time_thailand.strftime("%d")
     # month = current_time_thailand.strftime("%m")
     # year = current_time_thailand.strftime("%Y")
@@ -481,7 +542,7 @@ def main_menu():
     phone = phone_me_id
     text_name_order = "50018935012188"
     text_money = money_id + ".00"
-    text_name_time = get_thailand_time()
+    text_name_time = custom_time
     # text_name_time = f"  {day}/{month}/{year} {time}"
 
     # ข้อความที่ต้องการใส่ลงในภาพ
@@ -522,151 +583,4 @@ def main_menu():
         text_position_user = (250, 220)
         text_position_bank_user = (250, 280)
         text_position_phone_user = (250, 340)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (400, 900)
-        text_position_money = (390, 990)
-        text_position_time = (55, 100)
-
-    elif background_image == "Bank/K-bank 1.png":
-        text_position_user = (250, 230)
-        text_position_bank_user = (250, 290)
-        text_position_phone_user = (250, 350)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (460, 840)
-        text_position_money = (380, 920)
-        text_position_time = (60, 110)
-
-    elif background_image == "Bank/K-bank 0.png":
-        text_position_user = (250, 230)
-        text_position_bank_user = (250, 290)
-        text_position_phone_user = (250, 350)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (460, 840)
-        text_position_money = (380, 920)
-        text_position_time = (60, 110)
-
-    else:
-        text_position_user = (250, 240)
-        text_position_bank_user = (250, 300)
-        text_position_phone_user = (250, 360)
-        text_position_me = (250, 560)
-        text_position_bank_me = (250, 620)
-        text_position_phone = (250, 680)
-        text_position_order = (470, 860)
-        text_position_money = (390, 940)
-        text_position_time = (65, 120)
-
-    # ตำแหน่งข้อความ
-    debug_print("📍 ตำแหน่งข้อความที่ใช้ในภาพ:")
-    debug_print(f"✏️ text_position_user: {text_position_user}")
-    debug_print(f"✏️ text_position_bank_user: {text_position_bank_user}")
-    debug_print(f"✏️ text_position_phone_user: {text_position_phone_user}")
-    debug_print(f"✏️ text_position_me: {text_position_me}")
-    debug_print(f"✏️ text_position_bank_me: {text_position_bank_me}")
-    debug_print(f"✏️ text_position_phone: {text_position_phone}")
-    debug_print(f"✏️ text_position_order: {text_position_order}")
-    debug_print(f"✏️ text_position_money: {text_position_money}")
-    debug_print(f"✏️ text_position_time: {text_position_time}")
-
-
-    # สีของข้อความ
-    text_color_user = (-20, -20, -20)
-    text_color_bank_user = (60, 60, 60)
-    text_color_phone_user = (60, 60, 60)
-    text_color_me = (-20, -20, -20)
-    text_color_bank_me = (60, 60, 60)
-    text_color_phone = (80, 80, 80)
-    text_color_order = (60, 60, 60)
-    text_color_money = (44, 44, 44)
-    text_color_time = (60, 60, 60)
-
-    # สีของข้อความ
-    debug_print("🎨 สีของข้อความ:")
-    debug_print(f"🖤 text_color_user: {text_color_user}")
-    debug_print(f"💬 text_color_bank_user: {text_color_bank_user}")
-    debug_print(f"📱 text_color_phone_user: {text_color_phone_user}")
-    debug_print(f"🧑‍💻 text_color_me: {text_color_me}")
-    debug_print(f"💳 text_color_bank_me: {text_color_bank_me}")
-    debug_print(f"📞 text_color_phone: {text_color_phone}")
-    debug_print(f"💰 text_color_order: {text_color_order}")
-    debug_print(f"💸 text_color_money: {text_color_money}")
-    debug_print(f"⏰ text_color_time: {text_color_time}")
-
-    # ใส่ข้อความลงในภาพ
-    debug_print("🖼️ กำลังใส่ข้อความลงในภาพ...")
-    draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user)
-    draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)
-    draw.text(text_position_phone_user, text_phone_user, font=font_phone_user, fill=text_color_phone_user)
-    draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)
-    draw.text(text_position_bank_me, text_bank_me, font=font_bank_me, fill=text_color_bank_me)
-    draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone)
-    draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)
-    draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
-    draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
-    debug_print("✅ ข้อความทั้งหมดถูกเพิ่มลงในภาพเรียบร้อยแล้ว")
-
-    # แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
-    image.paste(logo, logo_position, logo)
-    print("✅ แทรกโลโก้ลงในภาพเรียบร้อยแล้ว")
-
-    # บันทึกภาพที่มีข้อความและโลโก้
-    image.save("truemoney_with_text_and_logo.png")
-    print("✅ บันทึกภาพสำเร็จเป็น truemoney_with_text_and_logo.png")
-
-
-    # ส่งข้อมูลไปยัง Discord webhook
-    discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
-
-    embed_data = {
-        "content": "📢 **ข้อมูลการโอนจ่าย** 💸",
-        "embeds": [
-            {
-                "title": "💳 **รายละเอียดการโอนเงิน** 💳",
-                "description": f"💰 **ผู้โอน**: {name_user_id}\n🏦 **ธ.ผู้โอน**: {text_bank_user}\n📱 **เบอร์ผู้โอน**: {text_phone_user}\n🏠 **ผู้รับ**: {name_me_id}\n🏧 **ธ.ผู้รับ**: {text_bank_me}\n📞 **เบอร์โทรศัพท์ผู้รับ**: {text_name_phone}\n💵 **จำนวนเงิน**: {money_id} บาท",
-                "color": 5814783,
-                "fields": [
-                    {"name": "👤 ผู้โอนจ่าย", "value": name_user_id, "inline": True},
-                    {"name": "🏦 ธ.ผู้โอน", "value": text_bank_user, "inline": True},
-                    {"name": "📜 เบอร์ผู้โอน", "value": text_phone_user, "inline": True},
-                    {"name": "💸 ผู้รับเงิน", "value": name_me_id, "inline": True},
-                    {"name": "📜 เบอร์โทรศัพท์ผู้รับ", "value": text_name_phone, "inline": True},
-                    {"name": "🏦 ธ.ผู้รับ", "value": text_bank_me, "inline": True},
-                    {"name": "💵 จำนวนเงิน", "value": f"{money_id} บาท", "inline": True},
-                    {"name": "⏰ เวลาการโอน", "value": text_name_time, "inline": True}
-                    
-                ]
-            }
-        ]
-    }
-
-    # ส่งคำขอไปยัง Discord webhook
-    response = requests.post(discord_webhook_url, json=embed_data)  # ใช้ json แทน data
-    print(f"🔗 ส่งคำขอไปยัง Discord: {response.status_code}")
-
-    # ส่งภาพหลังจาก Embed
-    with open("truemoney_with_text_and_logo.png", "rb") as f:
-        image_file = f.read()
-        print("✅ อ่านไฟล์ภาพสำหรับการส่งไปยัง Discord")
-
-    response = requests.post(
-        discord_webhook_url,
-        files={'file': ('truemoney_with_text_and_logo.png', image_file)}
-    )
-    print(f"🔗 ส่งไฟล์ภาพไปยัง Discord: {response.status_code}")
-
-    if response.status_code == 200:
-        print("📤 ส่งข้อมูลไปยัง Discord สำเร็จ 🎉")
-        main_menu()
-    else:
-        print(f"⚠️ เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
-
-
-# เรียกใช้เมนูหลัก
-if __name__ == "__main__":
-    main_menu()
+        text_position_me = (250, 
