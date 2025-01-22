@@ -27,11 +27,39 @@ global_status = {
     "logged_in_user": None  # เพิ่มชื่อผู้ใช้ที่ล็อกอินสำเร็จ
 }
 
+
+# ฟังก์ชันแสดงสถานะทั้งหมดที่เก็บไว้
+def show_all_status():
+    global global_status  # ใช้ global_status
+    print("\n=== สถานะทั้งหมดที่เก็บไว้ ===")
+    for key, value in global_status.items():
+        print(f"{key}: {value if value else 'ยังไม่มีข้อมูล'}")
+
+
 # ฟังก์ชันสำหรับล้างค่าตัวแปรสถานะ
 def reset_global_status():
     for key in global_status:
         global_status[key] = None if isinstance(global_status[key], str) else False
     print("🔄 ล้างสถานะทั้งหมดเรียบร้อยแล้ว!")
+
+
+# ฟังก์ชั่นสำหรับล้างสถานะที่มีอยู่ยกเว้น login_status
+def clear_status():
+    global_status.update({
+        "bank_name": None,
+        "background_image": None,
+        "logo": None,
+        "logo_position": None,
+        "name_user_id": None,
+        "bank_user_id": None,
+        "phone_user_id": None,
+        "name_me_id": None,
+        "bank_me_id": None,
+        "phone_me_id": None,
+        "money_id": None,
+        "custom_time": None,
+        # login_status ยังคงเดิม
+    })
 
 
 # โหลดไฟล์ .env
@@ -169,6 +197,8 @@ def select_background(bank_name):
     choice = input("กรุณาเลือกหมายเลข (0-5): ")
 
     if choice == "00":
+        # ล้างสถานะที่มีอยู่ยกเว้น login_status
+        clear_status()
         main_menu()  # เพิ่มตัวเลือกย้อนกลับ
     elif choice == "1" and bank_name == "K-bank":
         return "Bank/K-bank 4.png"
@@ -222,13 +252,8 @@ def select_logo(background_image):
     choice = input("กรุณาเลือกหมายเลข (1-10 หรือ 00 เพื่อเลือกพื้นหลังใหม่): ")
 
     if choice == "00":
-        # รีเซ็ตสถานะทั้งหมด
-        global_status.update({
-            "bank_name": None,
-            "background_image": None,
-            "logo": None,
-            "logo_position": None,
-        })
+        # ล้างสถานะที่มีอยู่ยกเว้น login_status
+        clear_status()
         print("🔄 ระบบเริ่มใหม่! กรุณาเลือกอีกครั้ง.")
         main_menu()  # เรียกเมนูหลักใหม่
         return  # หยุดการทำงานในฟังก์ชันนี้
@@ -370,14 +395,6 @@ def get_thailand_time():
     except ValueError as e:
         print(f"❌ ข้อผิดพลาด: {e}")
         return None
-
-
-# ฟังก์ชันแสดงสถานะทั้งหมดที่เก็บไว้
-def show_all_status():
-    global global_status  # ใช้ global_status
-    print("\n=== สถานะทั้งหมดที่เก็บไว้ ===")
-    for key, value in global_status.items():
-        print(f"{key}: {value if value else 'ยังไม่มีข้อมูล'}")
 
 
 
