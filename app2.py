@@ -24,18 +24,6 @@ except json.JSONDecodeError:
 
 # ประกาศตัวแปร global สำหรับเก็บสถานะ
 global_status = {
-    "bank_name": None,
-    "background_image": None,
-    "logo": None,
-    "logo_position": None,
-    "name_user_id": None,
-    "bank_user_id": None,
-    "phone_user_id": None,
-    "name_me_id": None,
-    "bank_me_id": None,
-    "phone_me_id": None,
-    "money_id": None,
-    "custom_time": None,
     "login_status": False,  # เพิ่มสถานะการล็อกอิน
     "logged_in_user": None  # เพิ่มชื่อผู้ใช้ที่ล็อกอินสำเร็จ
 }
