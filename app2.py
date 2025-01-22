@@ -75,19 +75,6 @@ def clear_status():
     })
 
 
-# โหลดไฟล์ .env
-load_dotenv()
-
-# ดึงข้อมูล USERS จาก .env
-USERS_JSON = os.getenv("USERS")
-
-# แปลงข้อมูล USERS_JSON เป็น dictionary
-try:
-    users_data = json.loads(USERS_JSON)
-except json.JSONDecodeError:
-    print("ไม่สามารถแปลงข้อมูล USERS จาก .env ได้ ❌")
-    exit()
-
 # ฟังก์ชันสำหรับล็อกอิน
 def login():
     global global_status  # ใช้ global_status
