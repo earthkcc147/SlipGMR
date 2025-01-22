@@ -272,7 +272,7 @@ def select_logo(background_image):
         print("🔄 ระบบเริ่มใหม่! กรุณาเลือกอีกครั้ง.")
         main_menu()  # เรียกเมนูหลักใหม่
         return  # หยุดการทำงานในฟังก์ชันนี้
-        
+
     if choice == "1":
         logo_image = "Bank/K-bank.png"
     elif choice == "2":
@@ -331,7 +331,14 @@ def select_logo(background_image):
     debug_print(f"ขนาดโลโก้ที่เลือก: {logo_size} 📏")
     debug_print(f"ตำแหน่งโลโก้ที่เลือก: {logo_position} 📍")
 
+    # เก็บสถานะโลโก้ใน global_status
+    global_status["logo"] = logo_image
+    global_status["logo_position"] = logo_position
+
     return logo, logo_position
+
+
+
 
 
 def get_thailand_time1():
