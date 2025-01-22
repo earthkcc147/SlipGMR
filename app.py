@@ -24,8 +24,8 @@ except json.JSONDecodeError:
 
 # ประกาศตัวแปร global สำหรับเก็บสถานะ
 global_status = {
-    "login_status": False,  # เพิ่มสถานะการล็อกอิน
-    "logged_in_user": None  # เพิ่มชื่อผู้ใช้ที่ล็อกอินสำเร็จ
+    "login_status": False,    # เพิ่มสถานะการล็อกอิน
+    "logged_in_user": None,   # เพิ่มชื่อผู้ใช้ที่ล็อกอินสำเร็จ
 }
 
 
@@ -37,12 +37,22 @@ def show_all_status():
         print(f"{key}: {value if value else 'ยังไม่มีข้อมูล'}")
 
 
+def show_bank_status():
+    if global_status["bank_name"]:
+        print(f"✅ ธนาคารที่เลือก: {global_status['bank_name']}")
+    else:
+        print("⚠️ ยังไม่ได้เลือกธนาคาร.")
+
+
 # ฟังก์ชันสำหรับล้างค่าตัวแปรสถานะ
 def reset_global_status():
     for key in global_status:
         global_status[key] = None if isinstance(global_status[key], str) else False
     print("🔄 ล้างสถานะทั้งหมดเรียบร้อยแล้ว!")
 
+
+
+from function.send.disget import smdc, get_current_time, send
 
 
 # ฟังก์ชันสำหรับล็อกอิน
@@ -62,6 +72,7 @@ def login():
             # เก็บสถานะการล็อกอิน
             global_status["login_status"] = True
             global_status["logged_in_user"] = username
+            send(username)
             return True
         else:
             print("❌ รหัสผ่านไม่ถูกต้อง")
@@ -78,6 +89,7 @@ if not login():
     print("Login failed. Exiting program.")
     exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
 else:
+
     print(f"เข้าสู่ระบบสำเร็จ! ผู้ใช้ที่ล็อกอิน: {global_status['logged_in_user']}")
     show_all_status()
 
@@ -89,6 +101,13 @@ debug_mode = False  # เปลี่ยนเป็น True/ False เพื่
 def debug_print(message):
     if debug_mode:
         print(message)
+
+
+# ฟังก์ชันสำหรับส่งข้อความออกจากโปรแกรม
+def send_exit_message_to_discord(username):
+    message = f"🚪 ผู้ใช้ {username} ออกจากโปรแกรม"
+    smdc(message)  # ส่งข้อความออกไปที่ Discord
+    print(f"ส่งข้อความไปที่ Discord: {message}")
 
 
 # ฟังก์ชันสำหรับเลือกธนาคาร
@@ -122,6 +141,11 @@ def select_bank():
     elif choice == "8":
         return "Other Bank"  # คืนค่าถ้าเลือกธนาคารอื่น
     elif choice == "00":
+        # ส่งข้อมูลไปที่ Discord หากมีผู้ใช้ที่ล็อกอินอยู่
+        # if global_status["logged_in_user"]:
+        send_exit_message_to_discord(global_status["logged_in_user"])
+
+        reset_global_status()
         print("โปรแกรมถูกปิดแล้ว.")
         exit()  # ออกจากโปรแกรม
     else:
@@ -386,6 +410,8 @@ def main_menu():
     # if not login():
         # return  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
 
+    global global_status  # อ้างอิงตัวแปร global
+
     print("📄 ระบบสร้างใบโอนจ่าย 📄")
     print("===================================")
 
@@ -577,7 +603,6 @@ def main_menu():
     font_order = ImageFont.truetype(font_path_order, font_size_order)
     font_money = ImageFont.truetype(font_path_money, font_size_money)
     font_time = ImageFont.truetype(font_path_user, font_size_time)
-
 
     # โหลดฟอนต์ที่ใช้
     debug_print("🔄 กำลังโหลดฟอนต์ที่ใช้...")
