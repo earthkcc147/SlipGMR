@@ -44,24 +44,6 @@ def reset_global_status():
     print("🔄 ล้างสถานะทั้งหมดเรียบร้อยแล้ว!")
 
 
-# ฟังก์ชั่นสำหรับล้างสถานะที่มีอยู่ยกเว้น login_status
-def clear_status():
-    global_status.update({
-        "bank_name": None,
-        "background_image": None,
-        "logo": None,
-        "logo_position": None,
-        "name_user_id": None,
-        "bank_user_id": None,
-        "phone_user_id": None,
-        "name_me_id": None,
-        "bank_me_id": None,
-        "phone_me_id": None,
-        "money_id": None,
-        "custom_time": None,
-        # login_status ยังคงเดิม
-    })
-
 
 # ฟังก์ชันสำหรับล็อกอิน
 def login():
