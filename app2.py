@@ -38,6 +38,13 @@ def show_all_status():
         print(f"{key}: {value if value else 'ยังไม่มีข้อมูล'}")
 
 
+def show_bank_status():
+    if global_status["bank_name"]:
+        print(f"✅ ธนาคารที่เลือก: {global_status['bank_name']}")
+    else:
+        print("⚠️ ยังไม่ได้เลือกธนาคาร.")
+
+
 # ฟังก์ชันสำหรับล้างค่าตัวแปรสถานะ
 def reset_global_status():
     for key in global_status:
