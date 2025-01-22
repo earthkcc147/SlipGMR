@@ -124,21 +124,29 @@ def select_bank():
     choice = input("กรุณาเลือกหมายเลข (1-8 หรือ 00 เพื่อออกโปรแกรม): ")
 
     if choice == "1":
+        global_status["bank_name"] = "K-bank"  # เก็บสถานะธนาคาร
         return "K-bank"
     elif choice == "2":
+        global_status["bank_name"] = "SCB"
         return "SCB"
     elif choice == "3":
+        global_status["bank_name"] = "Bangkok"
         return "Bangkok"
     elif choice == "4":
+        global_status["bank_name"] = "TTB"
         return "TTB"
     elif choice == "5":
+        global_status["bank_name"] = "กรุงศรี"
         return "กรุงศรี"
     elif choice == "6":
+        global_status["bank_name"] = "กรุงไทย"
         return "กรุงไทย"
     elif choice == "7":
-        return "TrueWallet"  # คืนค่าถ้าเลือก TrueWallet
+        global_status["bank_name"] = "TrueWallet"
+        return "TrueWallet"
     elif choice == "8":
-        return "Other Bank"  # คืนค่าถ้าเลือกธนาคารอื่น
+        global_status["bank_name"] = "Other Bank"
+        return "Other Bank"
     elif choice == "00":
         print("โปรแกรมถูกปิดแล้ว.")
         exit()  # ออกจากโปรแกรม
