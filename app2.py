@@ -805,6 +805,7 @@ def main_menu():
 
     # ส่งข้อมูลไปยัง Discord webhook
     send_to_discord(name_user_id, text_bank_user, text_phone_user, name_me_id, text_bank_me, text_name_phone, money_id, text_name_time)
+    main_menu()
 
 
 # เรียกใช้เมนูหลัก
