@@ -580,7 +580,7 @@ def main_menu():
     debug_print(f"🧑‍💻 name_me_id: {name_me_id}")
     debug_print(f"🏦 bank_me_id: {bank_me_id}")
     debug_print(f"💵 money_id: {money_id}")
-    debug_print(f"📅 day: {text_name_time}")
+    debug_print(f"📅 day: {custom_time}")
 
     # ตำแหน่งข้อความ
     if background_image == "Bank/K-bank 4.png":
