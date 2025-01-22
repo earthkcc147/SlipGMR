@@ -566,7 +566,7 @@ def main_menu():
     phone = phone_me_id
     text_name_order = "50018935012188"
     text_money = money_id + ".00"
-    text_name_time = get_thailand_time
+    text_name_time = text_name_time
     # text_name_time = f"  {day}/{month}/{year} {time}"
 
     # ข้อความที่ต้องการใส่ลงในภาพ
@@ -723,7 +723,7 @@ def main_menu():
                     {"name": "📜 เบอร์โทรศัพท์ผู้รับ", "value": text_name_phone, "inline": True},
                     {"name": "🏦 ธ.ผู้รับ", "value": text_bank_me, "inline": True},
                     {"name": "💵 จำนวนเงิน", "value": f"{money_id} บาท", "inline": True},
-                    {"name": "⏰ เวลาการโอน", "value": get_thailand_time, "inline": True}
+                    {"name": "⏰ เวลาการโอน", "value": text_name_time, "inline": True}
 
                 ]
             }
