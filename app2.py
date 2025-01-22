@@ -815,7 +815,7 @@ def main_menu():
 
 
     # ส่งข้อมูลไปยัง Discord webhook
-send_to_discord_webhook(discord_webhook_url, "📢 **ข้อมูลการโอนจ่าย** 💸", embed_data, "truemoney_with_text_and_logo.png")
+    send_to_discord_webhook(discord_webhook_url, "📢 **ข้อมูลการโอนจ่าย** 💸", embed_data, "truemoney_with_text_and_logo.png")
 
 
 # เรียกใช้เมนูหลัก
