@@ -248,7 +248,7 @@ def select_logo(background_image):
     return logo, logo_position
 
 
-def get_thailand_time():
+def get_thailand_time1():
     thailand_timezone = pytz.timezone('Asia/Bangkok')
     current_time_thailand = datetime.now(thailand_timezone)
     time = current_time_thailand.strftime("%H:%M:%S")
@@ -269,6 +269,78 @@ def get_thailand_time():
 # การเรียกใช้ฟังก์ชัน
 # text_name_time = get_thailand_time()
 # debug_print(f"📅 day: {text_name_time}")
+
+
+
+
+from datetime import datetime
+import pytz
+
+
+def get_thailand_time():
+    thailand_timezone = pytz.timezone('Asia/Bangkok')
+    current_time_thailand = datetime.now(thailand_timezone)
+
+    print("กรุณากรอกวัน เดือน ปี เวลา (หรือกด Enter เพื่อใช้เวลาปัจจุบัน)")
+
+    # รับวัน
+    day = input("🗓️ วัน (01-31): ")
+    if not day:
+        day = current_time_thailand.strftime("%d")
+
+    # รับเดือน
+    month = input("📅 เดือน (01-12): ")
+    if not month:
+        month = current_time_thailand.strftime("%m")
+
+    # รับปี
+    year = input("📆 ปี (2 หรือ 4 หลัก เช่น 67 หรือ 2567): ")
+    if not year:
+        year = current_time_thailand.strftime("%Y")
+    elif len(year) == 2:
+        year = year
+    elif len(year) == 4:
+        year = year
+    else:
+        raise ValueError("กรุณากรอกปีในรูปแบบ 2 หลัก (67) หรือ 4 หลัก (2567)")
+
+    # รับเวลา
+    time = input("⏰ เวลา (HH:MM:SS เช่น 14:30:00): ")
+    if not time:
+        time = current_time_thailand.strftime("%H:%M:%S")
+
+    # แปลงเดือนเป็นภาษาไทย
+    thai_months = {
+        "01": "ม.ค.", "02": "ก.พ.", "03": "มี.ค.", "04": "เม.ย.", "05": "พ.ค.", "06": "มิ.ย.",
+        "07": "ก.ค.", "08": "ส.ค.", "09": "ก.ย.", "10": "ต.ค.", "11": "พ.ย.", "12": "ธ.ค."
+    }
+    thai_month = thai_months[month]
+
+    # รวมข้อมูล
+    text_name_time = f"{day} {thai_month} {year} {time}"
+    return text_name_time
+
+
+# เรียกใช้งานฟังก์ชัน
+def main_menu2():
+    print("📅 ระบบสร้างใบโอนจ่าย 📅")
+    print("===================================")
+
+    try:
+        # เรียกใช้งานฟังก์ชันเพื่อรับวันเวลา
+        custom_time = get_thailand_time()
+        print(f"📄 วันและเวลาที่เลือก: {custom_time}")
+    except ValueError as e:
+        print(f"❌ ข้อผิดพลาด: {e}")
+
+    print("===================================")
+    print("📄 ระบบกำลังสร้างใบโอนจ่าย...")
+    # คุณสามารถใช้ custom_time ต่อในส่วนที่ต้องการได้
+
+# main2()
+
+
+
 
 
 # เทนูหลัก
@@ -315,6 +387,16 @@ def main_menu():
     money_id = input("💰 จำนวนเงิน: ")
 
     print("===================================")
+
+    try:
+        # เรียกใช้งานฟังก์ชันเพื่อรับวันเวลา
+        custom_time = get_thailand_time()
+        print(f"📄 วันและเวลาที่เลือก: {custom_time}")
+    except ValueError as e:
+        print(f"❌ ข้อผิดพลาด: {e}")
+
+    print("===================================")
+
     print("✔️ ข้อมูลทั้งหมดถูกกรอกเรียบร้อยแล้ว ✔️")
     print("📑 ระบบกำลังสร้างใบโอนจ่าย...")
 
@@ -481,7 +563,7 @@ def main_menu():
     phone = phone_me_id
     text_name_order = "50018935012188"
     text_money = money_id + ".00"
-    text_name_time = get_thailand_time()
+    text_name_time = custom_time
     # text_name_time = f"  {day}/{month}/{year} {time}"
 
     # ข้อความที่ต้องการใส่ลงในภาพ
