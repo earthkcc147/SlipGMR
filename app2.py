@@ -728,9 +728,6 @@ def add_text_to_image(background_image, text_name_user, text_bank_user, text_pho
 
 # เทนูหลัก
 def main_menu():
-    # if not login():
-        # return  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
-
     global global_status  # อ้างอิงตัวแปร global
 
     print("📄 ระบบสร้างใบโอนจ่าย 📄")
@@ -757,6 +754,11 @@ def main_menu():
     bank_user_id = input("🏦 ธ.ผู้โอน: ")
     phone_user_id = input("📱 เบอร์ผู้โอน: ")
 
+    # กำหนดค่าตัวแปรที่ขาดหายไป
+    text_name_user = name_user_id
+    text_bank_user = bank_user_id
+    text_phone_user = phone_user_id
+
     print("===================================")
     print("💰 ข้อมูลผู้รับเงิน")
     print("===================================")
@@ -765,19 +767,29 @@ def main_menu():
     bank_me_id = input("🏦 ธ.ผู้รับ: ")
     phone_me_id = input("📱 เบอร์โทรศัพท์ผู้รับ: ")
 
+    # กำหนดค่าตัวแปรที่ขาดหายไป
+    text_name_me = name_me_id
+    text_bank_me = bank_me_id
+    text_name_phone = phone_me_id
+
     print("===================================")
     print("💵 ข้อมูลการโอน")
     print("===================================")
 
     money_id = input("💰 จำนวนเงิน: ")
 
+    # กำหนดค่าตัวแปรที่ขาดหายไป
+    text_money = money_id
+
     print("===================================")
 
     # เรียกฟังก์ชันและรับค่าผลลัพธ์
     custom_time = get_thailand_time()
     if custom_time:
+        text_name_time = custom_time
         print(f"📄 วันและเวลาที่เลือก: {custom_time}")
     else:
+        text_name_time = "ไม่มีวันเวลา"
         print("⚠️ ไม่มีวันเวลาเนื่องจากข้อผิดพลาด!")
 
     print("===================================")
@@ -785,21 +797,15 @@ def main_menu():
     print("✔️ ข้อมูลทั้งหมดถูกกรอกเรียบร้อยแล้ว ✔️")
     print("📑 ระบบกำลังสร้างใบโอนจ่าย...")
 
-    # day = current_time_thailand.strftime("%d")
-    # month = current_time_thailand.strftime("%m")
-    # year = current_time_thailand.strftime("%Y")
-
     # โหลดภาพพื้นหลังตามที่เลือก
     image = Image.open(background_image)
     draw = ImageDraw.Draw(image)
 
-        
-    load_font_for_background(background_image, name_user_id, bank_user_id, phone_me_id, phone_user_id, name_me_id, bank_me_id, money_id, custom_time)
+    load_font_for_background(background_image, text_name_user, text_bank_user, text_phone_user, 
+                              text_name_me, text_bank_me, text_name_phone, text_money, text_name_time)
 
     add_text_to_image(background_image, text_name_user, text_bank_user, text_phone_user,
-                       text_name_me, text_bank_me, text_name_phone, text_name_order,
-                       text_money, text_name_time, font_user, font_bank_user, font_phone_user,
-                       font_me, font_bank_me, font_phone, font_order, font_money, font_time)
+                       text_name_me, text_bank_me, text_name_phone, text_money, text_name_time)
 
     # แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
     image.paste(logo, logo_position, logo)
@@ -809,11 +815,9 @@ def main_menu():
     image.save("truemoney_with_text_and_logo.png")
     print("✅ บันทึกภาพสำเร็จเป็น truemoney_with_text_and_logo.png")
 
-
     # ส่งข้อมูลไปยัง Discord webhook
-    send_to_discord(name_user_id, text_bank_user, text_phone_user, name_me_id, text_bank_me, text_name_phone, money_id, text_name_time)
+    send_to_discord(text_name_user, text_bank_user, text_phone_user, text_name_me, text_bank_me, text_name_phone, text_money, text_name_time)
     main_menu()
-
 
 # เรียกใช้เมนูหลัก
 if __name__ == "__main__":
