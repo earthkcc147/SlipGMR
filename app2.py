@@ -142,8 +142,8 @@ def select_bank():
         return "Other Bank"  # คืนค่าถ้าเลือกธนาคารอื่น
     elif choice == "00":
         # ส่งข้อมูลไปที่ Discord หากมีผู้ใช้ที่ล็อกอินอยู่
-        if global_status["logged_in_user"]:
-            send_exit_message_to_discord(global_status["logged_in_user"])
+        # if global_status["logged_in_user"]:
+    send_exit_message_to_discord(global_status["logged_in_user"])
 
         
         reset_global_status()
