@@ -442,74 +442,15 @@ def send_to_discord(name_user_id, text_bank_user, text_phone_user, name_me_id, t
 
 
 
-# เทนูหลัก
-def main_menu():
-    # if not login():
-        # return  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
 
-    global global_status  # อ้างอิงตัวแปร global
+from PIL import ImageFont
 
-    print("📄 ระบบสร้างใบโอนจ่าย 📄")
-    print("===================================")
+def load_font_for_background(background_image, name_user_id, bank_user_id, phone_me_id, phone_user_id, name_me_id, bank_me_id, money_id, custom_time):
+    """
+    ฟังก์ชันนี้ใช้ในการโหลดฟอนต์และกำหนดขนาดฟอนต์ตามภาพพื้นหลัง
+    """
 
-    # เลือกธนาคาร
-    print("💳 เลือกธนาคารผู้โอน:")
-    bank_name = select_bank()
-
-    # เลือกภาพพื้นหลังตามธนาคาร
-    print("🎨 เลือกภาพพื้นหลังตามธนาคาร:")
-    background_image = select_background(bank_name)
-
-    # เลือกโลโก้และตำแหน่งของโลโก้
-    print("🏷️ เลือกโลโก้และตำแหน่งของโลโก้:")
-    logo, logo_position = select_logo(background_image)
-
-    print("===================================")
-    print("📝 ข้อมูลจากผู้ใช้")
-    print("===================================")
-
-    # ข้อมูลจากผู้ใช้
-    name_user_id = input("👤 ชื่อผู้โอนจ่าย: ")
-    bank_user_id = input("🏦 ธ.ผู้โอน: ")
-    phone_user_id = input("📱 เบอร์ผู้โอน: ")
-
-    print("===================================")
-    print("💰 ข้อมูลผู้รับเงิน")
-    print("===================================")
-
-    name_me_id = input("👤 ชื่อผู้รับเงิน: ")
-    bank_me_id = input("🏦 ธ.ผู้รับ: ")
-    phone_me_id = input("📱 เบอร์โทรศัพท์ผู้รับ: ")
-
-    print("===================================")
-    print("💵 ข้อมูลการโอน")
-    print("===================================")
-
-    money_id = input("💰 จำนวนเงิน: ")
-
-    print("===================================")
-
-    # เรียกฟังก์ชันและรับค่าผลลัพธ์
-    custom_time = get_thailand_time()
-    if custom_time:
-        print(f"📄 วันและเวลาที่เลือก: {custom_time}")
-    else:
-        print("⚠️ ไม่มีวันเวลาเนื่องจากข้อผิดพลาด!")
-
-    print("===================================")
-
-    print("✔️ ข้อมูลทั้งหมดถูกกรอกเรียบร้อยแล้ว ✔️")
-    print("📑 ระบบกำลังสร้างใบโอนจ่าย...")
-
-    # day = current_time_thailand.strftime("%d")
-    # month = current_time_thailand.strftime("%m")
-    # year = current_time_thailand.strftime("%Y")
-
-    # โหลดภาพพื้นหลังตามที่เลือก
-    image = Image.open(background_image)
-    draw = ImageDraw.Draw(image)
-
-        # กำหนดฟอนต์และขนาดตามพื้นหลัง
+    # กำหนดฟอนต์และขนาดตามพื้นหลัง
     if background_image == "Bank/K-bank 4.png":
         font_size_user = 48
         font_size_bank_user = 48
@@ -641,19 +582,6 @@ def main_menu():
     font_money = ImageFont.truetype(font_path_money, font_size_money)
     font_time = ImageFont.truetype(font_path_user, font_size_time)
 
-    # โหลดฟอนต์ที่ใช้
-    debug_print("🔄 กำลังโหลดฟอนต์ที่ใช้...")
-    debug_print(f"🖋️ font_user: {font_path_user}, font_size_user: {font_size_user}")
-    debug_print(f"🖋️ font_bank_user: {font_path_bank_user}, font_size_bank_user: {font_size_bank_user}")
-    debug_print(f"🖋️ font_phone_user: {font_path_phone_user}, font_size_phone_user: {font_size_phone_user}")
-    debug_print(f"🖋️ font_me: {font_path_name_me}, font_size_me: {font_size_me}")
-    debug_print(f"🖋️ font_bank_me: {font_path_bank_me}, font_size_bank_me: {font_size_bank_me}")
-    debug_print(f"🖋️ font_phone: {font_path_phone}, font_size_phone: {font_size_phone}")
-    debug_print(f"🖋️ font_order: {font_path_order}, font_size_order: {font_size_order}")
-    debug_print(f"🖋️ font_money: {font_path_money}, font_size_money: {font_size_money}")
-    debug_print(f"🖋️ font_time: {font_path_user}, font_size_time: {font_size_time}")
-
-
     # ข้อความที่ต้องการใส่ลงในภาพ
     text_name_user = name_user_id
     text_bank_user = bank_user_id
@@ -663,9 +591,8 @@ def main_menu():
     text_bank_me = bank_me_id
     phone = phone_me_id
     text_name_order = "50018935012188"
-    text_money = money_id + ".00"
+    text_money = f"{money_id}.00"
     text_name_time = custom_time
-    # text_name_time = f"  {day}/{month}/{year} {time}"
 
     # ข้อความที่ต้องการใส่ลงในภาพ
     debug_print("📝 ข้อความที่จะใส่ในภาพ:")
@@ -678,6 +605,38 @@ def main_menu():
     debug_print(f"💵 money_id: {money_id}")
     debug_print(f"📅 day: {custom_time}")
 
+    return {
+        "font_user": font_user,
+        "font_bank_user": font_bank_user,
+        "font_phone_user": font_phone_user,
+        "font_me": font_me,
+        "font_bank_me": font_bank_me,
+        "font_phone": font_phone,
+        "font_order": font_order,
+        "font_money": font_money,
+        "font_time": font_time,
+        "text_name_user": text_name_user,
+        "text_bank_user": text_bank_user,
+        "text_name_phone": text_name_phone,
+        "text_phone_user": text_phone_user,
+        "text_name_me": text_name_me,
+        "text_bank_me": text_bank_me,
+        "text_name_order": text_name_order,
+        "text_money": text_money,
+        "text_name_time": text_name_time
+    }
+
+
+
+
+
+
+from PIL import ImageDraw, ImageFont
+
+def add_text_to_image(background_image, text_name_user, text_bank_user, text_phone_user,
+                       text_name_me, text_bank_me, text_name_phone, text_name_order,
+                       text_money, text_name_time, font_user, font_bank_user, font_phone_user,
+                       font_me, font_bank_me, font_phone, font_order, font_money, font_time):
     # ตำแหน่งข้อความ
     if background_image == "Bank/K-bank 4.png":
         text_position_user = (250, 220)
@@ -689,7 +648,6 @@ def main_menu():
         text_position_order = (445, 820)
         text_position_money = (370, 900)
         text_position_time = (70, 100)
-
     elif background_image == "Bank/K-bank 3.png":
         text_position_user = (250, 220)
         text_position_bank_user = (250, 280)
@@ -700,7 +658,6 @@ def main_menu():
         text_position_order = (400, 900)
         text_position_money = (390, 990)
         text_position_time = (55, 100)
-
     elif background_image == "Bank/K-bank 2.png":
         text_position_user = (250, 220)
         text_position_bank_user = (250, 280)
@@ -711,7 +668,6 @@ def main_menu():
         text_position_order = (400, 900)
         text_position_money = (390, 990)
         text_position_time = (55, 100)
-
     elif background_image == "Bank/K-bank 1.png":
         text_position_user = (250, 230)
         text_position_bank_user = (250, 290)
@@ -722,7 +678,6 @@ def main_menu():
         text_position_order = (460, 840)
         text_position_money = (380, 920)
         text_position_time = (60, 110)
-
     elif background_image == "Bank/K-bank 0.png":
         text_position_user = (250, 230)
         text_position_bank_user = (250, 290)
@@ -733,7 +688,6 @@ def main_menu():
         text_position_order = (460, 840)
         text_position_money = (380, 920)
         text_position_time = (60, 110)
-
     else:
         text_position_user = (250, 240)
         text_position_bank_user = (250, 300)
@@ -745,19 +699,6 @@ def main_menu():
         text_position_money = (390, 940)
         text_position_time = (65, 120)
 
-    # ตำแหน่งข้อความ
-    debug_print("📍 ตำแหน่งข้อความที่ใช้ในภาพ:")
-    debug_print(f"✏️ text_position_user: {text_position_user}")
-    debug_print(f"✏️ text_position_bank_user: {text_position_bank_user}")
-    debug_print(f"✏️ text_position_phone_user: {text_position_phone_user}")
-    debug_print(f"✏️ text_position_me: {text_position_me}")
-    debug_print(f"✏️ text_position_bank_me: {text_position_bank_me}")
-    debug_print(f"✏️ text_position_phone: {text_position_phone}")
-    debug_print(f"✏️ text_position_order: {text_position_order}")
-    debug_print(f"✏️ text_position_money: {text_position_money}")
-    debug_print(f"✏️ text_position_time: {text_position_time}")
-
-
     # สีของข้อความ
     text_color_user = (-20, -20, -20)
     text_color_bank_user = (60, 60, 60)
@@ -768,18 +709,6 @@ def main_menu():
     text_color_order = (60, 60, 60)
     text_color_money = (44, 44, 44)
     text_color_time = (60, 60, 60)
-
-    # สีของข้อความ
-    debug_print("🎨 สีของข้อความ:")
-    debug_print(f"🖤 text_color_user: {text_color_user}")
-    debug_print(f"💬 text_color_bank_user: {text_color_bank_user}")
-    debug_print(f"📱 text_color_phone_user: {text_color_phone_user}")
-    debug_print(f"🧑‍💻 text_color_me: {text_color_me}")
-    debug_print(f"💳 text_color_bank_me: {text_color_bank_me}")
-    debug_print(f"📞 text_color_phone: {text_color_phone}")
-    debug_print(f"💰 text_color_order: {text_color_order}")
-    debug_print(f"💸 text_color_money: {text_color_money}")
-    debug_print(f"⏰ text_color_time: {text_color_time}")
 
     # ใส่ข้อความลงในภาพ
     debug_print("🖼️ กำลังใส่ข้อความลงในภาพ...")
@@ -793,6 +722,84 @@ def main_menu():
     draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
     draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
     debug_print("✅ ข้อความทั้งหมดถูกเพิ่มลงในภาพเรียบร้อยแล้ว")
+
+
+
+
+# เทนูหลัก
+def main_menu():
+    # if not login():
+        # return  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
+
+    global global_status  # อ้างอิงตัวแปร global
+
+    print("📄 ระบบสร้างใบโอนจ่าย 📄")
+    print("===================================")
+
+    # เลือกธนาคาร
+    print("💳 เลือกธนาคารผู้โอน:")
+    bank_name = select_bank()
+
+    # เลือกภาพพื้นหลังตามธนาคาร
+    print("🎨 เลือกภาพพื้นหลังตามธนาคาร:")
+    background_image = select_background(bank_name)
+
+    # เลือกโลโก้และตำแหน่งของโลโก้
+    print("🏷️ เลือกโลโก้และตำแหน่งของโลโก้:")
+    logo, logo_position = select_logo(background_image)
+
+    print("===================================")
+    print("📝 ข้อมูลจากผู้ใช้")
+    print("===================================")
+
+    # ข้อมูลจากผู้ใช้
+    name_user_id = input("👤 ชื่อผู้โอนจ่าย: ")
+    bank_user_id = input("🏦 ธ.ผู้โอน: ")
+    phone_user_id = input("📱 เบอร์ผู้โอน: ")
+
+    print("===================================")
+    print("💰 ข้อมูลผู้รับเงิน")
+    print("===================================")
+
+    name_me_id = input("👤 ชื่อผู้รับเงิน: ")
+    bank_me_id = input("🏦 ธ.ผู้รับ: ")
+    phone_me_id = input("📱 เบอร์โทรศัพท์ผู้รับ: ")
+
+    print("===================================")
+    print("💵 ข้อมูลการโอน")
+    print("===================================")
+
+    money_id = input("💰 จำนวนเงิน: ")
+
+    print("===================================")
+
+    # เรียกฟังก์ชันและรับค่าผลลัพธ์
+    custom_time = get_thailand_time()
+    if custom_time:
+        print(f"📄 วันและเวลาที่เลือก: {custom_time}")
+    else:
+        print("⚠️ ไม่มีวันเวลาเนื่องจากข้อผิดพลาด!")
+
+    print("===================================")
+
+    print("✔️ ข้อมูลทั้งหมดถูกกรอกเรียบร้อยแล้ว ✔️")
+    print("📑 ระบบกำลังสร้างใบโอนจ่าย...")
+
+    # day = current_time_thailand.strftime("%d")
+    # month = current_time_thailand.strftime("%m")
+    # year = current_time_thailand.strftime("%Y")
+
+    # โหลดภาพพื้นหลังตามที่เลือก
+    image = Image.open(background_image)
+    draw = ImageDraw.Draw(image)
+
+        
+    load_font_for_background(background_image, name_user_id, bank_user_id, phone_me_id, phone_user_id, name_me_id, bank_me_id, money_id, custom_time)
+
+    add_text_to_image(background_image, text_name_user, text_bank_user, text_phone_user,
+                       text_name_me, text_bank_me, text_name_phone, text_name_order,
+                       text_money, text_name_time, font_user, font_bank_user, font_phone_user,
+                       font_me, font_bank_me, font_phone, font_order, font_money, font_time)
 
     # แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
     image.paste(logo, logo_position, logo)
