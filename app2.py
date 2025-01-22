@@ -169,8 +169,10 @@ def select_bank():
     return bank_name
 
 
-# ฟังก์ชั่นสำหรับเลือกภาพพื้นหลังตามธนาคาร
+# ฟังก์ชันสำหรับเลือกภาพพื้นหลังตามธนาคาร
 def select_background(bank_name):
+    global global_status  # ใช้ global_status เพื่อเก็บสถานะ
+
     print(f"เลือกภาพพื้นหลังสำหรับธนาคาร {bank_name}:")
 
     if bank_name == "K-bank":
@@ -209,37 +211,42 @@ def select_background(bank_name):
         clear_status()
         main_menu()  # เพิ่มตัวเลือกย้อนกลับ
     elif choice == "1" and bank_name == "K-bank":
-        return "Bank/K-bank 4.png"
+        global_status["background_image"] = "Bank/K-bank 4.png"
     elif choice == "2" and bank_name == "K-bank":
-        return "Bank/K-bank 3.png"
+        global_status["background_image"] = "Bank/K-bank 3.png"
     elif choice == "3" and bank_name == "K-bank":
-        return "Bank/K-bank 2.png"
+        global_status["background_image"] = "Bank/K-bank 2.png"
     elif choice == "4" and bank_name == "K-bank":
-        return "Bank/K-bank 1.png"
+        global_status["background_image"] = "Bank/K-bank 1.png"
     elif choice == "5" and bank_name == "K-bank":
-        return "Bank/K-bank 0.png"
+        global_status["background_image"] = "Bank/K-bank 0.png"
 
     elif choice == "1" and bank_name == "SCB":
-        return "Bank/SCB copy.png"
+        global_status["background_image"] = "Bank/SCB copy.png"
 
     elif choice == "1" and bank_name == "Bangkok":
-        return "Bank/Bangkok.png"
+        global_status["background_image"] = "Bank/Bangkok.png"
 
     elif choice == "1" and bank_name == "TTB":
-        return "Bank/TTB.jpg"
+        global_status["background_image"] = "Bank/TTB.jpg"
 
     elif choice == "1" and bank_name == "กรุงศรี":
-        return "Bank/กรุงศรี.png"
+        global_status["background_image"] = "Bank/กรุงศรี.png"
 
     elif choice == "1" and bank_name == "กรุงไทย":
-        return "Bank/กรุงไทย.png"
+        global_status["background_image"] = "Bank/กรุงไทย.png"
 
     elif choice == "1" and bank_name == "TrueWallet":
-        return "Bank/truemoney.png"
+        global_status["background_image"] = "Bank/truemoney.png"
 
     else:
         print("❌ ตัวเลือกไม่ถูกต้อง! เลือกใหม่.")
         return select_background(bank_name)  # ถ้าเลือกไม่ถูกต้อง ให้เลือกใหม่
+
+    print(f"📸 ภาพพื้นหลังที่เลือก: {global_status['background_image']}")
+    return global_status["background_image"]
+
+
 
 
 
