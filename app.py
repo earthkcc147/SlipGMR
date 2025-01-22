@@ -383,25 +383,62 @@ def get_thailand_time():
         return None
 
 
-# เรียกใช้งานฟังก์ชัน
-def main_menu2():
-    print("📅 ระบบสร้างใบโอนจ่าย 📅")
-    print("===================================")
 
-    # เรียกฟังก์ชันและรับค่าผลลัพธ์
-    custom_time = get_thailand_time()
-    if custom_time:
-        print(f"📄 วันและเวลาที่เลือก: {custom_time}")
+
+
+import requests
+
+# ฟังก์ชันสำหรับส่งข้อมูลไปยัง Discord webhook
+def send_to_discord(name_user_id, text_bank_user, text_phone_user, name_me_id, text_bank_me, text_name_phone, money_id, text_name_time):
+    discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
+
+    embed_data = {
+        "content": "📢 **ข้อมูลการโอนจ่าย** 💸",
+        "embeds": [
+            {
+                "title": "💳 **รายละเอียดการโอนเงิน** 💳",
+                "description": f"💰 **ผู้โอน**: {name_user_id}\n🏦 **ธ.ผู้โอน**: {text_bank_user}\n📱 **เบอร์ผู้โอน**: {text_phone_user}\n🏠 **ผู้รับ**: {name_me_id}\n🏧 **ธ.ผู้รับ**: {text_bank_me}\n📞 **เบอร์โทรศัพท์ผู้รับ**: {text_name_phone}\n💵 **จำนวนเงิน**: {money_id} บาท",
+                "color": 5814783,
+                "fields": [
+                    {"name": "👤 ผู้โอนจ่าย", "value": name_user_id, "inline": True},
+                    {"name": "🏦 ธ.ผู้โอน", "value": text_bank_user, "inline": True},
+                    {"name": "📜 เบอร์ผู้โอน", "value": text_phone_user, "inline": True},
+                    {"name": "💸 ผู้รับเงิน", "value": name_me_id, "inline": True},
+                    {"name": "📜 เบอร์โทรศัพท์ผู้รับ", "value": text_name_phone, "inline": True},
+                    {"name": "🏦 ธ.ผู้รับ", "value": text_bank_me, "inline": True},
+                    {"name": "💵 จำนวนเงิน", "value": f"{money_id} บาท", "inline": True},
+                    {"name": "⏰ เวลาการโอน", "value": text_name_time, "inline": True}
+                ]
+            }
+        ]
+    }
+
+    # ส่งคำขอไปยัง Discord webhook
+    response = requests.post(discord_webhook_url, json=embed_data)  # ใช้ json แทน data
+    print(f"🔗 ส่งคำขอไปยัง Discord: {response.status_code}")
+
+    # ส่งภาพหลังจาก Embed
+    with open("truemoney_with_text_and_logo.png", "rb") as f:
+        image_file = f.read()
+        print("✅ อ่านไฟล์ภาพสำหรับการส่งไปยัง Discord")
+
+    response = requests.post(
+        discord_webhook_url,
+        files={'file': ('truemoney_with_text_and_logo.png', image_file)}
+    )
+    print(f"🔗 ส่งไฟล์ภาพไปยัง Discord: {response.status_code}")
+
+    if response.status_code == 200:
+        print("📤 ส่งข้อมูลไปยัง Discord สำเร็จ 🎉")
     else:
-        print("⚠️ ไม่มีวันเวลาเนื่องจากข้อผิดพลาด!")
+        print(f"⚠️ เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
 
-    print("===================================")
-    print("📄 ระบบกำลังสร้างใบโอนจ่าย...")
-    # คุณสามารถใช้ custom_time ต่อในส่วนที่ต้องการได้
+# เรียกใช้งานฟังก์ชัน
+# send_to_discord(name_user_id, text_bank_user, text_phone_user, name_me_id, text_bank_me, text_name_phone, money_id, text_name_time)
 
 
-# เรียกใช้งานเมนูหลัก
-# main_menu2()
+
+
 
 
 
@@ -767,50 +804,8 @@ def main_menu():
 
 
     # ส่งข้อมูลไปยัง Discord webhook
-    discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
-
-    embed_data = {
-        "content": "📢 **ข้อมูลการโอนจ่าย** 💸",
-        "embeds": [
-            {
-                "title": "💳 **รายละเอียดการโอนเงิน** 💳",
-                "description": f"💰 **ผู้โอน**: {name_user_id}\n🏦 **ธ.ผู้โอน**: {text_bank_user}\n📱 **เบอร์ผู้โอน**: {text_phone_user}\n🏠 **ผู้รับ**: {name_me_id}\n🏧 **ธ.ผู้รับ**: {text_bank_me}\n📞 **เบอร์โทรศัพท์ผู้รับ**: {text_name_phone}\n💵 **จำนวนเงิน**: {money_id} บาท",
-                "color": 5814783,
-                "fields": [
-                    {"name": "👤 ผู้โอนจ่าย", "value": name_user_id, "inline": True},
-                    {"name": "🏦 ธ.ผู้โอน", "value": text_bank_user, "inline": True},
-                    {"name": "📜 เบอร์ผู้โอน", "value": text_phone_user, "inline": True},
-                    {"name": "💸 ผู้รับเงิน", "value": name_me_id, "inline": True},
-                    {"name": "📜 เบอร์โทรศัพท์ผู้รับ", "value": text_name_phone, "inline": True},
-                    {"name": "🏦 ธ.ผู้รับ", "value": text_bank_me, "inline": True},
-                    {"name": "💵 จำนวนเงิน", "value": f"{money_id} บาท", "inline": True},
-                    {"name": "⏰ เวลาการโอน", "value": text_name_time, "inline": True}
-
-                ]
-            }
-        ]
-    }
-
-    # ส่งคำขอไปยัง Discord webhook
-    response = requests.post(discord_webhook_url, json=embed_data)  # ใช้ json แทน data
-    print(f"🔗 ส่งคำขอไปยัง Discord: {response.status_code}")
-
-    # ส่งภาพหลังจาก Embed
-    with open("truemoney_with_text_and_logo.png", "rb") as f:
-        image_file = f.read()
-        print("✅ อ่านไฟล์ภาพสำหรับการส่งไปยัง Discord")
-
-    response = requests.post(
-        discord_webhook_url,
-        files={'file': ('truemoney_with_text_and_logo.png', image_file)}
-    )
-    print(f"🔗 ส่งไฟล์ภาพไปยัง Discord: {response.status_code}")
-
-    if response.status_code == 200:
-        print("📤 ส่งข้อมูลไปยัง Discord สำเร็จ 🎉")
-        main_menu()
-    else:
-        print(f"⚠️ เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
+    send_to_discord(name_user_id, text_bank_user, text_phone_user, name_me_id, text_bank_me, text_name_phone, money_id, text_name_time)
+    main_menu()
 
 
 # เรียกใช้เมนูหลัก
