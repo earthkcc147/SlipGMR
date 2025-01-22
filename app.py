@@ -21,8 +21,51 @@ except json.JSONDecodeError:
     print("ไม่สามารถแปลงข้อมูล USERS จาก .env ได้ ❌")
     exit()
 
+
+# ประกาศตัวแปร global สำหรับเก็บสถานะ
+global_status = {
+    "login_status": False,  # เพิ่มสถานะการล็อกอิน
+    "logged_in_user": None  # เพิ่มชื่อผู้ใช้ที่ล็อกอินสำเร็จ
+}
+
+
+# ฟังก์ชันแสดงสถานะทั้งหมดที่เก็บไว้
+def show_all_status():
+    global global_status  # ใช้ global_status
+    print("\n=== สถานะทั้งหมดที่เก็บไว้ ===")
+    for key, value in global_status.items():
+        print(f"{key}: {value if value else 'ยังไม่มีข้อมูล'}")
+
+
+# ฟังก์ชันสำหรับล้างค่าตัวแปรสถานะ
+def reset_global_status():
+    for key in global_status:
+        global_status[key] = None if isinstance(global_status[key], str) else False
+    print("🔄 ล้างสถานะทั้งหมดเรียบร้อยแล้ว!")
+
+
+# ฟังก์ชั่นสำหรับล้างสถานะที่มีอยู่ยกเว้น login_status
+def clear_status():
+    global_status.update({
+        "bank_name": None,
+        "background_image": None,
+        "logo": None,
+        "logo_position": None,
+        "name_user_id": None,
+        "bank_user_id": None,
+        "phone_user_id": None,
+        "name_me_id": None,
+        "bank_me_id": None,
+        "phone_me_id": None,
+        "money_id": None,
+        "custom_time": None,
+        # login_status ยังคงเดิม
+    })
+
+
 # ฟังก์ชันสำหรับล็อกอิน
 def login():
+    global global_status  # ใช้ global_status
     print("📄 ระบบล็อกอิน 📄")
     print("===================================")
 
@@ -34,11 +77,18 @@ def login():
     if username in users_data:
         if users_data[username]["password"] == password:
             print("✔️ การล็อกอินสำเร็จ")
+            # เก็บสถานะการล็อกอิน
+            global_status["login_status"] = True
+            global_status["logged_in_user"] = username
             return True
         else:
             print("❌ รหัสผ่านไม่ถูกต้อง")
     else:
         print("❌ ชื่อผู้ใช้ไม่ถูกต้อง")
+
+    # อัปเดตสถานะการล็อกอินเป็น False
+    global_status["login_status"] = False
+    global_status["logged_in_user"] = None
     return False
 
 # เรียกใช้งานฟังก์ชัน login
@@ -46,7 +96,8 @@ if not login():
     print("Login failed. Exiting program.")
     exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
 else:
-    print("เข้าสู่ระบบสำเร็จ!")
+    print(f"เข้าสู่ระบบสำเร็จ! ผู้ใช้ที่ล็อกอิน: {global_status['logged_in_user']}")
+    show_all_status()
 
 
 # ตัวแปรสำหรับเปิด/ปิดโหมดดีบัก
@@ -552,208 +603,4 @@ def main_menu():
     debug_print(f"🖋️ font_phone_user: {font_path_phone_user}, font_size_phone_user: {font_size_phone_user}")
     debug_print(f"🖋️ font_me: {font_path_name_me}, font_size_me: {font_size_me}")
     debug_print(f"🖋️ font_bank_me: {font_path_bank_me}, font_size_bank_me: {font_size_bank_me}")
-    debug_print(f"🖋️ font_phone: {font_path_phone}, font_size_phone: {font_size_phone}")
-    debug_print(f"🖋️ font_order: {font_path_order}, font_size_order: {font_size_order}")
-    debug_print(f"🖋️ font_money: {font_path_money}, font_size_money: {font_size_money}")
-    debug_print(f"🖋️ font_time: {font_path_user}, font_size_time: {font_size_time}")
-
-
-    # ข้อความที่ต้องการใส่ลงในภาพ
-    text_name_user = name_user_id
-    text_bank_user = bank_user_id
-    text_name_phone = f"{phone_me_id[:3]}-xxx-{phone_me_id[6:]}"
-    text_phone_user = phone_user_id
-    text_name_me = name_me_id
-    text_bank_me = bank_me_id
-    phone = phone_me_id
-    text_name_order = "50018935012188"
-    text_money = money_id + ".00"
-    text_name_time = custom_time
-    # text_name_time = f"  {day}/{month}/{year} {time}"
-
-    # ข้อความที่ต้องการใส่ลงในภาพ
-    debug_print("📝 ข้อความที่จะใส่ในภาพ:")
-    debug_print(f"👤 name_user_id: {name_user_id}")
-    debug_print(f"🏦 bank_user_id: {bank_user_id}")
-    debug_print(f"📞 phone_me_id: {phone_me_id}")
-    debug_print(f"📱 phone_user_id: {phone_user_id}")
-    debug_print(f"🧑‍💻 name_me_id: {name_me_id}")
-    debug_print(f"🏦 bank_me_id: {bank_me_id}")
-    debug_print(f"💵 money_id: {money_id}")
-    debug_print(f"📅 day: {custom_time}")
-
-    # ตำแหน่งข้อความ
-    if background_image == "Bank/K-bank 4.png":
-        text_position_user = (250, 220)
-        text_position_bank_user = (250, 280)
-        text_position_phone_user = (250, 340)
-        text_position_me = (250, 540)
-        text_position_bank_me = (250, 600)
-        text_position_phone = (250, 660)
-        text_position_order = (445, 820)
-        text_position_money = (370, 900)
-        text_position_time = (70, 100)
-
-    elif background_image == "Bank/K-bank 3.png":
-        text_position_user = (250, 220)
-        text_position_bank_user = (250, 280)
-        text_position_phone_user = (250, 340)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (400, 900)
-        text_position_money = (390, 990)
-        text_position_time = (55, 100)
-
-    elif background_image == "Bank/K-bank 2.png":
-        text_position_user = (250, 220)
-        text_position_bank_user = (250, 280)
-        text_position_phone_user = (250, 340)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (400, 900)
-        text_position_money = (390, 990)
-        text_position_time = (55, 100)
-
-    elif background_image == "Bank/K-bank 1.png":
-        text_position_user = (250, 230)
-        text_position_bank_user = (250, 290)
-        text_position_phone_user = (250, 350)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (460, 840)
-        text_position_money = (380, 920)
-        text_position_time = (60, 110)
-
-    elif background_image == "Bank/K-bank 0.png":
-        text_position_user = (250, 230)
-        text_position_bank_user = (250, 290)
-        text_position_phone_user = (250, 350)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (460, 840)
-        text_position_money = (380, 920)
-        text_position_time = (60, 110)
-
-    else:
-        text_position_user = (250, 240)
-        text_position_bank_user = (250, 300)
-        text_position_phone_user = (250, 360)
-        text_position_me = (250, 560)
-        text_position_bank_me = (250, 620)
-        text_position_phone = (250, 680)
-        text_position_order = (470, 860)
-        text_position_money = (390, 940)
-        text_position_time = (65, 120)
-
-    # ตำแหน่งข้อความ
-    debug_print("📍 ตำแหน่งข้อความที่ใช้ในภาพ:")
-    debug_print(f"✏️ text_position_user: {text_position_user}")
-    debug_print(f"✏️ text_position_bank_user: {text_position_bank_user}")
-    debug_print(f"✏️ text_position_phone_user: {text_position_phone_user}")
-    debug_print(f"✏️ text_position_me: {text_position_me}")
-    debug_print(f"✏️ text_position_bank_me: {text_position_bank_me}")
-    debug_print(f"✏️ text_position_phone: {text_position_phone}")
-    debug_print(f"✏️ text_position_order: {text_position_order}")
-    debug_print(f"✏️ text_position_money: {text_position_money}")
-    debug_print(f"✏️ text_position_time: {text_position_time}")
-
-
-    # สีของข้อความ
-    text_color_user = (-20, -20, -20)
-    text_color_bank_user = (60, 60, 60)
-    text_color_phone_user = (60, 60, 60)
-    text_color_me = (-20, -20, -20)
-    text_color_bank_me = (60, 60, 60)
-    text_color_phone = (80, 80, 80)
-    text_color_order = (60, 60, 60)
-    text_color_money = (44, 44, 44)
-    text_color_time = (60, 60, 60)
-
-    # สีของข้อความ
-    debug_print("🎨 สีของข้อความ:")
-    debug_print(f"🖤 text_color_user: {text_color_user}")
-    debug_print(f"💬 text_color_bank_user: {text_color_bank_user}")
-    debug_print(f"📱 text_color_phone_user: {text_color_phone_user}")
-    debug_print(f"🧑‍💻 text_color_me: {text_color_me}")
-    debug_print(f"💳 text_color_bank_me: {text_color_bank_me}")
-    debug_print(f"📞 text_color_phone: {text_color_phone}")
-    debug_print(f"💰 text_color_order: {text_color_order}")
-    debug_print(f"💸 text_color_money: {text_color_money}")
-    debug_print(f"⏰ text_color_time: {text_color_time}")
-
-    # ใส่ข้อความลงในภาพ
-    debug_print("🖼️ กำลังใส่ข้อความลงในภาพ...")
-    draw.text(text_position_user, text_name_user, font=font_user, fill=text_color_user)
-    draw.text(text_position_bank_user, text_bank_user, font=font_bank_user, fill=text_color_bank_user)
-    draw.text(text_position_phone_user, text_phone_user, font=font_phone_user, fill=text_color_phone_user)
-    draw.text(text_position_me, text_name_me, font=font_me, fill=text_color_me)
-    draw.text(text_position_bank_me, text_bank_me, font=font_bank_me, fill=text_color_bank_me)
-    draw.text(text_position_phone, text_name_phone, font=font_phone, fill=text_color_phone)
-    draw.text(text_position_order, text_name_order, font=font_order, fill=text_color_order)
-    draw.text(text_position_money, text_money, font=font_money, fill=text_color_money)
-    draw.text(text_position_time, text_name_time, font=font_time, fill=text_color_time)
-    debug_print("✅ ข้อความทั้งหมดถูกเพิ่มลงในภาพเรียบร้อยแล้ว")
-
-    # แทรกโลโก้ที่มีพื้นหลังโปร่งใสลงในภาพ
-    image.paste(logo, logo_position, logo)
-    print("✅ แทรกโลโก้ลงในภาพเรียบร้อยแล้ว")
-
-    # บันทึกภาพที่มีข้อความและโลโก้
-    image.save("truemoney_with_text_and_logo.png")
-    print("✅ บันทึกภาพสำเร็จเป็น truemoney_with_text_and_logo.png")
-
-
-    # ส่งข้อมูลไปยัง Discord webhook
-    discord_webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
-
-    embed_data = {
-        "content": "📢 **ข้อมูลการโอนจ่าย** 💸",
-        "embeds": [
-            {
-                "title": "💳 **รายละเอียดการโอนเงิน** 💳",
-                "description": f"💰 **ผู้โอน**: {name_user_id}\n🏦 **ธ.ผู้โอน**: {text_bank_user}\n📱 **เบอร์ผู้โอน**: {text_phone_user}\n🏠 **ผู้รับ**: {name_me_id}\n🏧 **ธ.ผู้รับ**: {text_bank_me}\n📞 **เบอร์โทรศัพท์ผู้รับ**: {text_name_phone}\n💵 **จำนวนเงิน**: {money_id} บาท",
-                "color": 5814783,
-                "fields": [
-                    {"name": "👤 ผู้โอนจ่าย", "value": name_user_id, "inline": True},
-                    {"name": "🏦 ธ.ผู้โอน", "value": text_bank_user, "inline": True},
-                    {"name": "📜 เบอร์ผู้โอน", "value": text_phone_user, "inline": True},
-                    {"name": "💸 ผู้รับเงิน", "value": name_me_id, "inline": True},
-                    {"name": "📜 เบอร์โทรศัพท์ผู้รับ", "value": text_name_phone, "inline": True},
-                    {"name": "🏦 ธ.ผู้รับ", "value": text_bank_me, "inline": True},
-                    {"name": "💵 จำนวนเงิน", "value": f"{money_id} บาท", "inline": True},
-                    {"name": "⏰ เวลาการโอน", "value": text_name_time, "inline": True}
-
-                ]
-            }
-        ]
-    }
-
-    # ส่งคำขอไปยัง Discord webhook
-    response = requests.post(discord_webhook_url, json=embed_data)  # ใช้ json แทน data
-    print(f"🔗 ส่งคำขอไปยัง Discord: {response.status_code}")
-
-    # ส่งภาพหลังจาก Embed
-    with open("truemoney_with_text_and_logo.png", "rb") as f:
-        image_file = f.read()
-        print("✅ อ่านไฟล์ภาพสำหรับการส่งไปยัง Discord")
-
-    response = requests.post(
-        discord_webhook_url,
-        files={'file': ('truemoney_with_text_and_logo.png', image_file)}
-    )
-    print(f"🔗 ส่งไฟล์ภาพไปยัง Discord: {response.status_code}")
-
-    if response.status_code == 200:
-        print("📤 ส่งข้อมูลไปยัง Discord สำเร็จ 🎉")
-        main_menu()
-    else:
-        print(f"⚠️ เกิดข้อผิดพลาดในการส่งข้อมูลไปยัง Discord: {response.status_code}")
-
-
-# เรียกใช้เมนูหลัก
-if __name__ == "__main__":
-    main_menu()
+    debug_print(f"🖋️ font_phone: {font_path_phone}, font_size_phone: {font_s
