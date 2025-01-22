@@ -414,7 +414,7 @@ def main_menu():
 
     # เลือกภาพพื้นหลังตามธนาคาร
     print("🎨 เลือกภาพพื้นหลังตามธนาคาร:")
-    global_status["background_image"] = select_background(global_status["background_image"])
+    global_status["background_image"] = select_background(global_status["["bank_name"])
 
     # เลือกโลโก้และตำแหน่งของโลโก้
     global_status["logo"], global_status["logo_position"] = select_logo(global_status["background_image"])
