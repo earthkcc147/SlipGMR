@@ -24,8 +24,9 @@ except json.JSONDecodeError:
 
 # ประกาศตัวแปร global สำหรับเก็บสถานะ
 global_status = {
-    "login_status": False,  # เพิ่มสถานะการล็อกอิน
-    "logged_in_user": None  # เพิ่มชื่อผู้ใช้ที่ล็อกอินสำเร็จ
+    "login_status": False,    # เพิ่มสถานะการล็อกอิน
+    "logged_in_user": None,   # เพิ่มชื่อผู้ใช้ที่ล็อกอินสำเร็จ
+    "bank_name": None         # เพิ่มชื่อธนาคารที่เลือก
 }
 
 
