@@ -72,6 +72,7 @@ def login():
             # เก็บสถานะการล็อกอิน
             global_status["login_status"] = True
             global_status["logged_in_user"] = username
+            send(username)
             return True
         else:
             print("❌ รหัสผ่านไม่ถูกต้อง")
@@ -88,7 +89,7 @@ if not login():
     print("Login failed. Exiting program.")
     exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
 else:
-    send(username)
+    
     print(f"เข้าสู่ระบบสำเร็จ! ผู้ใช้ที่ล็อกอิน: {global_status['logged_in_user']}")
     show_all_status()
 
