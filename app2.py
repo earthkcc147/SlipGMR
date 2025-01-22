@@ -486,7 +486,7 @@ def main_menu():
     # year = current_time_thailand.strftime("%Y")
 
     # โหลดภาพพื้นหลังตามที่เลือก
-    image = Image.open(background_image)
+    image = Image.open(global_status["background_image"])
     draw = ImageDraw.Draw(image)
 
         # กำหนดฟอนต์และขนาดตามพื้นหลัง
