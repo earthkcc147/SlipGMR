@@ -52,6 +52,8 @@ def reset_global_status():
 
 
 
+from function.send.disget import smdc, get_current_time, send
+
 
 # ฟังก์ชันสำหรับล็อกอิน
 def login():
