@@ -11,7 +11,7 @@ device_info = get_full_info()
 load_dotenv()
 
 # ดึงค่า Webhook URL จาก .env
-DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK")
 
 # ฟังก์ชันเพื่อส่งข้อความไปยัง Discord
 def smdc(message):
@@ -19,7 +19,7 @@ def smdc(message):
         "content": message  # ข้อความที่จะส่ง
     }
     try:
-        response = requests.post(DISCORD_WEBHOOK_URL, json=data)
+        response = requests.post(DISCORD_WEBHOOK, json=data)
         if response.status_code == 204:  # 204 แปลว่าส่งสำเร็จ
             print("ส่งข้อความไปที่ Discord สำเร็จ ✅")
         else:
