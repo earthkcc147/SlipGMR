@@ -181,7 +181,7 @@ def login():
     global_status["login_status"] = False
     global_status["logged_in_user"] = None
     return False
-    start_menu()
+    
 
 # เรียกใช้งานฟังก์ชัน login
 if not login():
