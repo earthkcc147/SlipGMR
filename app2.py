@@ -439,6 +439,29 @@ def send_to_discord(name_user_id, text_bank_user, text_phone_user, name_me_id, t
 
 
 
+from PIL import ImageDraw
+
+def calculate_text_position(draw, text, font, base_position, alignment='left'):
+    """
+    คำนวณตำแหน่งของข้อความพร้อมจัดตำแหน่งตามความกว้าง
+    :param draw: ImageDraw object
+    :param text: ข้อความ
+    :param font: ฟอนต์
+    :param base_position: ตำแหน่งพื้นฐาน (x, y)
+    :param alignment: การจัดตำแหน่ง ('left', 'center', 'right')
+    :return: ตำแหน่งข้อความที่คำนวณแล้ว
+    """
+    text_width = draw.textlength(text, font=font)  # คำนวณความกว้างของข้อความ
+    x, y = base_position
+    
+    if alignment == 'center':
+        x -= text_width // 2
+    elif alignment == 'right':
+        x -= text_width
+
+    return x, y
+
+
 
 
 
@@ -679,7 +702,7 @@ def main_menu():
     debug_print(f"📅 day: {custom_time}")
 
     # คำนวณความกว้างของข้อความ
-    text_width_money = draw.textlength(text_money, font=font_money)
+    # text_width_money = draw.textlength(text_money, font=font_money)
 
     # ตำแหน่งข้อความ
     if background_image == "Bank/K-bank 4.png":
@@ -690,8 +713,11 @@ def main_menu():
         text_position_bank_me = (250, 600)
         text_position_phone = (250, 660)
         text_position_order = (445, 820)
+
+        # ใช้ฟังก์ชันปรับตำแหน่งข้อความ
+        text_position_money = calculate_text_position(draw, text_money, font_money, (390, 990), alignment='right')
         # ปรับตำแหน่ง text_position_money ให้ขยับไปทางซ้าย
-        text_position_money = (370 - text_width_money, 900)
+        # text_position_money = (370 - text_width_money, 900)
         # text_position_money = (370, 900)
         text_position_time = (70, 100)
 
