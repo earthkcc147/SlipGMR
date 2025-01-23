@@ -4,9 +4,16 @@ import pyfiglet
 import shutil
 from colorama import init, Fore, Style
 
-# เริ่มต้นการใช้งาน colorama
-init()
 
+# เริ่มต้นการใช้งาน colorama
+init(autoreset=True)
+
+def clear_console():
+    # ตรวจสอบว่ากำลังทำงานในระบบปฏิบัติการใด
+    if os.name == 'nt':  # Windows
+        os.system('cls')
+    else:  # Linux หรือ macOS หรือ Termux
+        os.system('clear')
 
 
 # ฟังก์ชันสำหรับจัดข้อความให้อยู่ตรงกลาง
