@@ -717,8 +717,8 @@ def main_menu():
         text_position_phone = calculate_text_position(draw, phone, font_phone, (250, 660), alignment='left')
 
         # ตำแหน่งข้อความอื่น ๆ
-        text_position_order = calculate_text_position(draw, text_name_order, font_order, (445, 820), alignment='center')
-        text_position_money = calculate_text_position(draw, text_money, font_money, (390, 990), alignment='right')
+        text_position_order = calculate_text_position(draw, text_name_order, font_order, (445, 820), alignment='left')
+        text_position_money = calculate_text_position(draw, text_money, font_money, (550, 900), alignment='right')
         text_position_time = calculate_text_position(draw, text_name_time, font_time, (70, 100), alignment='left')
 
     elif background_image == "Bank/K-bank 3.png":
@@ -756,7 +756,7 @@ def main_menu():
         text_position_bank_me = calculate_text_position(draw, text_bank_me, font_bank_me, (250, 610), alignment='left')
         text_position_phone = calculate_text_position(draw, phone, font_phone, (250, 670), alignment='left')
 
-        text_position_order = calculate_text_position(draw, text_name_order, font_order, (460, 840), alignment='center')
+        text_position_order = calculate_text_position(draw, text_name_order, font_order, (460, 840), alignment='left')
         text_position_money = calculate_text_position(draw, text_money, font_money, (380, 920), alignment='right')
         text_position_time = calculate_text_position(draw, text_name_time, font_time, (60, 110), alignment='left')
 
