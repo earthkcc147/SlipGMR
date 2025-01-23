@@ -566,6 +566,7 @@ def start_menu():
         
         print_boxed_menu(menu_items)
 
+        print()  # เพิ่มบรรทัดใหม่
         choice = input("➡️ กรุณาเลือกตัวเลือก : ")
 
         if choice == "1":
