@@ -1,1 +1,1 @@
-from .banners import print_login, print_intro, print_logo
+from .banners import print_login, print_intro, print_logo, home
