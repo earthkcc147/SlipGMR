@@ -549,8 +549,10 @@ def login():
             main_menu()
             return True
         else:
+            clear_console()
             print("❌ รหัสผ่านไม่ถูกต้อง")
     else:
+        clear_console()
         print("❌ ชื่อผู้ใช้ไม่ถูกต้อง")
 
     # อัปเดตสถานะการล็อกอินเป็น False
