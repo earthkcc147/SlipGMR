@@ -22,9 +22,11 @@ def clear_console():
         os.system('clear')
 
 def print_boxed_message(message):
-    border = "═" * (len(message) + 4)  # สร้างเส้นขอบตามความยาวข้อความ
+    padding = 2  # ช่องว่างซ้าย-ขวาอย่างน้อย
+    total_length = len(message) + padding * 2  # ความยาวทั้งหมดของกรอบ
+    border = "═" * total_length  # สร้างเส้นขอบด้านบนและล่าง
     print(f"╔{border}╗")
-    print(f"║  {message}  ║")
+    print(f"║{' ' * padding}{message}{' ' * padding}║")
     print(f"╚{border}╝")
 
 
