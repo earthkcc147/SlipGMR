@@ -242,7 +242,6 @@ def send_uuid_to_discord(user_uuid):
 
 import json
 
-# ฟังก์ชันสำหรับอัปเดตข้อมูลผู้ใช้ในไฟล์ .env
 def update_users_data(username, password):
     try:
         # อ่านข้อมูลจากไฟล์ .env
@@ -262,6 +261,7 @@ def update_users_data(username, password):
             users_data = json.loads(users_data_str)
         except json.JSONDecodeError:
             print("❌ ข้อผิดพลาดในการแปลงข้อมูล JSON ในไฟล์ .env")
+            print("ข้อมูลในไฟล์ .env อาจจะไม่เป็นไปตามรูปแบบ JSON")
             return
 
         # เพิ่มข้อมูลผู้ใช้ใหม่
