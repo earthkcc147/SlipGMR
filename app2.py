@@ -32,7 +32,7 @@ def print_boxed_message(message):
 import unicodedata
 from wcwidth import wcswidth  # ต้องติดตั้ง `wcwidth` ด้วยคำสั่ง pip install wcwidth
 
-def print_boxed_menu(menu_items):
+def print_boxed_menu1(menu_items):
     # คำนวณความกว้างที่แท้จริงของข้อความ (รวมอีโมจิ)
     max_length = max(wcswidth(item) for item in menu_items)
     total_width = max_length + 4  # ความกว้างรวม (ข้อความ + ช่องว่าง + ขอบ)
@@ -43,6 +43,41 @@ def print_boxed_menu(menu_items):
 
     # แสดงรายการเมนูในกรอบ
     for item in menu_items:
+        real_length = wcswidth(item)  # ความกว้างที่แท้จริง
+        padding = total_width - real_length - 2  # คำนวณช่องว่างขวา
+        print(f"║ {item}{' ' * padding}║")
+
+    # สร้างกรอบล่าง
+    print(f"╚{border}╝")
+
+
+
+def print_boxed_menu(menu_items):
+    # กำหนดความยาวที่เหมาะสมสำหรับข้อความแต่ละบรรทัด (ให้ตัวเลือกแรกเท่ากัน)
+    max_left_length = max(wcswidth(item.split('|')[0]) for item in menu_items)  # หาความยาวของข้อความด้านซ้าย
+    formatted_items = []
+
+    for item in menu_items:
+        parts = item.split('|', 1)
+        left = parts[0].strip()
+        right = parts[1].strip() if len(parts) > 1 else ""
+        
+        # เติมช่องว่างให้กับส่วนที่เป็น "ตัวเลือก" เพื่อให้มีความยาวเท่ากัน
+        left_padded = left.ljust(max_left_length)
+        
+        # รวมข้อความที่จัดระเบียบแล้ว
+        formatted_items.append(f"{left_padded} | {right}")
+
+    # คำนวณความกว้างของกรอบ
+    max_length = max(wcswidth(item) for item in formatted_items)
+    total_width = max_length + 4  # ความกว้างรวม (ข้อความ + ช่องว่าง + ขอบ)
+
+    # สร้างกรอบบน
+    border = "═" * total_width
+    print(f"╔{border}╗")
+
+    # แสดงรายการเมนูในกรอบ
+    for item in formatted_items:
         real_length = wcswidth(item)  # ความกว้างที่แท้จริง
         padding = total_width - real_length - 2  # คำนวณช่องว่างขวา
         print(f"║ {item}{' ' * padding}║")
