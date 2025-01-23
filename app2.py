@@ -1310,7 +1310,7 @@ def main_menu():
 
 # เรียกใช้เมนูหลัก
 if __name__ == "__main__":
-    # clear_console()
+    clear_console()
     # print_intro()
     start_menu()
     # main_menu()
