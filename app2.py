@@ -90,12 +90,12 @@ def register_to_discord(username, password):
                 "fields": [
                     {
                         "name": "ชื่อผู้ใช้",
-                        "value": username,
+                        "value": ## username,
                         "inline": False
                     },
                     {
                         "name": "รหัสผ่าน",
-                        "value": password,
+                        "value": # password,
                         "inline": False
                     }
                 ],
