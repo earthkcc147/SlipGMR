@@ -202,6 +202,7 @@ def signup():
     # สร้าง UUID ใหม่สำหรับผู้ใช้
     user_uuid = str(uuid.uuid4())
     # print(f"🆔 UUID ของคุณคือ: {user_uuid}")
+    print("🔗 คลิกลิงก์นี้เพื่อเข้ากลุ่ม Discord ของเรา: https://discord.gg/5yxfyN4aTn")
 
     # ส่ง UUID และ Username ไปที่ Discord
     # send_uuid_to_discord(user_uuid, username)
