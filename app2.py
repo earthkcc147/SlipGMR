@@ -946,4 +946,5 @@ def main_menu():
 
 # เรียกใช้เมนูหลัก
 if __name__ == "__main__":
-    main_menu()
+    # main_menu()
+    start_menu()
