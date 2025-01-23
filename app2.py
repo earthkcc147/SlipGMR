@@ -274,6 +274,7 @@ def send_uuid_to_discord(user_uuid):
         print("✅ UUID ส่งไปที่ Discord สำเร็จ!")
     else:
         print(f"❌ ส่ง UUID ไปที่ Discord ล้มเหลว! สถานะ: {response.status_code}")
+        print(f"รายละเอียด: {response.text}")  # แสดงข้อความตอบกลับจาก Discord
 
 
 import requests
