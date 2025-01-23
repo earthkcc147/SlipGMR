@@ -189,11 +189,6 @@ def login():
     global_status["logged_in_user"] = None
     return False
 
-# ฟังก์ชัน start_menu
-def start_menu():
-    print("Welcome to the start menu!")
-    # เพิ่มโค้ดสำหรับเมนูเริ่มต้น
-
 # เรียกใช้งานฟังก์ชัน login
 if not login():
     print("Login failed. Exiting program.")
