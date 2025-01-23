@@ -943,7 +943,7 @@ def main_menu():
     send_to_discord(name_user_id, text_bank_user, text_phone_user, name_me_id, text_bank_me, text_name_phone, money_id, text_name_time)
     main_menu()
 
-
+start_menu()
 # เรียกใช้เมนูหลัก
-if __name__ == "__main__":
-    start_menu()
+# if __name__ == "__main__":
+    # main_menu()
