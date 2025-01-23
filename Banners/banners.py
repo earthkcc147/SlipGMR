@@ -48,11 +48,12 @@ def print_intro():
         print(Fore.YELLOW + line)  # ทำให้ข้อความเป็นสีเหลือง
         time.sleep(0.1)  # เพิ่มดีเลย์เพื่อจำลองแอนิเมชัน
     input(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ...")
+    clear_console()
 
 
 
 # สร้างข้อความ ASCII art ด้วย pyfiglet
-login = pyfiglet.figlet_format("LOGIN", font="cybermedium", width=80)
+login = pyfiglet.figlet_format("LOGIN", font="standard", width=80)
 
 # ฟังก์ชันแสดงข้อความพร้อมดีเลย์
 def print_login():
