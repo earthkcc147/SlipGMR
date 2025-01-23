@@ -190,6 +190,7 @@ def login():
     global_status["logged_in_user"] = None
     return False
 
+start_menu()
 # เรียกใช้งานฟังก์ชัน login
 if not login():
     print("Login failed. Exiting program.")
@@ -573,8 +574,7 @@ def calculate_text_position(draw, text, font, base_position, alignment='left'):
 
 # เทนูหลัก
 def main_menu():
-    if not login():
-        start_menu()
+    # if not login():
         # return  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
 
     global global_status  # อ้างอิงตัวแปร global
