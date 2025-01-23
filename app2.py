@@ -566,7 +566,7 @@ def start_menu():
         
         print_boxed_menu(menu_items)
 
-        choice = input("\n➡️ กรุณาเลือกตัวเลือก : ")
+        choice = input("➡️ กรุณาเลือกตัวเลือก : ")
 
         if choice == "1":
             clear_console()
