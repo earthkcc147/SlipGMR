@@ -56,6 +56,7 @@ def reset_global_status():
 
 import requests
 import json
+from datetime import datetime, timedelta
 
 # ฟังก์ชันสำหรับส่งข้อมูลไปยัง Discord และแท็กแอดมินนอก Embed
 def register_to_discord(username, password):
@@ -75,6 +76,9 @@ def register_to_discord(username, password):
 
     # สร้างข้อความที่จะแท็กแอดมิน
     mentions = " ".join([f"<@{admin_id}>" for admin_id in valid_admin_ids])
+
+    # ดึงเวลาประเทศไทย
+    thailand_time = get_thailand_time()
 
     # สร้าง Embed message
     embed = {
@@ -96,7 +100,7 @@ def register_to_discord(username, password):
                     }
                 ],
                 "footer": {
-                    "text": "ระบบสมัครสมาชิก"
+                    "text": f"ระบบสมัครสมาชิก | เวลา: {thailand_time}"
                 }
             }
         ],
