@@ -3,7 +3,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 import os
 from function.get import get_full_info  # นำเข้า get_device_info จาก get.py
-from app2 import main_menu
+
 
 # เรียกข้อมูลจาก get_full_info
 device_info = get_full_info()
@@ -32,7 +32,7 @@ def smdc(message):
         response = requests.post(DISCORD_WEBHOOK_URL, json=embed_data)
         if response.status_code == 204:
             print("ส่งข้อความไปที่ Discord สำเร็จ ✅")
-            main_menu()
+            
         else:
             print(f"เกิดข้อผิดพลาด: {response.status_code} ❌")
             print(response.text)
