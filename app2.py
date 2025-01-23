@@ -706,75 +706,74 @@ def main_menu():
 
     # ตำแหน่งข้อความ
     if background_image == "Bank/K-bank 4.png":
-        text_position_user = (250, 220)
-        text_position_bank_user = (250, 280)
-        text_position_phone_user = (250, 340)
-        text_position_me = (250, 540)
-        text_position_bank_me = (250, 600)
-        text_position_phone = (250, 660)
-        text_position_order = (445, 820)
+        # ตำแหน่งข้อความสำหรับผู้ใช้
+        text_position_user = calculate_text_position(draw, text_name_user, font_user, (250, 220), alignment='left')
+        text_position_bank_user = calculate_text_position(draw, text_bank_user, font_bank_user, (250, 280), alignment='left')
+        text_position_phone_user = calculate_text_position(draw, text_phone_user, font_phone_user, (250, 340), alignment='left')
 
-        # ใช้ฟังก์ชันปรับตำแหน่งข้อความ
+        # ตำแหน่งข้อความสำหรับตัวเรา
+        text_position_me = calculate_text_position(draw, text_name_me, font_me, (250, 540), alignment='left')
+        text_position_bank_me = calculate_text_position(draw, text_bank_me, font_bank_me, (250, 600), alignment='left')
+        text_position_phone = calculate_text_position(draw, phone, font_phone, (250, 660), alignment='left')
+
+        # ตำแหน่งข้อความอื่น ๆ
+        text_position_order = calculate_text_position(draw, text_name_order, font_order, (445, 820), alignment='center')
         text_position_money = calculate_text_position(draw, text_money, font_money, (390, 990), alignment='right')
-        # ปรับตำแหน่ง text_position_money ให้ขยับไปทางซ้าย
-        # text_position_money = (370 - text_width_money, 900)
-        # text_position_money = (370, 900)
-        text_position_time = (70, 100)
+        text_position_time = calculate_text_position(draw, text_name_time, font_time, (70, 100), alignment='left')
 
     elif background_image == "Bank/K-bank 3.png":
-        text_position_user = (250, 220)
-        text_position_bank_user = (250, 280)
-        text_position_phone_user = (250, 340)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (400, 900)
-        text_position_money = (390, 990)
-        text_position_time = (55, 100)
+        text_position_user = calculate_text_position(draw, text_name_user, font_user, (250, 220), alignment='left')
+        text_position_bank_user = calculate_text_position(draw, text_bank_user, font_bank_user, (250, 280), alignment='left')
+        text_position_phone_user = calculate_text_position(draw, text_phone_user, font_phone_user, (250, 340), alignment='left')
+
+        text_position_me = calculate_text_position(draw, text_name_me, font_me, (250, 550), alignment='left')
+        text_position_bank_me = calculate_text_position(draw, text_bank_me, font_bank_me, (250, 610), alignment='left')
+        text_position_phone = calculate_text_position(draw, phone, font_phone, (250, 670), alignment='left')
+
+        text_position_order = calculate_text_position(draw, text_name_order, font_order, (400, 900), alignment='center')
+        text_position_money = calculate_text_position(draw, text_money, font_money, (390, 990), alignment='right')
+        text_position_time = calculate_text_position(draw, text_name_time, font_time, (55, 100), alignment='left')
 
     elif background_image == "Bank/K-bank 2.png":
-        text_position_user = (250, 220)
-        text_position_bank_user = (250, 280)
-        text_position_phone_user = (250, 340)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (400, 900)
-        text_position_money = (390, 990)
-        text_position_time = (55, 100)
+        text_position_user = calculate_text_position(draw, text_name_user, font_user, (250, 220), alignment='left')
+        text_position_bank_user = calculate_text_position(draw, text_bank_user, font_bank_user, (250, 280), alignment='left')
+        text_position_phone_user = calculate_text_position(draw, text_phone_user, font_phone_user, (250, 340), alignment='left')
+
+        text_position_me = calculate_text_position(draw, text_name_me, font_me, (250, 550), alignment='left')
+        text_position_bank_me = calculate_text_position(draw, text_bank_me, font_bank_me, (250, 610), alignment='left')
+        text_position_phone = calculate_text_position(draw, phone, font_phone, (250, 670), alignment='left')
+
+        text_position_order = calculate_text_position(draw, text_name_order, font_order, (400, 900), alignment='center')
+        text_position_money = calculate_text_position(draw, text_money, font_money, (390, 990), alignment='right')
+        text_position_time = calculate_text_position(draw, text_name_time, font_time, (55, 100), alignment='left')
 
     elif background_image == "Bank/K-bank 1.png":
-        text_position_user = (250, 230)
-        text_position_bank_user = (250, 290)
-        text_position_phone_user = (250, 350)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (460, 840)
-        text_position_money = (380, 920)
-        text_position_time = (60, 110)
+        text_position_user = calculate_text_position(draw, text_name_user, font_user, (250, 230), alignment='left')
+        text_position_bank_user = calculate_text_position(draw, text_bank_user, font_bank_user, (250, 290), alignment='left')
+        text_position_phone_user = calculate_text_position(draw, text_phone_user, font_phone_user, (250, 350), alignment='left')
 
-    elif background_image == "Bank/K-bank 0.png":
-        text_position_user = (250, 230)
-        text_position_bank_user = (250, 290)
-        text_position_phone_user = (250, 350)
-        text_position_me = (250, 550)
-        text_position_bank_me = (250, 610)
-        text_position_phone = (250, 670)
-        text_position_order = (460, 840)
-        text_position_money = (380, 920)
-        text_position_time = (60, 110)
+        text_position_me = calculate_text_position(draw, text_name_me, font_me, (250, 550), alignment='left')
+        text_position_bank_me = calculate_text_position(draw, text_bank_me, font_bank_me, (250, 610), alignment='left')
+        text_position_phone = calculate_text_position(draw, phone, font_phone, (250, 670), alignment='left')
 
+        text_position_order = calculate_text_position(draw, text_name_order, font_order, (460, 840), alignment='center')
+        text_position_money = calculate_text_position(draw, text_money, font_money, (380, 920), alignment='right')
+        text_position_time = calculate_text_position(draw, text_name_time, font_time, (60, 110), alignment='left')
+
+    # สำหรับ default
     else:
-        text_position_user = (250, 240)
-        text_position_bank_user = (250, 300)
-        text_position_phone_user = (250, 360)
-        text_position_me = (250, 560)
-        text_position_bank_me = (250, 620)
-        text_position_phone = (250, 680)
-        text_position_order = (470, 860)
-        text_position_money = (390, 940)
-        text_position_time = (65, 120)
+        text_position_user = calculate_text_position(draw, text_name_user, font_user, (250, 240), alignment='left')
+        text_position_bank_user = calculate_text_position(draw, text_bank_user, font_bank_user, (250, 300), alignment='left')
+        text_position_phone_user = calculate_text_position(draw, text_phone_user, font_phone_user, (250, 360), alignment='left')
+
+        text_position_me = calculate_text_position(draw, text_name_me, font_me, (250, 560), alignment='left')
+        text_position_bank_me = calculate_text_position(draw, text_bank_me, font_bank_me, (250, 620), alignment='left')
+        text_position_phone = calculate_text_position(draw, phone, font_phone, (250, 680), alignment='left')
+
+        text_position_order = calculate_text_position(draw, text_name_order, font_order, (470, 860), alignment='center')
+        text_position_money = calculate_text_position(draw, text_money, font_money, (390, 940), alignment='right')
+        text_position_time = calculate_text_position(draw, text_name_time, font_time, (65, 120), alignment='left')
+
 
     # ตำแหน่งข้อความ
     debug_print("📍 ตำแหน่งข้อความที่ใช้ในภาพ:")
