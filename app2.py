@@ -240,6 +240,8 @@ def send_uuid_to_discord(user_uuid):
     else:
         print(f"❌ เกิดข้อผิดพลาดในการส่งข้อมูลไปที่ Discord: {response.status_code} - {response.text}")
 
+import json
+
 # ฟังก์ชันสำหรับอัปเดตข้อมูลผู้ใช้ในไฟล์ .env
 def update_users_data(username, password):
     try:
@@ -247,8 +249,19 @@ def update_users_data(username, password):
         with open('.env', 'r') as file:
             env_data = file.read()
 
+        # แยกข้อมูล USERS ออกจากไฟล์ .env
+        if "USERS=" not in env_data:
+            print("❌ ข้อมูล USERS ไม่พบในไฟล์ .env")
+            return
+
+        users_data_str = env_data.split('=')[-1].strip().strip("'")
+
         # แปลงข้อมูลจาก JSON string เป็น Python dictionary
-        users_data = json.loads(env_data.split('=')[-1].strip())
+        try:
+            users_data = json.loads(users_data_str)
+        except json.JSONDecodeError:
+            print("❌ ข้อผิดพลาดในการแปลงข้อมูล JSON ในไฟล์ .env")
+            return
 
         # เพิ่มข้อมูลผู้ใช้ใหม่
         users_data[username] = {"password": password}
@@ -260,10 +273,10 @@ def update_users_data(username, password):
         with open('.env', 'w') as file:
             file.write(updated_data)
 
+        print(f"✅ ข้อมูลผู้ใช้ {username} ถูกอัปเดตในไฟล์ .env")
+
     except FileNotFoundError:
         print("❌ ไม่พบไฟล์ .env! กรุณาตรวจสอบไฟล์ .env")
-    except json.JSONDecodeError:
-        print("❌ ข้อผิดพลาดในการแปลงข้อมูลในไฟล์ .env")
     except Exception as e:
         print(f"❌ เกิดข้อผิดพลาด: {str(e)}")
 
