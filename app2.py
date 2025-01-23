@@ -990,6 +990,6 @@ def main_menu():
 if __name__ == "__main__":
     print_intro()
     # รอการกด Enter เพื่อดำเนินการต่อ
-    input(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ...")
+    input(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ..." + Style.RESET_ALL)
     start_menu()
     # main_menu()
