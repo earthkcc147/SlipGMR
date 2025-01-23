@@ -678,6 +678,9 @@ def main_menu():
     debug_print(f"💵 money_id: {money_id}")
     debug_print(f"📅 day: {custom_time}")
 
+    # คำนวณความกว้างของข้อความ money_id
+    text_width_money = draw.textsize(text_money, font=font_money)[0]
+
     # ตำแหน่งข้อความ
     if background_image == "Bank/K-bank 4.png":
         text_position_user = (250, 220)
@@ -687,7 +690,9 @@ def main_menu():
         text_position_bank_me = (250, 600)
         text_position_phone = (250, 660)
         text_position_order = (445, 820)
-        text_position_money = (370, 900)
+        # ปรับตำแหน่ง text_position_money ให้ขยับไปทางซ้าย
+        text_position_money = (390 - text_width_money, 990)
+        # text_position_money = (370, 900)
         text_position_time = (70, 100)
 
     elif background_image == "Bank/K-bank 3.png":
