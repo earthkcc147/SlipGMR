@@ -59,8 +59,12 @@ def print_intro():
     for line in centered_intro.splitlines():
         print(Fore.YELLOW + line + Style.RESET_ALL)  # ทำให้ข้อความเป็นสีเหลือง
         time.sleep(0.1)  # เพิ่มดีเลย์เพื่อจำลองแอนิเมชัน
+
+    # input(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ..." + Style.RESET_ALL)
+
+
     # เรียกใช้งาน print_centered สำหรับข้อความที่ต้องการ
-    print_centered(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ...")
+    print_centered("\nกด Enter เพื่อดำเนินการต่อ...")
 
     # รอให้ผู้ใช้กด Enter
     input()  # หรือใส่ข้อความให้ตรงกลางนี้ไปหลังจากรอ input ก็ได้
