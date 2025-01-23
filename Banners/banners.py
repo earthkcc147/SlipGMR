@@ -41,10 +41,10 @@ intro = pyfiglet.figlet_format("Welcome\nTo\nGumarun Store", font="cybermedium",
 
 # ฟังก์ชันแสดงข้อความพร้อมดีเลย์
 def print_intro():
+    clear_console()
     # ใช้ center_text เพื่อจัดข้อความให้อยู่ตรงกลาง
     centered_intro = center_text(intro)
     for line in centered_intro.splitlines():
-        clear_console()
         print(Fore.YELLOW + line)  # ทำให้ข้อความเป็นสีเหลือง
         time.sleep(0.1)  # เพิ่มดีเลย์เพื่อจำลองแอนิเมชัน
 
