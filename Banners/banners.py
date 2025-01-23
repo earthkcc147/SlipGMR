@@ -71,7 +71,7 @@ def print_login():
 HOME = pyfiglet.figlet_format("Welcome\nยินดีต้อนรับ", font="calvin_s", width=80)
 
 # ฟังก์ชันแสดงข้อความพร้อมดีเลย์
-def HOME():
+def home():
     # ใช้ center_text เพื่อจัดข้อความให้อยู่ตรงกลาง
     centered_intro = center_text(HOME)
     for line in centered_intro.splitlines():
