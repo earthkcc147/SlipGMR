@@ -691,7 +691,7 @@ def main_menu():
         text_position_phone = (250, 660)
         text_position_order = (445, 820)
         # ปรับตำแหน่ง text_position_money ให้ขยับไปทางซ้าย
-        text_position_money = (390 - text_width_money, 990)
+        text_position_money = (370 - text_width_money, 900)
         # text_position_money = (370, 900)
         text_position_time = (70, 100)
 
