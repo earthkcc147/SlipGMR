@@ -64,8 +64,25 @@ def register_to_discord(username, password):
     # กำหนด ID ของแอดมินที่ต้องการแท็ก
     admin_ids = [486994554390577173, 123456789012]
     
+    # ตรวจสอบว่า admin_ids เป็นลิสต์ของตัวเลข
+    valid_admin_ids = []
+    for admin_id in admin_ids:
+        try:
+            # ตรวจสอบว่า admin_id เป็นเลขจำนวนเต็ม
+            if isinstance(admin_id, int):
+                valid_admin_ids.append(admin_id)
+            else:
+                print(f"❌ ID {admin_id} ไม่ใช่ตัวเลขที่ถูกต้อง")
+        except Exception as e:
+            print(f"❌ ไม่สามารถตรวจสอบ ID {admin_id}: {str(e)}")
+
+    # ถ้าไม่มี admin_ids ที่ถูกต้อง ให้หยุดการทำงาน
+    if not valid_admin_ids:
+        print("❌ ไม่มี ID ที่ถูกต้อง")
+        return
+
     # สร้างข้อความที่จะแท็กแอดมิน
-    mentions = " ".join([f"<@{admin_id}>" for admin_id in admin_ids])
+    mentions = " ".join([f"<@{admin_id}>" for admin_id in valid_admin_ids])
 
     # สร้าง Embed message
     embed = {
