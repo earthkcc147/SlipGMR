@@ -239,6 +239,9 @@ def signup2():
 
 
 
+# ฟังก์ชันสำหรับตรวจสอบว่ามีตัวอักษรภาษาไทยหรือไม่
+def contains_thai(text):
+    return any("\u0E00" <= char <= "\u0E7F" for char in text)
 
 import uuid
 import requests
