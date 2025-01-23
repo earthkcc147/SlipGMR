@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 import pytz
 from datetime import datetime
 import requests
-from Banners import print_intro, print_logo, print_login
+from Banners import *
 
 
 import os
@@ -501,6 +501,7 @@ def restart_script():
 def start_menu():
     print_intro()  # เรียกใช้งาน print_intro ก่อนแสดงเมนู
     while True:
+        home()
         print_boxed_message("\n🎮✨ เมนูหลัก ✨🎮")
         print("1. | 🔑 เข้าสู่ระบบ")
         print("2. | ✍️ สมัครสมาชิก (ส่งข้อมูลไปที่ Discord 📝)")
