@@ -678,8 +678,8 @@ def main_menu():
     debug_print(f"💵 money_id: {money_id}")
     debug_print(f"📅 day: {custom_time}")
 
-    # คำนวณความกว้างของข้อความ money_id
-    text_width_money = draw.textsize(text_money, font=font_money)[0]
+    # คำนวณความกว้างของข้อความ
+    text_width_money = draw.textlength(text_money, font=font_money)
 
     # ตำแหน่งข้อความ
     if background_image == "Bank/K-bank 4.png":
