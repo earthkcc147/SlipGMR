@@ -171,6 +171,7 @@ def login():
             global_status["login_status"] = True
             global_status["logged_in_user"] = username
             send(username)
+            main_menu()
             return True
         else:
             print("❌ รหัสผ่านไม่ถูกต้อง")
