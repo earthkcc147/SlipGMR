@@ -67,7 +67,7 @@ def print_boxed_menu(menu_items):
     print(f"╚{border}╝")
 
 
-ทำไมขีดขวาสุดถึงไม่เท่ากัน
+
 
 
 
