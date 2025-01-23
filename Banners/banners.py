@@ -64,7 +64,7 @@ def print_intro():
 
 
     # เรียกใช้งาน print_centered สำหรับข้อความที่ต้องการ
-    print_centered("\nกด Enter เพื่อดำเนินการต่อ...")
+    print_centered("Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ..." + Style.RESET_ALL)
 
     # รอให้ผู้ใช้กด Enter
     input()  # หรือใส่ข้อความให้ตรงกลางนี้ไปหลังจากรอ input ก็ได้
