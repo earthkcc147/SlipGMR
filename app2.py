@@ -2,6 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 import pytz
 from datetime import datetime
 import requests
+from Banners import print_intro, print_logo
 
 
 import os
