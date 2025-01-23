@@ -203,7 +203,7 @@ import requests
 # ฟังก์ชันสำหรับส่ง UUID ไปที่ Discord
 def send_uuid_to_discord(user_uuid):
     # Webhook URL ของ Discord
-    webhook_url = 'https://discord.com/api/webhooks/YOUR_WEBHOOK_URL'
+    webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
     
     # สร้างข้อมูล Embed
     embed_data = {
