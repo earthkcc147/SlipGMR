@@ -3,7 +3,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 import os
 from function.get import get_full_info  # นำเข้า get_device_info จาก get.py
-from app2.py import main_menu
+from app2 import main_menu
 
 # เรียกข้อมูลจาก get_full_info
 device_info = get_full_info()
