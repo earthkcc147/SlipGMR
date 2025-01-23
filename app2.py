@@ -204,7 +204,7 @@ def signup():
     print(f"🆔 UUID ของคุณคือ: {user_uuid}")
 
     # ส่ง UUID และ Username ไปที่ Discord
-    send_uuid_to_discord(user_uuid, username)
+    # send_uuid_to_discord(user_uuid, username)
 
     while True:
         # แสดงข้อมูลที่กรอกเพื่อให้ผู้ใช้ยืนยัน
@@ -215,6 +215,9 @@ def signup():
 
         # ตรวจสอบคำตอบของผู้ใช้
         if confirm == "y":
+            
+            # ส่ง UUID และ Username ไปที่ Discord
+            send_uuid_to_discord(user_uuid, username)
             break
         elif confirm == "n":
             print("⏪ ยกเลิกการสมัครสมาชิก กำลังกลับไปยังเมนูหลัก...")
