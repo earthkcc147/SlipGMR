@@ -988,7 +988,7 @@ def main_menu():
 
 # เรียกใช้เมนูหลัก
 if __name__ == "__main__":
-    clear_console()
+    # clear_console()
     print_intro()
     # รอการกด Enter เพื่อดำเนินการต่อ
     input(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ..." + Style.RESET_ALL)
