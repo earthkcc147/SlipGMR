@@ -2,7 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 import pytz
 from datetime import datetime
 import requests
-from Banners import print_intro, print_logo
+from Banners import print_intro, print_logo, print_login
 
 
 import os
@@ -975,5 +975,6 @@ def main_menu():
 
 # เรียกใช้เมนูหลัก
 if __name__ == "__main__":
+    print_intro()
     start_menu()
     # main_menu()
