@@ -35,6 +35,18 @@ def center_text(text):
 
 
 
+import os
+from wcwidth import wcswidth  # ใช้ wcwidth สำหรับการคำนวณความกว้างของข้อความ
+
+def print_centered(message):
+    # หาความกว้างของจอ
+    terminal_width = os.get_terminal_size().columns
+    # คำนวณความกว้างของข้อความที่แท้จริง
+    message_width = wcswidth(message)
+    # คำนวณการจัดตำแหน่งให้ตรงกลาง
+    padding_left = (terminal_width - message_width) // 2
+    print(' ' * padding_left + message)
+
 
 # สร้างข้อความ ASCII art ด้วย pyfiglet
 intro = pyfiglet.figlet_format("Welcome\nTo\nGumarun Store", font="cybermedium", width=80)
@@ -47,7 +59,11 @@ def print_intro():
     for line in centered_intro.splitlines():
         print(Fore.YELLOW + line + Style.RESET_ALL)  # ทำให้ข้อความเป็นสีเหลือง
         time.sleep(0.1)  # เพิ่มดีเลย์เพื่อจำลองแอนิเมชัน
-    input(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ..." + Style.RESET_ALL)
+    # เรียกใช้งาน print_centered สำหรับข้อความที่ต้องการ
+    print_centered(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ..." + Style.RESET_ALL)
+
+    # รอให้ผู้ใช้กด Enter
+    input()  # หรือใส่ข้อความให้ตรงกลางนี้ไปหลังจากรอ input ก็ได้
     clear_console()
 
 
