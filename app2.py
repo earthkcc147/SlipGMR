@@ -368,28 +368,77 @@ def add_users_data(username, password):
 
 
 
-# ฟังก์ชันสำหรับเมนูเริ่มต้น
+import subprocess
+import os
+import sys
+from colorama import Fore, Style
+from tqdm import tqdm
+
+def autoupdate_restart():
+    repo_dir = '.'  # ระบุให้ใช้โฟลเดอร์ปัจจุบัน 
+    repo_url = 'https://github.com/earthkcc147/SlipGMR.git'
+
+    def clone_with_progress(repo_url, repo_dir):
+        process = subprocess.Popen(
+            ['git', 'clone', '--depth=1', repo_url, repo_dir],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+        for line in process.stdout:
+            line = line.decode('utf-8')
+            if 'Receiving objects' in line:
+                tqdm.write(line.strip())
+        process.wait()
+
+    if os.path.exists(repo_dir):
+        print(Fore.YELLOW + "🎉 พบ repository ที่มีอยู่แล้ว กำลังดึงข้อมูลล่าสุด...")
+        subprocess.run(['git', '-C', repo_dir, 'fetch', '--depth=1'], check=True)
+        subprocess.run(['git', '-C', repo_dir, 'reset', '--hard', 'origin/main'], check=True)
+        print(Fore.GREEN + "✔️ การอัปเดตสำเร็จ!")
+
+        print(Fore.YELLOW + "⛔ กำลังลบไฟล์ที่ไม่ถูกติดตาม...")
+        subprocess.run(['git', '-C', repo_dir, 'clean', '-fd'], check=True)
+        print(Fore.GREEN + "✔️ ลบไฟล์ที่ไม่ถูกติดตามเสร็จสิ้น!")
+    else:
+        print(Fore.RED + "❌ ไม่พบ repository กำลังทำการ clone...")
+        with tqdm(total=100, desc="ดาวน์โหลด repository", bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}") as pbar:
+            clone_with_progress(repo_url, repo_dir)
+        print(Fore.GREEN + "✔️ การ clone สำเร็จ!")
+
+    print(Fore.YELLOW + "🔄 รีสตาร์ทสคริปต์...")
+    restart_script()
+
+def restart_script():
+    """รีสตาร์ทโปรแกรมใหม่"""
+    print(Fore.YELLOW + "⏳ กำลังรีสตาร์ทโปรแกรม...")
+    python = sys.executable  # ไฟล์ Python ปัจจุบัน
+    os.execl(python, python, *sys.argv)  # เรียกใช้สคริปต์เดิมอีกครั้ง
+
 def start_menu():
-    print_intro()  # เรียกใช้งาน print_intro ก่อนแสดงเมนู
     while True:
         print("\n🎮 เมนูหลัก 🎮")
         print("1️⃣ เข้าสู่ระบบ")
         print("2️⃣ สมัครสมาชิก 📝 (ส่งข้อมูลไปที่ Discord)")
-        print("3️⃣ ออกจากโปรแกรม ❌")
+        print("3️⃣ อัปเดตโค้ดและรีสตาร์ท 🔄")
+        print("4️⃣ ออกจากโปรแกรม ❌")
 
-        choice = input("➡️ กรุณาเลือกตัวเลือก (1/2/3): ")
+        choice = input("➡️ กรุณาเลือกตัวเลือก (1/2/3/4): ")
 
         if choice == "1":
             print("🔑 กำลังเข้าสู่ระบบ...")
             login()
         elif choice == "2":
             print("✍️ กำลังสมัครสมาชิก...")
-            signup()  # ฟังก์ชันสำหรับการสมัครสมาชิก
+            signup()
         elif choice == "3":
+            autoupdate_restart()  # เรียกฟังก์ชันอัปเดตและรีสตาร์ท
+        elif choice == "4":
             print("👋 ออกจากโปรแกรม... สวัสดีครับ!")
             exit()
         else:
             print("⚠️ ❌ ตัวเลือกไม่ถูกต้อง กรุณาลองใหม่.")
+
+
 
 
 
