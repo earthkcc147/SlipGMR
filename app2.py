@@ -227,7 +227,7 @@ def signup():
         # ตรวจสอบคำตอบของผู้ใช้
         if confirm == "y":
             # ส่งข้อมูลไปที่ Discord (ฟังก์ชันสำหรับลงทะเบียน)
-            register_to_discord(username, password)
+            register_to_discord(user_uuid, username, password)
             print(f"✅ สมัครสมาชิก {username} เรียบร้อยแล้ว! 👏")
             break  # ออกจากลูปการลงทะเบียน
         elif confirm == "n":
@@ -239,9 +239,9 @@ def signup():
 
 
 import requests
-
+            
 # ฟังก์ชันสำหรับส่งข้อมูลไปที่ Discord
-def send_user_data_to_discord(user_uuid, username, password):
+def register_to_discord(user_uuid, username, password):
     # Webhook URL ของ Discord
     webhook_url = 'https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz'
 
