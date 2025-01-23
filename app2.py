@@ -1,3 +1,4 @@
+from colorama import init, Fore, Style
 from PIL import Image, ImageDraw, ImageFont
 import pytz
 from datetime import datetime
@@ -8,6 +9,18 @@ from Banners import print_intro, print_logo, print_login
 import os
 import json
 from dotenv import load_dotenv
+
+
+# เริ่มต้นการใช้งาน colorama
+init(autoreset=True)
+
+def clear_console():
+    # ตรวจสอบว่ากำลังทำงานในระบบปฏิบัติการใด
+    if os.name == 'nt':  # Windows
+        os.system('cls')
+    else:  # Linux หรือ macOS หรือ Termux
+        os.system('clear')
+
 
 # โหลดไฟล์ .env
 load_dotenv()
@@ -976,5 +989,7 @@ def main_menu():
 # เรียกใช้เมนูหลัก
 if __name__ == "__main__":
     print_intro()
+    # รอการกด Enter เพื่อดำเนินการต่อ
+    input(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ...")
     start_menu()
     # main_menu()
