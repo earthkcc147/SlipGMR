@@ -527,6 +527,19 @@ def start_menu():
 
 from function.send.disget import smdc, get_current_time, send
 
+import time
+import os
+
+
+
+# ฟังก์ชันสำหรับการกระพริบข้อความ
+def blink_message(message, times=3, delay=0.5):
+    for _ in range(times):
+        print(message, end='\r')
+        time.sleep(delay)
+        print(" " * len(message), end='\r')  # ลบข้อความ
+        time.sleep(delay)
+
 # ฟังก์ชันสำหรับล็อกอิน
 def login():
     print_login()
@@ -549,15 +562,14 @@ def login():
             main_menu()
             return True
         else:
-            clear_console()
-            print("❌ รหัสผ่านไม่ถูกต้อง")
+            blink_message("❌ รหัสผ่านไม่ถูกต้อง")  # กระพริบรหัสผ่านไม่ถูกต้อง
     else:
-        clear_console()
-        print("❌ ชื่อผู้ใช้ไม่ถูกต้อง")
+        blink_message("❌ ชื่อผู้ใช้ไม่ถูกต้อง")  # กระพริบชื่อผู้ใช้ไม่ถูกต้อง
 
     # อัปเดตสถานะการล็อกอินเป็น False
     global_status["login_status"] = False
     global_status["logged_in_user"] = None
+    clear_console()  # ล้างหน้าจอหลังจากการกระพริบ
     return False
     
 
