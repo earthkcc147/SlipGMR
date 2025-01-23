@@ -145,7 +145,7 @@ def start_menu():
         else:
             print("❌ ตัวเลือกไม่ถูกต้อง กรุณาลองใหม่.")
 
-
+start_menu()
 
 
 
