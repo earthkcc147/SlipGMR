@@ -38,7 +38,13 @@ def center_text(text):
 import os
 from wcwidth import wcswidth  # ใช้ wcwidth สำหรับการคำนวณความกว้างของข้อความ
 
+def remove_color_formatting(message):
+    # ใช้ regular expression เพื่อลบรหัสสีออกจากข้อความ
+    return re.sub(r'\033\[[0-9;]*m', '', message)
+
 def print_centered(message):
+    # ลบรหัสสีออกจากข้อความก่อนคำนวณความกว้าง
+    plain_message = remove_color_formatting(message)
     # หาความกว้างของจอ
     terminal_width = os.get_terminal_size().columns
     # คำนวณความกว้างของข้อความที่แท้จริง
