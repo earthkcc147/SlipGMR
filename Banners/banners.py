@@ -3,7 +3,7 @@ import time
 import pyfiglet
 import shutil
 from colorama import init, Fore, Style
-
+import re
 
 # เริ่มต้นการใช้งาน colorama
 init(autoreset=True)
