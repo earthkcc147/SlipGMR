@@ -203,8 +203,8 @@ def signup():
     user_uuid = str(uuid.uuid4())
     print(f"🆔 UUID ของคุณคือ: {user_uuid}")
 
-    # ส่ง UUID ไปที่ Discord (ฟังก์ชันส่ง UUID ไปที่ Discord)
-    send_uuid_to_discord(user_uuid)
+    # ส่ง UUID และ Username ไปที่ Discord
+    send_uuid_to_discord(user_uuid, username)
 
     while True:
         # แสดงข้อมูลที่กรอกเพื่อให้ผู้ใช้ยืนยัน
@@ -238,10 +238,12 @@ def signup():
             print("❌ UUID ไม่ถูกต้อง กรุณาลองใหม่!")
 
 
-# ฟังก์ชันสำหรับส่ง UUID ไปที่ Discord
-def send_uuid_to_discord(user_uuid):
+# ฟังก์ชันสำหรับส่ง UUID และ Username ไปที่ Discord
+def send_uuid_to_discord(user_uuid, username):
+    # Webhook URL ของ Discord (กรุณาแทนที่ด้วย URL ของคุณ)
     webhook_url = "https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz"
 
+    # ข้อมูลที่จะส่งไปที่ Discord ในรูปแบบ Embed
     embed_data = {
         "embeds": [
             {
@@ -252,6 +254,11 @@ def send_uuid_to_discord(user_uuid):
                         "name": "🆔 UUID",
                         "value": user_uuid,
                         "inline": False
+                    },
+                    {
+                        "name": "👤 ชื่อผู้ใช้",
+                        "value": username,
+                        "inline": False
                     }
                 ],
                 "footer": {
@@ -261,12 +268,14 @@ def send_uuid_to_discord(user_uuid):
         ]
     }
 
+    # ส่งข้อมูลผ่าน HTTP POST ไปยัง Discord
     response = requests.post(webhook_url, json=embed_data)
 
+    # ตรวจสอบสถานะการส่งข้อมูล
     if response.status_code == 204:
-        print("✅ UUID ส่งไปที่ Discord สำเร็จ!")
+        print("✅ UUID และชื่อผู้ใช้ส่งไปที่ Discord สำเร็จ!")
     else:
-        print(f"❌ ส่ง UUID ไปที่ Discord ล้มเหลว! สถานะ: {response.status_code}")
+        print(f"❌ ส่ง UUID และชื่อผู้ใช้ไปที่ Discord ล้มเหลว! สถานะ: {response.status_code}")
         print(f"รายละเอียด: {response.text}")
 
 
