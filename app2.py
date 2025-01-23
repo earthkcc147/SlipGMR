@@ -78,7 +78,7 @@ def register_to_discord(username, password):
     mentions = " ".join([f"<@{admin_id}>" for admin_id in valid_admin_ids])
 
     # ดึงเวลาประเทศไทย
-    thailand_time = get_thailand_time()
+    thailand_time = get_thailand_time1()
 
     # สร้าง Embed message
     embed = {
