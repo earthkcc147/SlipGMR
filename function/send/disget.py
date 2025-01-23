@@ -31,6 +31,7 @@ def smdc(message):
         response = requests.post(DISCORD_WEBHOOK_URL, json=embed_data)
         if response.status_code == 204:
             print("ส่งข้อความไปที่ Discord สำเร็จ ✅")
+            main_menu()
         else:
             print(f"เกิดข้อผิดพลาด: {response.status_code} ❌")
             print(response.text)
