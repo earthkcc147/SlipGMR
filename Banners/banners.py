@@ -62,7 +62,7 @@ def print_intro():
 
     # input(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ..." + Style.RESET_ALL)
 
-
+    print_centered("welcome to Gumarun Store")
     # เรียกใช้งาน print_centered สำหรับข้อความที่ต้องการ
     print_centered(Fore.GREEN + "กด Enter เพื่อดำเนินการต่อ..." + Style.RESET_ALL)
 
