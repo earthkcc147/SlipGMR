@@ -107,7 +107,7 @@ def home():
 
 
 # สร้างข้อความ ASCII art ด้วย pyfiglet
-FACEBOOK = pyfiglet.figlet_format("SPAM FACEBOOK", font="calvin_s", width=80)
+FACEBOOK = pyfiglet.figlet_format("FACEBOOK", font="calvin_s", width=80)
 
 # ฟังก์ชันแสดงข้อความพร้อมดีเลย์
 def facebook():
@@ -120,7 +120,7 @@ def facebook():
 
 
 # สร้างข้อความ ASCII art ด้วย pyfiglet
-DISCORD = pyfiglet.figlet_format("DISCORD TOOLS", font="calvin_s", width=80)
+DISCORD = pyfiglet.figlet_format("DISCORD", font="calvin_s", width=80)
 
 # ฟังก์ชันแสดงข้อความพร้อมดีเลย์
 def discord():
@@ -134,12 +134,12 @@ def discord():
 
 
 # สร้างข้อความ ASCII art ด้วย pyfiglet
-IP = pyfiglet.figlet_format("DDOS & FLOAT", font="calvin_s", width=80)
+REGISTER = pyfiglet.figlet_format("Register", font="calvin_s", width=80)
 
 # ฟังก์ชันแสดงข้อความพร้อมดีเลย์
-def ip():
+def register():
     # ใช้ center_text เพื่อจัดข้อความให้อยู่ตรงกลาง
-    centered_intro = center_text(IP)
+    centered_intro = center_text(REGISTER)
     for line in centered_intro.splitlines():
         print(Fore.YELLOW + line)  # ทำให้ข้อความเป็นสีเหลือง
         time.sleep(0.1)  # เพิ่มดีเลย์เพื่อจำลองแอนิเมชัน
