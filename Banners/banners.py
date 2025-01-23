@@ -47,6 +47,7 @@ def print_intro():
     for line in centered_intro.splitlines():
         print(Fore.YELLOW + line)  # ทำให้ข้อความเป็นสีเหลือง
         time.sleep(0.1)  # เพิ่มดีเลย์เพื่อจำลองแอนิเมชัน
+        input(Fore.GREEN + "\nกด Enter เพื่อดำเนินการต่อ...")
 
 
 
