@@ -121,7 +121,7 @@ def signup():
     password = input("🔒 รหัสผ่านใหม่: ")
 
     # ส่งข้อมูลไปที่ Discord
-    send_to_discord(username, password)
+    register_to_discord(username, password)
     print(f"สมัครสมาชิก {username} เรียบร้อยแล้ว! 👏")
 
 
