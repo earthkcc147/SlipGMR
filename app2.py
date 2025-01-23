@@ -525,6 +525,7 @@ from function.send.disget import smdc, get_current_time, send
 
 # ฟังก์ชันสำหรับล็อกอิน
 def login():
+    print_login()
     global global_status  # ใช้ global_status
     print("📄 ระบบล็อกอิน 📄")
     print("===================================")
