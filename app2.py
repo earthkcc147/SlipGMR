@@ -184,12 +184,12 @@ def login():
     
 
 # เรียกใช้งานฟังก์ชัน login
-if not login():
-    print("Login failed. Exiting program.")
-    exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
-else:
+# if not login():
+    # print("Login failed. Exiting program.")
+    # exit()  # หยุดโปรแกรมหากล็อกอินไม่สำเร็จ
+# else:
 
-    print(f"เข้าสู่ระบบสำเร็จ! ผู้ใช้ที่ล็อกอิน: {global_status['logged_in_user']}")
+    # print(f"เข้าสู่ระบบสำเร็จ! ผู้ใช้ที่ล็อกอิน: {global_status['logged_in_user']}")
     show_all_status()
 
 
@@ -939,4 +939,5 @@ def main_menu():
 
 # เรียกใช้เมนูหลัก
 if __name__ == "__main__":
-    main_menu()
+    start_menu()
+    # main_menu()
