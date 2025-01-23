@@ -254,6 +254,7 @@ def update_users_data(username, password):
             print("❌ ข้อมูล USERS ไม่พบในไฟล์ .env")
             return
 
+        # ดึงข้อมูล USERS จากไฟล์ .env และลบเครื่องหมาย ' ออกจากข้อมูล
         users_data_str = env_data.split('=')[-1].strip().strip("'")
 
         # แปลงข้อมูลจาก JSON string เป็น Python dictionary
@@ -264,6 +265,10 @@ def update_users_data(username, password):
             return
 
         # เพิ่มข้อมูลผู้ใช้ใหม่
+        if username in users_data:
+            print(f"❌ ชื่อผู้ใช้ {username} มีอยู่แล้วในระบบ")
+            return
+
         users_data[username] = {"password": password}
 
         # แปลงข้อมูลกลับเป็น JSON string
