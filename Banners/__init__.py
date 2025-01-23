@@ -1,1 +1,1 @@
-from .banners import sms, email, facebook, discord, ip
+from .banners import print_login, print_intro
