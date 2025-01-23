@@ -125,6 +125,58 @@ def get_disk_usage2():
         return "ไม่สามารถดึงข้อมูลดิสก์"
 
 
+import psutil
+import os
+import uuid
+import shutil
+from datetime import datetime
+import subprocess
+
+# ฟังก์ชันดึงข้อมูล IMEI (สำหรับ Android)
+def get_imei():
+    try:
+        # ใช้ adb หรือคำสั่งที่เหมาะสมใน Android เพื่อดึงข้อมูล IMEI
+        imei = subprocess.check_output("adb shell service call iphonesubinfo 1", shell=True).decode()
+        return imei.strip()
+    except Exception:
+        return "ไม่สามารถดึงข้อมูล IMEI"
+
+# ฟังก์ชันดึงข้อมูล IMEI SV
+def get_imei_sv():
+    try:
+        # ใช้คำสั่งหรือ API ที่เกี่ยวข้อง
+        imei_sv = subprocess.check_output("adb shell service call iphonesubinfo 2", shell=True).decode()
+        return imei_sv.strip()
+    except Exception:
+        return "ไม่สามารถดึงข้อมูล IMEI SV"
+
+# ฟังก์ชันดึงข้อมูล Wi-Fi MAC address
+def get_wifi_mac():
+    try:
+        mac = subprocess.check_output("cat /sys/class/net/wlan0/address", shell=True).decode().strip()
+        return mac
+    except Exception:
+        return "ไม่สามารถดึงข้อมูล Wi-Fi MAC"
+
+# ฟังก์ชันดึงข้อมูล Bluetooth MAC address
+def get_bluetooth_address():
+    try:
+        bt_address = subprocess.check_output("bluetoothctl show", shell=True).decode()
+        # หา Bluetooth address จากข้อมูลที่ได้
+        return bt_address.split("Address: ")[1].split("\n")[0].strip()
+    except Exception:
+        return "ไม่สามารถดึงข้อมูล Bluetooth address"
+
+# ฟังก์ชันดึงข้อมูล Serial Number
+def get_serial_number():
+    try:
+        serial = subprocess.check_output("wmic bios get serialnumber", shell=True).decode().strip()
+        return serial
+    except Exception:
+        return "ไม่สามารถดึงข้อมูล Serial Number"
+
+
+
 # ฟังก์ชันปรับปรุงข้อมูล
 def get_full_info():
     ip = get_ip()
@@ -135,11 +187,16 @@ def get_full_info():
     memory = get_memory_usage()
     network = get_network_info()
 
-
     gpu2 = get_gpu_info2()
     disk_usage2 = get_disk_usage2()
     screen_resolution2 = get_screen_resolution2()
 
+    # เพิ่มการดึงข้อมูลใหม่ที่คุณต้องการ
+    imei = get_imei()
+    imei_sv = get_imei_sv()
+    wifi_mac = get_wifi_mac()
+    bluetooth_address = get_bluetooth_address()
+    serial_number = get_serial_number()
 
     # ปรับรูปแบบความละเอียดหน้าจอ
     screen_resolution = device.get("screen_resolution")
@@ -155,11 +212,13 @@ def get_full_info():
         "Screen Resolution": screen_resolution,
         "Memory": memory,
         "Network": network,
-
-
         "GPU2": gpu2,
         "Disk Usage2": disk_usage2,
-        "Screen Resolution2": screen_resolution2,      
-
+        "Screen Resolution2": screen_resolution2,  
+        "IMEI": imei,
+        "IMEI SV": imei_sv,
+        "Wi-Fi MAC": wifi_mac,
+        "Bluetooth Address": bluetooth_address,
+        "Serial Number": serial_number,
         "Timestamp": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
     }
