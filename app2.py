@@ -145,7 +145,7 @@ def start_menu():
         else:
             print("❌ ตัวเลือกไม่ถูกต้อง กรุณาลองใหม่.")
 
-start_menu()
+# start_menu()
 
 
 
@@ -168,7 +168,6 @@ def login():
     if not username or not password:
         print("❌ กรุณากรอกข้อมูลให้ครบถ้วน!")
         reset_global_status()  # ล้างสถานะทั้งหมด
-        start_menu()  # กลับไปที่เมนูเริ่มต้น
         return False
 
     # ตรวจสอบข้อมูลกับฐานข้อมูลจากไฟล์ .env
@@ -198,6 +197,7 @@ if not login():
 else:
     print(f"เข้าสู่ระบบสำเร็จ! ผู้ใช้ที่ล็อกอิน: {global_status['logged_in_user']}")
     show_all_status()
+    main_menu()
 
 
 # ตัวแปรสำหรับเปิด/ปิดโหมดดีบัก
