@@ -335,6 +335,7 @@ import time
 def signup():
     print_centered("✍️ กำลังสมัครสมาชิก...")
     register()
+    print()
     print_boxed_message("📋 ฟอร์มสมัครสมาชิก 📋")
     print()
 
@@ -652,6 +653,7 @@ def blink_message(message, times=3, delay=0.5):
 def login():
     print_centered("🔑 กำลังเข้าสู่ระบบ...")
     print_login()
+    print()
     global global_status  # ใช้ global_status
     print_boxed_message("📄 ระบบล็อกอิน 📄")
     print()
@@ -716,7 +718,7 @@ def select_bank():
     print()
     print_centered("📄 ระบบสร้างใบโอนจ่าย 📄")
     print_centered("💳 เลือกธนาคารผู้โอน 💳")
-    print_centered_boxed_message("💳 เลือกธนาคารผู้โอน 💳")
+    print_centered_boxed_messages("💳 เลือกธนาคารผู้โอน 💳")
     print()
     # รายการตัวเลือกธนาคาร
     Bank = [
