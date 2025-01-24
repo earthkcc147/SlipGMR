@@ -94,7 +94,7 @@ def print_login():
 
 
 # สร้างข้อความ ASCII art ด้วย pyfiglet
-HOME = pyfiglet.figlet_format("Welcome\nยินดีต้อนรับ\n", font="calvin_s", width=80)
+HOME = pyfiglet.figlet_format("Welcome", font="calvin_s", width=80)
 
 # ฟังก์ชันแสดงข้อความพร้อมดีเลย์
 def home():
