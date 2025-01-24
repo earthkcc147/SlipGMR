@@ -38,8 +38,8 @@ def print_boxed_menu(menu_items):
     formatted_items = []
 
     for item in menu_items:
-        # parts = item.split('|', 1)
-        # left = parts[0].strip()  # ด้านซ้าย (ตัวเลือก)
+        parts = item.split('|', 1)
+        left = parts[0].strip()  # ด้านซ้าย (ตัวเลือก)
         right = parts[1].strip() if len(parts) > 1 else ""  # ด้านขวา (ข้อความ)
 
         # เติมช่องว่างให้ด้านซ้ายมีความยาวเท่ากัน
