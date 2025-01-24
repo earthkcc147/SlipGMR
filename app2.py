@@ -591,13 +591,7 @@ def start_menu():
     print_intro()  # เรียกใช้งาน print_intro ก่อนแสดงเมนู
     while True:
         home()
-        messages = [
-            "Hello, World!",
-            "This is a centered box.",
-            "You can add multiple lines.",
-            "And they will all align properly!"
-        ]
-        print_centered_boxed_message(messages)
+        
         messages = [
             "Hello, World!",
             "This is a centered box.",
