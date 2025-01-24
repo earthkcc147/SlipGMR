@@ -597,14 +597,14 @@ def start_menu():
             "You can add multiple lines.",
             "And they will all align properly!"
         ]
-        print_centered_boxed_messages(messages)
+        print_centered_boxed_message(messages)
         messages = [
             "Hello, World!",
             "This is a centered box.",
             "You can add multiple lines.",
             "And they will all align properly!"
         ]
-        print_centered_boxed_messages2(messages)
+        print_centered_boxed_message2(messages)
         menu_items = [
             "1. | 🔑 เข้าสู่ระบบ",
             "2. | ✍️ สมัครสมาชิก (ส่งข้อมูลไปที่ Discord 📝)",
