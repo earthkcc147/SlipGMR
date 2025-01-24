@@ -149,7 +149,7 @@ def register():
 Select_Bank = pyfiglet.figlet_format("Select a Bank", font="calvin_s", width=80)
 
 # ฟังก์ชันแสดงข้อความพร้อมดีเลย์
-def Selectbank():
+def selectbank():
     # ใช้ center_text เพื่อจัดข้อความให้อยู่ตรงกลาง
     centered_intro = center_text(Select_Bank)
     for line in centered_intro.splitlines():
