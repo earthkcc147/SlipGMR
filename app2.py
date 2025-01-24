@@ -718,11 +718,6 @@ def select_bank():
     print()
     print_centered_boxed_messages("📄 ระบบสร้างใบโอนจ่าย 📄")
     print_centered("💳 เลือกธนาคารผู้โอน 💳")
-    select = [
-        "📄 ระบบสร้างใบโอนจ่าย 📄",
-        "💳 เลือกธนาคารผู้โอน 💳"
-    ]
-    print_centered_boxed_messages2(select)
     print()
     # รายการตัวเลือกธนาคาร
     Bank = [
