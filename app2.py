@@ -1014,11 +1014,11 @@ def main_menu():
 
     global global_status  # อ้างอิงตัวแปร global
 
-    print("📄 ระบบสร้างใบโอนจ่าย 📄")
+    print_centered("📄 ระบบสร้างใบโอนจ่าย 📄")
     print("===================================")
 
     # เลือกธนาคาร
-    print("💳 เลือกธนาคารผู้โอน:")
+    print_centered("💳 เลือกธนาคารผู้โอน:")
     bank_name = select_bank()
 
     # เลือกภาพพื้นหลังตามธนาคาร
@@ -1064,7 +1064,7 @@ def main_menu():
     print("===================================")
 
     print("✔️ ข้อมูลทั้งหมดถูกกรอกเรียบร้อยแล้ว ✔️")
-    print("📑 ระบบกำลังสร้างใบโอนจ่าย...")
+    print_centered("📑 ระบบกำลังสร้างใบโอนจ่าย...")
 
     # day = current_time_thailand.strftime("%d")
     # month = current_time_thailand.strftime("%m")
