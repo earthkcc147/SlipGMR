@@ -574,9 +574,9 @@ def restart_script():
 
 
 def start_menu():
-    print_centered("ยินดีต้อนรับ")
     print_intro()  
     while True:
+        print_centered("ยินดีต้อนรับ")
         home()
         
         menu_items = [
