@@ -645,7 +645,7 @@ def send_exit_message_to_discord(username):
 
 # ฟังก์ชันสำหรับเลือกธนาคาร
 def select_bank():
-    
+    selectbank()
     print_boxed_message("เลือกธนาคารผู้โอน:")
     # รายการตัวเลือกธนาคาร
     Bank = [
