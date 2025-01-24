@@ -674,7 +674,9 @@ def send_exit_message_to_discord(username):
 
 # ฟังก์ชันสำหรับเลือกธนาคาร
 def select_bank():
-    
+    selectbank()
+    print_centered("📄 ระบบสร้างใบโอนจ่าย 📄")
+    print_centered("💳 เลือกธนาคารผู้โอน:")
     # รายการตัวเลือกธนาคาร
     Bank = [
         "1. |  K-bank 🏦 (ธนาคารกสิกรไทย)",
@@ -1041,12 +1043,11 @@ def main_menu():
 
     global global_status  # อ้างอิงตัวแปร global
 
-    selectbank()
-    print_centered("📄 ระบบสร้างใบโอนจ่าย 📄")
+    # print_centered("📄 ระบบสร้างใบโอนจ่าย 📄")
     # print("===================================")
 
     # เลือกธนาคาร
-    print_centered("💳 เลือกธนาคารผู้โอน:")
+    # print_centered("💳 เลือกธนาคารผู้โอน:")
     bank_name = select_bank()
 
     # เลือกภาพพื้นหลังตามธนาคาร
