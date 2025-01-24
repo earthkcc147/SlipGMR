@@ -41,7 +41,7 @@ def print_centered(message):
 import os
 from wcwidth import wcswidth  # ใช้สำหรับคำนวณความกว้างของข้อความที่มีอักขระพิเศษ
 
-def print_centered_boxed_message(message):
+def print_centered_boxed_messages(message):
     padding = 2  # ช่องว่างซ้าย-ขวาอย่างน้อย
     message_width = wcswidth(message)  # คำนวณความกว้างของข้อความ
     total_length = message_width + padding * 2  # ความยาวทั้งหมดของกรอบ
@@ -597,13 +597,6 @@ def start_menu():
     while True:
         home()
         
-        messages = [
-            "Hello, World!",
-            "This is a centered box.",
-            "You can add multiple lines.",
-            "And they will all align properly!"
-        ]
-        print_centered_boxed_messages2(messages)
         menu_items = [
             "1. | 🔑 เข้าสู่ระบบ",
             "2. | ✍️ สมัครสมาชิก (ส่งข้อมูลไปที่ Discord 📝)",
@@ -611,7 +604,7 @@ def start_menu():
             "00. | ❌ ออกจากโปรแกรม"
         ]
         
-        print_boxed_menu(menu_items)
+        print_centered_boxed_messages2(menu_items)
 
         print()  # เพิ่มบรรทัดใหม่
         choice = input("➡️ กรุณาเลือกตัวเลือก : ")
