@@ -38,29 +38,6 @@ def print_centered(message):
 
 
 
-import os
-from wcwidth import wcswidth  # ใช้สำหรับคำนวณความกว้างของข้อความที่มีอักขระพิเศษ
-
-def print_centered_boxed_messages(message):
-    padding = 2  # ช่องว่างซ้าย-ขวาอย่างน้อย
-    message_width = wcswidth(message)  # คำนวณความกว้างของข้อความ
-    total_length = message_width + padding * 2  # ความยาวทั้งหมดของกรอบ
-
-    # หาความกว้างของจอ
-    terminal_width = os.get_terminal_size().columns
-
-    # คำนวณการจัดตำแหน่งให้กรอบอยู่ตรงกลาง
-    padding_left = (terminal_width - total_length) // 2
-
-    border = "═" * total_length  # สร้างเส้นขอบด้านบนและล่าง
-
-    # พิมพ์ข้อความในกรอบพร้อมจัดให้อยู่ตรงกลาง
-    print(' ' * padding_left + f"╔{border}╗")
-    print(' ' * padding_left + f"║{' ' * padding}{message}{' ' * padding}║")
-    print(' ' * padding_left + f"╚{border}╝")
-
-
-
 def print_boxed_message(message):
     padding = 2  # ช่องว่างซ้าย-ขวาอย่างน้อย
     total_length = len(message) + padding * 2  # ความยาวทั้งหมดของกรอบ
@@ -76,7 +53,7 @@ def print_boxed_message(message):
 import os
 from wcwidth import wcswidth
 
-def print_centered_boxed_messages2(messages):
+def print_centered_boxed_messages(messages):
     padding = 2  # ช่องว่างซ้าย-ขวาอย่างน้อย
 
     # ตรวจสอบว่า input เป็น list หรือข้อความเดี่ยว
