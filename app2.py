@@ -333,6 +333,7 @@ import time
 
 # ฟังก์ชันสำหรับสมัครสมาชิก
 def signup():
+    print_centered("✍️ กำลังสมัครสมาชิก...")
     register()
     print_boxed_message("📋 ฟอร์มสมัครสมาชิก 📋")
     print()
@@ -552,6 +553,7 @@ from colorama import Fore, Style
 from tqdm import tqdm
 
 def autoupdate_restart():
+    print_centered("🔄 กำลังอัปเดตโค้ดและรีสตาร์ท...")
     repo_dir = '.'  # ระบุให้ใช้โฟลเดอร์ปัจจุบัน 
     repo_url = 'https://github.com/earthkcc147/SlipGMR.git'
 
@@ -612,15 +614,12 @@ def start_menu():
 
         if choice == "1":
             clear_console()
-            print_centered_boxed_messages("🔑 กำลังเข้าสู่ระบบ...")
             login()
         elif choice == "2":
             clear_console()
-            print_centered_boxed_messages("✍️ กำลังสมัครสมาชิก...")
             signup()
         elif choice == "3":
             clear_console()
-            print_centered_boxed_messages("🔄 กำลังอัปเดตโค้ดและรีสตาร์ท...")
             autoupdate_restart()  # เรียกฟังก์ชันอัปเดตและรีสตาร์ท
         elif choice == "00":
             clear_console()
@@ -651,6 +650,7 @@ def blink_message(message, times=3, delay=0.5):
 
 # ฟังก์ชันสำหรับล็อกอิน
 def login():
+    print_centered("🔑 กำลังเข้าสู่ระบบ...")
     print_login()
     global global_status  # ใช้ global_status
     print_boxed_message("📄 ระบบล็อกอิน 📄")
