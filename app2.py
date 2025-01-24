@@ -33,20 +33,30 @@ def print_boxed_message(message):
 from wcwidth import wcswidth
 
 def print_boxed_menu(menu_items):
-    # คำนวณความกว้างที่แท้จริงของตัวเลือกด้านซ้าย (ตัวเลข + คำอธิบาย)
-    max_left_length = max(wcswidth(item.split('|')[0].strip()) for item in menu_items)
+    # คำนวณความกว้างของข้อความด้านซ้าย (รองรับกรณีไม่มี '|')
+    max_left_length = max(
+        wcswidth(item.split('|')[0].strip()) if '|' in item else wcswidth(item.strip())
+        for item in menu_items
+    )
     formatted_items = []
 
     for item in menu_items:
-        parts = item.split('|', 1)
-        left = parts[0].strip()  # ด้านซ้าย (ตัวเลือก)
-        right = parts[1].strip() if len(parts) > 1 else ""  # ด้านขวา (ข้อความ)
+        if '|' in item:
+            parts = item.split('|', 1)
+            left = parts[0].strip()  # ด้านซ้าย (ตัวเลือก)
+            right = parts[1].strip()  # ด้านขวา (ข้อความ)
+        else:
+            left = item.strip()  # ใช้ข้อความทั้งหมดเมื่อไม่มี '|'
+            right = ""
 
         # เติมช่องว่างให้ด้านซ้ายมีความยาวเท่ากัน
         left_padded = left.ljust(max_left_length)
 
         # รวมข้อความที่จัดระเบียบแล้ว
-        formatted_items.append(f"{left_padded} | {right}")
+        if right:
+            formatted_items.append(f"{left_padded} | {right}")
+        else:
+            formatted_items.append(left_padded)
 
     # คำนวณความกว้างของกรอบ
     max_length = max(wcswidth(item) for item in formatted_items)
