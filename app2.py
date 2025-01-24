@@ -597,11 +597,12 @@ def login():
     # ตรวจสอบข้อมูลกับฐานข้อมูลจากไฟล์ .env
     if username in users_data:
         if users_data[username]["password"] == password:
-            print("✔️ การล็อกอินสำเร็จ")
+            blink_message("✔️ การล็อกอินสำเร็จ")
             # เก็บสถานะการล็อกอิน
             global_status["login_status"] = True
             global_status["logged_in_user"] = username
             send(username)
+            clear_console()
             main_menu()
             return True
         else:
