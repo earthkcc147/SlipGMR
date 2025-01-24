@@ -604,7 +604,7 @@ def start_menu():
             "00. | ❌ ออกจากโปรแกรม"
         ]
         
-        print_centered_boxed_messages2(menu_items)
+        print_boxed_menu(menu_items)
 
         print()  # เพิ่มบรรทัดใหม่
         choice = input("➡️ กรุณาเลือกตัวเลือก : ")
