@@ -669,7 +669,7 @@ def start_menu():
 
 
 
-from function.send.disget import smdc, get_current_time, send
+from function.send.disget import smdc, smdc2,  get_current_time, send
 
 import time
 import os
