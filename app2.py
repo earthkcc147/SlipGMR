@@ -192,7 +192,7 @@ def display_username():
         # สร้างข้อความสำหรับชื่อผู้ใช้
         username_message = f"👤 {username} 🏷️"
         # แสดงชื่อผู้ใช้ในกรอบที่มุมขวาบน
-        print_top_right_boxed_messages([username_message])
+        print_top_right([username_message])
 
 
 
