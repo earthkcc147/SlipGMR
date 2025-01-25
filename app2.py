@@ -185,6 +185,14 @@ def print_top_right_boxed_messages(messages):
 
 
 
+# ฟังก์ชันที่ปรับปรุงเพื่อแสดงชื่อผู้ใช้จาก global_status
+def display_username():
+    if global_status["login_status"]:
+        username = global_status["logged_in_user"]
+        # สร้างข้อความสำหรับชื่อผู้ใช้
+        username_message = f"👤 {username} 🏷️"
+        # แสดงชื่อผู้ใช้ในกรอบที่มุมขวาบน
+        print_top_right_boxed_messages([username_message])
 
 
 
@@ -741,10 +749,7 @@ def send_exit_message_to_discord(username):
 # ฟังก์ชันสำหรับเลือกธนาคาร
 def select_bank():
     # แสดงชื่อผู้ใช้ที่ล็อกอินอยู่ที่มุมขวาบน
-    if global_status["login_status"]:
-        username_message = f"👤 {username} 🏷️"
-        # แสดงชื่อผู้ใช้ในกรอบที่มุมขวาบน
-        print_top_right_boxed_messages([username_message])
+    display_username()
     print_centered("🏦 ทำการเลือกธนาคาร...")
     selectbank()
     print()
