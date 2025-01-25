@@ -826,7 +826,7 @@ def select_background(bank_name):
 
 # ฟังก์ชั่นสำหรับเลือกโลโก้
 def select_logo(background_image):
-    
+    selectlogo()
     print()
     print_centered("🏷️ เลือกโลโก้ของธนาคารผู้รับ")
     print()
