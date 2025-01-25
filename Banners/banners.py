@@ -174,7 +174,7 @@ def background():
 Logo = pyfiglet.figlet_format("Select\na\nLogo", font="calvin_s", width=80)
 
 # ฟังก์ชันแสดงข้อความพร้อมดีเลย์
-def logo():
+def selectlogo():
     # ใช้ center_text เพื่อจัดข้อความให้อยู่ตรงกลาง
     centered_intro = center_text(Logo)
     for line in centered_intro.splitlines():
