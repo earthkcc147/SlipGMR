@@ -551,6 +551,11 @@ def register_to_discord(user_uuid, username, password):
         print(f"รายละเอียด: {response.text}")
 
 
+
+import json
+import os
+from dotenv import load_dotenv, set_key
+
 # ฟังก์ชันสำหรับเพิ่มผู้ใช้ใหม่ใน USERS
 def add_user_to_env(username, password):
     global users_data
