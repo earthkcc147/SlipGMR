@@ -147,7 +147,6 @@ def print_top_right(message):
 
 
 
-
 import os
 from wcwidth import wcswidth
 
@@ -187,6 +186,16 @@ def print_top_right_boxed_messages(messages):
 
 # ฟังก์ชันที่ปรับปรุงเพื่อแสดงชื่อผู้ใช้จาก global_status
 def display_username():
+    if global_status["login_status"]:
+        username = global_status["logged_in_user"]
+        # สร้างข้อความสำหรับชื่อผู้ใช้
+        username_message = f"👤 {username} 🏷️"
+        # แสดงชื่อผู้ใช้ในกรอบที่มุมขวาบน
+        print_top_right(username_message)  # ส่งเป็นข้อความเดียว ไม่ใช่ list
+
+
+# ฟังก์ชันที่ปรับปรุงเพื่อแสดงชื่อผู้ใช้จาก global_status
+def display_username2():
     if global_status["login_status"]:
         username = global_status["logged_in_user"]
         # สร้างข้อความสำหรับชื่อผู้ใช้
@@ -750,6 +759,7 @@ def send_exit_message_to_discord(username):
 def select_bank():
     # แสดงชื่อผู้ใช้ที่ล็อกอินอยู่ที่มุมขวาบน
     display_username()
+    display_username2()
     print_centered("🏦 ทำการเลือกธนาคาร...")
     selectbank()
     print()
