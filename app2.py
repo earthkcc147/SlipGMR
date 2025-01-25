@@ -792,6 +792,7 @@ def select_background(bank_name):
     choice = input("กรุณาเลือกหมายเลข (0-5) หรือ 00 เพื่อย้อนกลับ: ")
 
     if choice == "00":
+        clear_console()
         main_menu()  # เพิ่มตัวเลือกย้อนกลับ
     elif choice == "1" and bank_name == "K-bank":
         return "Bank/K-bank 4.png"
@@ -853,6 +854,7 @@ def select_logo(background_image):
     choice = input("กรุณาเลือกหมายเลข (1-10 หรือ 00 เพื่อเลือกพื้นหลังใหม่): ")
 
     if choice == "00":
+        clear_console()
         main_menu()  # เพิ่มตัวเลือกย้อนกลับ
 
     if choice == "1":
