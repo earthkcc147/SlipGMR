@@ -14,6 +14,30 @@ load_dotenv()
 # ดึงค่า Webhook URL จาก .env
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK")
 
+# ฟังก์ชันเพื่อส่งข้อความเป็น Embed ไปยัง Discord
+def logout(message):
+    embed_data = {
+        "embeds": [{
+            "title": "🎉 ผู้ใช้เข้าสู่ระบบสำเร็จ",
+            "description": message,
+            "color": 3066993,  # สี Embed (สีเขียว)
+            "footer": {
+                "text": "ระบบตรวจสอบ",
+            }
+        }]
+    }
+
+    try:
+        response = requests.post(DISCORD_WEBHOOK_URL, json=embed_data)
+        if response.status_code == 204:
+            print("ส่งข้อความไปที่ Discord สำเร็จ ✅")
+
+        else:
+            print(f"เกิดข้อผิดพลาด: {response.status_code} ❌")
+            print(response.text)
+    except requests.RequestException as e:
+        print(f"เกิดข้อผิดพลาดในการเชื่อมต่อ: {e} ❌")
+
 
 # ฟังก์ชันเพื่อส่งข้อความเป็น Embed ไปยัง Discord
 def smdc(message):
