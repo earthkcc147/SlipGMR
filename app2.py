@@ -551,47 +551,25 @@ def register_to_discord(user_uuid, username, password):
         print(f"รายละเอียด: {response.text}")
 
 
-import json
+# ฟังก์ชันสำหรับเพิ่มผู้ใช้ใหม่ใน USERS
+def add_user_to_env(username, password):
+    global users_data
 
-# ฟังก์ชันสำหรับเพิ่มข้อมูลผู้ใช้ในไฟล์ .env
-def add_users_data(username, password):
-    try:
-        # อ่านข้อมูลจากไฟล์ .env
-        with open('.env', 'r') as file:
-            env_data = file.read()
+    # ตรวจสอบว่าชื่อผู้ใช้มีอยู่ใน USERS หรือไม่
+    if username in users_data:
+        print("❌ ชื่อผู้ใช้นี้มีอยู่แล้วในระบบ")
+        return
 
-        # แยกข้อมูล USERS ออกจากไฟล์ .env
-        if "USERS=" not in env_data:
-            print("❌ ข้อมูล USERS ไม่พบในไฟล์ .env")
-            return
+    # เพิ่มข้อมูลผู้ใช้ใหม่
+    users_data[username] = {"password": password}
 
-        # ดึงข้อมูล USERS จากไฟล์ .env และลบเครื่องหมาย ' ออกจากข้อมูล
-        users_data_str = env_data.split('=')[-1].strip().strip("'")
+    # แปลงข้อมูลกลับเป็น JSON
+    updated_users_json = json.dumps(users_data, ensure_ascii=False)
 
-        # แปลงข้อมูลจาก JSON string เป็น Python dictionary
-        try:
-            users_data = json.loads(users_data_str)
-        except json.JSONDecodeError:
-            print("❌ ข้อผิดพลาดในการแปลงข้อมูล JSON ในไฟล์ .env")
-            print("ข้อมูลในไฟล์ .env อาจจะไม่เป็นไปตามรูปแบบ JSON")
-            return
+    # ใช้ set_key เพื่อบันทึกข้อมูลกลับไปที่ .env
+    set_key(".env", "USERS", updated_users_json)
 
-        # เพิ่มข้อมูลผู้ใช้ใหม่โดยไม่ตรวจสอบว่าผู้ใช้มีอยู่แล้วหรือไม่
-        users_data[username] = {"password": password}
-
-        # แปลงข้อมูลกลับเป็น JSON string
-        updated_data = f"USERS='{json.dumps(users_data, indent=2)}'"
-
-        # เขียนข้อมูลที่อัปเดตลงในไฟล์ .env
-        with open('.env', 'w') as file:
-            file.write(updated_data)
-
-        print(f"✅ ข้อมูลผู้ใช้ {username} ถูกเพิ่มในไฟล์ .env")
-
-    except FileNotFoundError:
-        print("❌ ไม่พบไฟล์ .env! กรุณาตรวจสอบไฟล์ .env")
-    except Exception as e:
-        print(f"❌ เกิดข้อผิดพลาด: {str(e)}")
+    print(f"✅ ผู้ใช้ {username} ถูกเพิ่มลงในระบบเรียบร้อยแล้ว!")
 
 
 
