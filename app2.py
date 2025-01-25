@@ -84,6 +84,7 @@ def print_centered_boxed_messages(messages):
     print(' ' * padding_left + f"╚{border}╝")
 
 
+
 from wcwidth import wcswidth
 
 def print_boxed_menu(menu_items):
@@ -130,6 +131,43 @@ def print_boxed_menu(menu_items):
     print(f"╚{border}╝")
 
 
+
+
+import os
+from wcwidth import wcswidth  # ใช้ wcwidth สำหรับการคำนวณความกว้างของข้อความ
+
+def print_top_right(message):
+    # หาความกว้างของจอ
+    terminal_width = os.get_terminal_size().columns
+    # คำนวณความกว้างของข้อความที่แท้จริง
+    message_width = wcswidth(message)
+    # คำนวณการจัดตำแหน่งให้ตรงมุมขวาบน
+    padding_left = terminal_width - message_width  # ไม่มี padding ด้านขวา
+    print(' ' * padding_left + message)
+
+
+
+
+import os
+from wcwidth import wcswidth  # ใช้ wcwidth สำหรับการคำนวณความกว้างของข้อความ
+
+def print_boxed_message_top_right(message):
+    # หาความกว้างของจอ
+    terminal_width = os.get_terminal_size().columns
+    # คำนวณความกว้างของข้อความที่แท้จริง
+    message_width = wcswidth(message)
+    # คำนวณการจัดตำแหน่งให้ตรงมุมขวาบน
+    padding_left = terminal_width - message_width  # ไม่มี padding ด้านขวา
+    
+    # สร้างกรอบข้อความ
+    padding = 2  # ช่องว่างซ้าย-ขวาอย่างน้อย
+    total_length = message_width + padding * 2  # ความยาวทั้งหมดของกรอบ
+    border = "═" * total_length  # สร้างเส้นขอบด้านบนและล่าง
+    
+    # พิมพ์กรอบที่มุมขวาบน
+    print(' ' * padding_left + f"╔{border}╗")
+    print(' ' * padding_left + f"║{' ' * padding}{message}{' ' * padding}║")
+    print(' ' * padding_left + f"╚{border}╝")
 
 
 
