@@ -946,6 +946,7 @@ def select_logo(background_image):
 
 
     if choice == "00":
+        clear_console()
         main_menu()  # เพิ่มตัวเลือกย้อนกลับ
 
     if choice == "1":
