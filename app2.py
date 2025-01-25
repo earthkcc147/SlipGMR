@@ -822,6 +822,7 @@ def select_bank():
 
 # ฟังก์ชั่นสำหรับเลือกภาพพื้นหลังตามธนาคาร
 def select_background(bank_name):
+    display_username()
     print_centered("🏦 ทำการเลือกพื้นหลังของสลิป...")
     select_theme()
     print()
@@ -919,6 +920,7 @@ def select_background(bank_name):
 # ฟังก์ชั่นสำหรับเลือกโลโก้
 def select_logo(background_image):
     clear_console()
+    display_username()
     selectlogo()
     print()
     print_centered("🏷️ เลือกโลโก้ของธนาคารผู้รับ")
