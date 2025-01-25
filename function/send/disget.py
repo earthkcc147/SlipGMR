@@ -18,7 +18,7 @@ DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK")
 def logout(message):
     embed_data = {
         "embeds": [{
-            "title": "🎉 ผู้ใช้เข้าสู่ระบบสำเร็จ",
+            "title": "🎉 ผู้ใช้ออกจากระบบ",
             "description": message,
             "color": 3066993,  # สี Embed (สีเขียว)
             "footer": {
