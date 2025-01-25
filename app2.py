@@ -645,9 +645,9 @@ def restart_script():
 
 
 def start_menu():
-    display_username()
     print_intro()  
     while True:
+        display_username()
         print_centered("ยินดีต้อนรับ")
         home()
         
