@@ -195,7 +195,7 @@ def display_username():
 
 
 # ฟังก์ชันที่ปรับปรุงเพื่อแสดงชื่อผู้ใช้จาก global_status
-def display_username2():
+def display_username_box():
     if global_status["login_status"]:
         username = global_status["logged_in_user"]
         # สร้างข้อความสำหรับชื่อผู้ใช้
@@ -759,7 +759,6 @@ def send_exit_message_to_discord(username):
 def select_bank():
     # แสดงชื่อผู้ใช้ที่ล็อกอินอยู่ที่มุมขวาบน
     display_username()
-    display_username2()
     print_centered("🏦 ทำการเลือกธนาคาร...")
     selectbank()
     print()
