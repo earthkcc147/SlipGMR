@@ -461,7 +461,7 @@ def signup():
             # ส่งข้อมูล username และ password ไปที่ Discord
             register_to_discord(user_uuid, username, password)
             # เพิ่มข้อมูลผู้ใช้ใน .env
-            add_user_to_env(username, password)
+            # add_user_to_env(username, password)
             print(f"✅ สมัครสมาชิก {username} เรียบร้อยแล้ว! 👏")
             break  # ออกจากลูปการลงทะเบียน
         else:
