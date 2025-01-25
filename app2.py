@@ -435,7 +435,7 @@ def signup():
         if confirm == "y":
             # ส่ง UUID และ Username ไปที่ Discord
             send_uuid_to_discord(user_uuid, username)
-            print_boxed_message("🔗 ไปที่ลิงก์นี้เพื่อเข้ากลุ่ม Discord และรับ UUID ของคุณ: https://discord.gg/5yxfyN4aTn\n")
+            print_boxed_message("🔗 ไปที่ลิงก์นี้เพื่อรับ UUID ของคุณ: https://discord.gg/5yxfyN4aTn\n")
             break
         elif confirm == "n":
             blink_message("⏪ ยกเลิกการสมัครสมาชิก กำลังกลับไปยังเมนูหลัก...")
