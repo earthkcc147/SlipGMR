@@ -159,6 +159,20 @@ def selectbank():
 
 
 # สร้างข้อความ ASCII art ด้วย pyfiglet
+Select_Theme = pyfiglet.figlet_format("Choose a theme", font="calvin_s", width=80)
+
+# ฟังก์ชันแสดงข้อความพร้อมดีเลย์
+def select_theme():
+    # ใช้ center_text เพื่อจัดข้อความให้อยู่ตรงกลาง
+    centered_intro = center_text(Select_Theme)
+    for line in centered_intro.splitlines():
+        print(Fore.YELLOW + line)  # ทำให้ข้อความเป็นสีเหลือง
+        time.sleep(0.1)  # เพิ่มดีเลย์เพื่อจำลองแอนิเมชัน
+
+
+
+
+# สร้างข้อความ ASCII art ด้วย pyfiglet
 Background = pyfiglet.figlet_format("Select\na\nbackground", font="calvin_s", width=80)
 
 # ฟังก์ชันแสดงข้อความพร้อมดีเลย์
