@@ -149,27 +149,37 @@ def print_top_right(message):
 
 
 import os
-from wcwidth import wcswidth  # ใช้ wcwidth สำหรับการคำนวณความกว้างของข้อความ
+from wcwidth import wcswidth
 
-def print_boxed_message_top_right(message):
+def print_top_right_boxed_messages(messages):
+    padding = 2  # ช่องว่างซ้าย-ขวาอย่างน้อย
+
+    # ตรวจสอบว่า input เป็น list หรือข้อความเดี่ยว
+    if isinstance(messages, str):
+        messages = [messages]
+
+    # คำนวณความกว้างของข้อความที่ยาวที่สุด
+    max_message_width = max(wcswidth(msg) for msg in messages)  # ใช้ wcswidth กับข้อความทั้ง list
+    total_length = max_message_width + padding * 2
+
     # หาความกว้างของจอ
     terminal_width = os.get_terminal_size().columns
-    # คำนวณความกว้างของข้อความที่แท้จริง
-    message_width = wcswidth(message)
-    # คำนวณการจัดตำแหน่งให้ตรงมุมขวาบน
-    padding_left = terminal_width - message_width  # ไม่มี padding ด้านขวา
-    
-    # สร้างกรอบข้อความ
-    padding = 2  # ช่องว่างซ้าย-ขวาอย่างน้อย
-    total_length = message_width + padding * 2  # ความยาวทั้งหมดของกรอบ
+
+    # คำนวณการจัดตำแหน่งให้กรอบอยู่ที่มุมขวา
+    padding_left = terminal_width - total_length  # ไม่มี padding ด้านขวา
+
     border = "═" * total_length  # สร้างเส้นขอบด้านบนและล่าง
-    
-    # พิมพ์กรอบที่มุมขวาบน
+
+    # พิมพ์กรอบด้านบน
     print(' ' * padding_left + f"╔{border}╗")
-    print(' ' * padding_left + f"║{' ' * padding}{message}{' ' * padding}║")
+
+    # พิมพ์ข้อความแต่ละบรรทัดในกรอบ
+    for message in messages:
+        message_padding = ' ' * ((max_message_width - wcswidth(message)) // 2)
+        print(' ' * padding_left + f"║{' ' * padding}{message_padding}{message}{message_padding}{' ' * padding}║")
+
+    # พิมพ์กรอบด้านล่าง
     print(' ' * padding_left + f"╚{border}╝")
-
-
 
 
 
@@ -733,7 +743,7 @@ def select_bank():
     # แสดงชื่อผู้ใช้ที่ล็อกอินอยู่ที่มุมขวาบน
     if global_status["login_status"]:
         username = global_status["logged_in_user"]
-        print_boxed_message_top_right(f"{' ' * (80 - len(username))}👤 {username} 🏷️")  # ปรับให้ชื่อผู้ใช้แสดงที่มุมขวา
+        print_top_right_boxed_messages(f"{' ' * (80 - len(username))}👤 {username} 🏷️")  # ปรับให้ชื่อผู้ใช้แสดงที่มุมขวา
     print_centered("🏦 ทำการเลือกธนาคาร...")
     selectbank()
     print()
